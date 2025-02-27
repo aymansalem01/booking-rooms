@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
@@ -14,6 +18,13 @@ Route::get('/logout/{id}',[AuthController::class,'logout'])->name('logout');
 Route::get('/editprofile/{id}',[AuthController::class,'edit']);
 Route::put('/editprofile/{id}',[AuthController::class,'update']);
 Route::view('/feedback','welcome');
+Route::post('/feedback',[FeedbackController::class,'feedback'])->name('feedback');
+Route::post('/subscribe',[FeedbackController::class,'subscribe'])->name('subscribe');
+
+
+Route::resource('store',StoreController::class);
+Route::resource('admin',AdminController::class);
+Route::resource('owner',OwnerController::class);
 
 
 Route::get('/', function () {
@@ -30,7 +41,7 @@ Route::middleware(['auth,role:user'])->group(function () {
 
 
 
-    
+
 
 
 
