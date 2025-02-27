@@ -28,7 +28,9 @@ Route::resource('owner',OwnerController::class);
 
 
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('user.rooms');
+    //return view('welcome');
 });
 
 Route::middleware(['auth,role:user'])->group(function () {
