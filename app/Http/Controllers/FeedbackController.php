@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    public function feedback()
+    public function feedback(Request $request)
     {
 
     }
-    public function subscribe()
+    public function subscribe(Request $request)
     {
-        
+
+    }
+
+    public function comment(Request $request)
+    {
+
     }
 }
