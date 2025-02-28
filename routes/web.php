@@ -37,6 +37,16 @@ Route::get('/', function () {
 
 Route::view('/admin', 'admin.dashboard')->name('admin');
 Route::view('/user-mangment', 'admin.user-mangment')->name('user-mangment');
+Route::view('/room-mangment', 'admin.room-mangment')->name('room-mangment');
+Route::view('/owner-mangment', 'admin.owner-mangment')->name('owner-mangment');
+Route::view('/discounts-mangment', 'admin.discounts-mangment')->name('discounts-mangment');
+Route::view('/category-mangment', 'admin.category-mangment')->name('category-mangment');
+Route::view('/booking-mangment', 'admin.booking-mangment')->name('booking-mangment');
+Route::view('/review-mangment', 'admin.reviews-mangment')->name('reviews-mangment');
+
+
+
+
 
 
 

@@ -54,7 +54,7 @@
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="dashboard.html">
+                        <a href="{{ route('admin') }}">
                             <i class="fa-solid fa-gauge"></i>
                             <p>Dashboard</p>
                         </a>
@@ -66,39 +66,39 @@
                         </a>
                     </li>
                     <li>
-                        <a href="table.html">
+                        <a href="{{ route('owner-mangment') }}">
                             <i class="fa-solid fa-user-tie"></i>
                             <p>Owners Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="typography.html">
+                        <a href="{{ route('room-mangment') }}">
                             <i class="fa-solid fa-store"></i>
                             <p>Rooms Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="icons.html">
-                            <i class="fa-solid fa-star-half-stroke"></i>
+                        <a href="{{ route('reviews-mangment') }}">
+                            <!-- <i class></i> -->
                             <p>Reviews Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="icons.html">
+                        <a href="{{ route('booking-mangment') }}">
                             <i class="fa-solid fa-calendar"></i>
                             <p>Booking Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="icons.html">
+                        <a href="{{ route('category-mangment') }}">
                             <i class="fa-solid fa-layer-group"></i>
                             <p>Categories Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="icons.html">
+                        <a href="{{ route('discounts-mangment') }}">
                             <i class="fa-solid fa-receipt"></i>
-                            <p>Discounts Management</p>
+                            <p>coupon Management</p>
                         </a>
                     </li>
 
