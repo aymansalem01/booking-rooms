@@ -35,8 +35,8 @@ class AdminController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('users', 'public');
-            $validatedData['image'] = $imagePath;
+            $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $image_path);
         }
 
 
@@ -73,8 +73,8 @@ class AdminController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('users', 'public');
-            $validatedData['image'] = $imagePath;
+            $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $image_path);
         }
 
         $user->update($validatedData);
