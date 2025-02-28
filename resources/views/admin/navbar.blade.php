@@ -93,6 +93,12 @@
                         <p>Categories Management</p>
                     </a>
                 </li>
+                <li>
+                    <a href="icons.html">
+                    <i class="fa-solid fa-receipt"></i>
+                    <p>Discounts Management</p>
+                    </a>
+                </li>
                
                
             </ul>
