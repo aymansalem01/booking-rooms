@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\StoreController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
@@ -26,12 +27,15 @@ Route::resource('store',StoreController::class);
 Route::resource('admin',AdminController::class);
 Route::resource('owner',OwnerController::class);
 
+Route::view('/about', 'user.about_us')->name('about');
+
 
 Route::get('/', function () {
 
-    return view('user.rooms');
+    return view('user.index');
     //return view('welcome');
 });
+
 
 Route::middleware(['auth,role:user'])->group(function () {
     //<!------------------------------------------------------------------------------------>

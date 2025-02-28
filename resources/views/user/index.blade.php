@@ -14,9 +14,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="hero-text">
-                    <h1>Sona A Luxury Hotel</h1>
-                    <p>Here are the best hotel booking sites, including recommendations for international
-                        travel and for finding low-priced hotel rooms.</p>
+                    <h1>Escape Reality</h1>
+                    <p>Here are the best room booking sites, including discounts and fun rooms.</p>
                     <a href="#" class="primary-btn">Discover Now</a>
                 </div>
             </div>
@@ -24,9 +23,11 @@
         </div>
     </div>
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" style="background-image: url('{{ asset('img/hero/hero-1.jpg') }}');"></div>
-        <div class="hs-item set-bg" style="background-image: url('{{ asset('img/hero/hero-1.jpg') }}');"></div>
-        <div class="hs-item set-bg" style="background-image: url('{{ asset('img/hero/hero-1.jpg') }}');"></div>
+    <div class="hero-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="img/hero/room1.webp" ></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/index1.webp"></div>
+            <div class="hs-item set-bg" data-setbg="img/hero/ice1.webp"></div>
+        </div>
     </div>
 </section>
 
@@ -39,14 +40,10 @@
                 <div class="about-text">
                     <div class="section-title">
                         <span>About Us</span>
-                        <h2>Intercontinental LA <br />Westlake Hotel</h2>
                     </div>
-                    <p class="f-para">Sona.com is a leading online accommodation site. We’re passionate about
-                        travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
-                        languages.</p>
-                    <p class="s-para">So when it comes to booking the perfect hotel, vacation rental, resort,
-                        apartment, guest house, or tree house, we’ve got you covered.</p>
-                    <a href="#" class="primary-btn about-btn">Read More</a>
+                    <p class="f-para">Escape Reality offers an unforgettable experience with themed rooms that transport you to another world. From space adventures to magical snow and water realms, our rooms are designed to immerse you in fun and excitement. Book your adventure today and escape into a reality like no other!</p>
+                    
+                    <a href="{{ route('about') }}" class="primary-btn about-btn">Read More</a>
                 </div>
 
             </div>
@@ -254,7 +251,7 @@
             <div class="col-lg-12">
                 <div class="section-title">
                     <span>Testimonials</span>
-                    <h2>What Customers Say?</h2>
+                    <h2>Rooms On Sale</h2>
                 </div>
             </div>
         </div>
