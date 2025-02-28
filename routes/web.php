@@ -27,7 +27,6 @@ Route::resource('store',StoreController::class);
 Route::resource('admin',AdminController::class);
 Route::resource('owner',OwnerController::class);
 
-Route::view('/about', 'user.about_us')->name('about');
 
 
 Route::get('/', function () {
@@ -43,6 +42,15 @@ Route::view('/discounts-mangment', 'admin.discounts-mangment')->name('discounts-
 Route::view('/category-mangment', 'admin.category-mangment')->name('category-mangment');
 Route::view('/booking-mangment', 'admin.booking-mangment')->name('booking-mangment');
 Route::view('/review-mangment', 'admin.reviews-mangment')->name('reviews-mangment');
+
+Route::view('/about', 'user.about_us')->name('about');
+Route::view('/blog_detals', 'user.blog')->name('blog_details');
+Route::view('/blog', 'user.blog_details')->name('blog');
+Route::view('/contact', 'user.contact')->name('contact');
+Route::view('/room_details', 'user.room_details')->name('room_details');
+Route::view('/rooms', 'user.rooms')->name('rooms');
+
+
 
 
 
