@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{User,Category,Booking,Room,Review,Image,Coupon};
+use App\Models\{User,Category,Booking,Room,Image,Coupon};
 use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
@@ -153,9 +153,9 @@ public function indexCategory()
        
 $user = User::all();
 $room = Room::all();
-$Booking = Booking::with('user','room');
+$booking = Booking::with('user','room');
 
-return view('admin.booking-mangment');
+return view('admin.booking-mangment',compact('booking'));
 
         
     }
@@ -237,20 +237,6 @@ public function destroyRoom(string $id)
    $room = Room::findOrFail($id);
    $room->delete();
    return redirect()->route('admin.room-mangment.indexRoom')->with('deleted');
-}
-///////////////////////////////////////////////review:
-public function indexReview()
-{
-    $reviews = Review::all();
-    return view('admin.reviews-mangment', compact('reviews'));
-}
-
-
-public function destroyReview(Review $review)
-{
-    $review->delete();
-    return redirect()->route('reviews.indexReview')->with('success', 'Review deleted successfully.');
-
 }
 
 /////////////////////////////////copoun
