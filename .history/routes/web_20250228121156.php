@@ -35,10 +35,10 @@ Route::get('/', function () {
     return view('user.index');
     //return view('welcome');
 });
-Route::get('/admin', function () {
+Route::get('/ad', function () {
 
-    return view('admin.dashboard');
-   
+    return view('user.index');
+    //return view('welcome');
 });
 
 

@@ -10,13 +10,13 @@ class WebstatusController extends Controller
 
     public function index()
     {
-        // 
+        //
     }
 
 
     public function create()
     {
-        //
+        // 
     }
 
     public function store(Request $request)

@@ -1,4 +1,3 @@
-@extends('layouts.adminPage')
 @section('content')
 
         <div class="content">

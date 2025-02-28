@@ -1,5 +1,5 @@
 @extends('layouts.adminPage')
-
+@section('content')
 @section('content')
 
 

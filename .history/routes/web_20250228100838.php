@@ -35,11 +35,6 @@ Route::get('/', function () {
     return view('user.index');
     //return view('welcome');
 });
-Route::get('/admin', function () {
-
-    return view('admin.dashboard');
-   
-});
 
 
 Route::middleware(['auth,role:user'])->group(function () {

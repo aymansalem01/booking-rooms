@@ -14,11 +14,11 @@
 </body>
 
     <!--   Core JS Files   -->
-    <script  src="{{ asset('js/jquery.3.2.1.min.js') }}"  type="text/javascript"></script>
-	<script src="{{ asset('js/bootstrap.min.js') }}"    type="text/javascript"></script>
+    <script  src="{{ asset('js/demo.js') }}" src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 
 	<!--  Charts Plugin -->
-	<script src="{{ asset('js/chartist.min.js') }}"></script>
+	<script src="assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="{{ asset('js/bootstrap-notify.js') }}" ></script>

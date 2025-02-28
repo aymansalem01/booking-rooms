@@ -10,7 +10,7 @@ class WebstatusController extends Controller
 
     public function index()
     {
-        // 
+        //                               
     }
 
 
