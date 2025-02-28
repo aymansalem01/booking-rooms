@@ -71,10 +71,11 @@
                             </div>
 
 
-                            <form action="room" method="GET">
+                            <form action="{{ route('store.show', $room->id) }}" method="GET" id="roomForm">
                                 <input type="hidden" name="room" value="{{ $room->id }}">
-                                <a href="#" class="primary-btn">More Details</a>
+                                <a href="#" class="primary-btn" onclick="document.getElementById('roomForm').submit(); return false;">More Details</a>
                             </form>
+
                         </div>
                     </div>
                 </div>

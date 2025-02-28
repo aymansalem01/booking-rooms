@@ -70,10 +70,10 @@
                             </div>
 
 
-                            <form action="room" method="GET">
-                                <input type="hidden" name="room" value="{{ $room->id }}">
-                                <a href="#" class="primary-btn">More Details</a>
-                            </form>
+
+                                <a href="{{ route('store.show', $room->id) }}" class="primary-btn" >More Details</a>
+
+
                         </div>
                     </div>
                 </div>
