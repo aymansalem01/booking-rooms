@@ -92,7 +92,7 @@
                     <li>
                         <a href="{{ route('category-mangment') }}">
                             <i class="fa-solid fa-layer-group"></i>
-                            <p>Category Management</p>
+                            <p>Categor Management</p>
                         </a>
                     </li>
                     <li>
