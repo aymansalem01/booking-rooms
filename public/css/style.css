@@ -89,6 +89,10 @@ ul, ol {
   Helper CSS
 -----------------------*/
 
+.space{
+    height: 250px;
+}
+
 .section-title {
 	text-align: center;
 	margin-bottom: 22px;
@@ -609,7 +613,7 @@ ul, ol {
 .hero-slider {
 	position: absolute;
 	width: 100%;
-	height: 100%;
+	height: 800px;
 	left: 0;
 	top: 0;
 }
@@ -2259,6 +2263,9 @@ ul, ol {
 /* Large Mobile: 480px */
 
 @media only screen and (max-width: 767px) {
+    .space{
+        height: 150px;
+    }
 	.testimonial-slider.owl-carousel .owl-nav {
 		display: none;
 	}

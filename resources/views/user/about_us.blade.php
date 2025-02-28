@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
                         <h2>About Us</h2>
-                      
+
                     </div>
                 </div>
             </div>
@@ -27,11 +27,11 @@
                         <div class="ap-title">
                             <h2>Welcome to Escape Reality.</h2>
                             <p>
-                                Step into a world beyond the ordinary. Escape Reality offers a collection of uniquely themed rooms designed to 
-                                transport you to another dimension. Whether you dream of floating in space, wandering through a winter 
+                                Step into a world beyond the ordinary. Escape Reality offers a collection of uniquely themed rooms designed to
+                                transport you to another dimension. Whether you dream of floating in space, wandering through a winter
                                 wonderland, or diving into an underwater fantasy, we bring the impossible to life.
                             </p>
-                           
+
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
@@ -47,7 +47,7 @@
             </div>
             <div class="about-page-services">
                 <div class="row">
-                    
+
                     <div class="col-md-4">
                         <div class="ap-service-item set-bg" data-setbg="img/about/water-1.jpg">
                             <div class="api-text"style="background-color: rgba(0, 0, 0,0.3);">
@@ -76,15 +76,15 @@
     <!-- About Us Page Section End -->
 
     <!-- Video Section Begin -->
-    <section class="video-section set-bg" style="width: 100%;">
+    <section class="set-bg " style=" text-align:center; width: 100%; margin-top:80px;">
         <div class="container" >
             <div class="row" >
                 <div class="col-lg-12" >
                     <div class="video-text" style="width: 100%;">
-                     
-                        
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/9I__ajev57U?si=KS8l7fcJnfH0S4Vo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                </div>
-            </div> 
+
+                        <iframe  style="width:80%;height:500px;" src="https://www.youtube.com/embed/9I__ajev57U?si=KS8l7fcJnfH0S4Vo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+            </div>
         </div>
     </section>
     <!-- Video Section End -->
