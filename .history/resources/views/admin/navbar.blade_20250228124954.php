@@ -28,13 +28,13 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('css/pe-icon-7-stroke.css') }}"  rel="stylesheet" />
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple"  data-image="{{ asset('img/sidebar-5.jpg') }}">
+    <div class="sidebar" data-color="purple"  data-image="{{ asset('img/favicon.ico') }}""{{ assets/img/5sidebar-.jpg }}">
 
     <!--
 
@@ -71,8 +71,7 @@
                 </li>
                 <li>
                     <a href="typography.html">
-                        <i class="fa-solid fa-store"></i>                       
-                         <p>Rooms Management</p>
+                        <i class="fa-solid fa-store"></i>                        <p>Rooms Management</p>
                     </a>
                 </li>
                 <li>
