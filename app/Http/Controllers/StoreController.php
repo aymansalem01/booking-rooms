@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Room;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StoreController extends Controller
 {
 
     public function index()
     {
-        //
+        $rooms = Room::with(['image', 'review', 'user', 'category'])->get();
+       return view('user.rooms', compact('rooms'));
     }
 
 
@@ -42,5 +44,14 @@ class StoreController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function roomCategory(string $id)
+    {
+        $rooms = Room::with(['image', 'review', 'user', 'category'])
+        ->where('category_id', $id)
+        ->get();
+        dd($rooms);
+       return view('user.rooms', compact('rooms'));
     }
 }

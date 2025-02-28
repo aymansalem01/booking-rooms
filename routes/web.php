@@ -24,6 +24,8 @@ Route::post('/subscribe',[FeedbackController::class,'subscribe'])->name('subscri
 
 
 Route::resource('store',StoreController::class);
+Route::get('/category/{id}', [StoreController::class, 'roomCategory'])->name('room.category');
+
 Route::resource('admin',AdminController::class);
 Route::resource('owner',OwnerController::class);
 
@@ -32,7 +34,7 @@ Route::view('/about', 'user.about_us')->name('about');
 
 Route::get('/', function () {
 
-    return view('user.index');
+    return view('user.rooms');
 });
 
 Route::view('/admin', 'admin.dashboard')->name('admin');

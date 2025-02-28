@@ -1,4 +1,9 @@
 /* Magnific Popup CSS */
+
+    .checked {
+        color: gold; 
+    }
+
 .mfp-bg {
   top: 0;
   left: 0;
