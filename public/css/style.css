@@ -673,55 +673,84 @@ ul, ol {
 /*---------------------
   Service Section
 -----------------------*/
+.custom-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
 
-.services-section {
-	padding-bottom: 60px;
-	border-top: 1px solid #e5e5e5;
+.custom-col {
+    flex: 1 1 30%;
+    box-sizing: border-box;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch; /* Ensure all columns stretch to the same height */
 }
-.services-section .section-title {
-	margin-bottom: 36px;
+
+.custom-service-item {
+    text-align: center;
+    padding: 30px 35px 18px;
+    transition: all 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Ensure all items stretch to fill available height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 250px; /* You can adjust this value to ensure a minimum height for the items */
 }
-.service-item {
-	text-align: center;
-	padding: 30px 35px 18px;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
+
+.custom-service-item:hover {
+    background: #7c5cc5;
+    cursor: pointer; /* This line will make the pointer appear */
 }
-.service-item:hover {
-	background: #dfa974;
+
+.custom-service-item:hover i {
+    color: #ffffff;
 }
-.service-item:hover i {
-	color: #ffffff;
+
+.custom-service-item:hover h4 {
+    color: #ffffff;
 }
-.service-item:hover h4 {
-	color: #ffffff;
+
+.custom-service-item:hover p {
+    color: #ffffff;
 }
-.service-item:hover p {
-	color: #ffffff;
+
+.custom-service-item i {
+    display: inline-block;
+    font-size: 40px;
+    color: #000000;
+    margin-bottom: 15px;
+    transition: all 0.3s;
 }
-.service-item i {
-	display: inline-block;
-	color: #dfa974;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
+
+.custom-service-item:hover i {
+    color: #ffffff;
 }
-.service-item h4 {
-	color: #19191a;
-	font-size: 22px;
-	margin-bottom: 15px;
-	margin-top: 10px;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
+
+.custom-service-item h4 {
+    color: #19191a;
+    font-size: 22px;
+    margin-bottom: 15px;
+    margin-top: 10px;
 }
-.service-item p {
-	color: #707079;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
+
+.custom-service-item p {
+    color: #707079;
+    flex-grow: 1;
 }
+
+@media (max-width: 767px) {
+    .custom-col {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
 /*------------------------
   Home Page Room Section
 -------------------------*/

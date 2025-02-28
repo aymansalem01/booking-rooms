@@ -59,56 +59,74 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 col-sm-6">
-                <div class="service-item">
-                    <i class="flaticon-036-parking"></i>
-                    <h4>Travel Plan</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
+        <div class="custom-row">
+            <div class="custom-col">
+                <a href="{{ route('room.category', ['id' => 1]) }}">
+                    <div class="custom-service-item">
+                        <i class="fas fa-ghost" style="color: #ff4c4c;"></i>  <!-- Horror Room Icon -->
+                        <h4>Horror</h4>
+                        <p>The horror room offers you an experience filled with excitement and suspense.</p>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service-item">
-                    <i class="flaticon-033-dinner"></i>
-                    <h4>Catering Service</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
+            <div class="custom-col">
+                <a href="{{ route('room.category', ['id' => 2]) }}">
+                    <div class="custom-service-item">
+                        <i class="fas fa-spa" style="color: #4c9aff;"></i>  <!-- Relaxation Room Icon -->
+                        <h4>Relaxation</h4>
+                        <p>The relaxation room offers a peaceful and calming experience, away from stress.</p>
+                    </div>
+                </a>
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service-item">
-                    <i class="flaticon-026-bed"></i>
-                    <h4>Babysitting</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service-item">
-                    <i class="flaticon-024-towel"></i>
-                    <h4>Laundry</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service-item">
-                    <i class="flaticon-044-clock-1"></i>
-                    <h4>Hire Driver</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service-item">
-                    <i class="flaticon-012-cocktail"></i>
-                    <h4>Bar & Drink</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna.</p>
-                </div>
+            <div class="custom-col">
+                <a href="{{ route('room.category', ['id' => 3]) }}">
+                    <div class="custom-service-item">
+                        <i class="fas fa-fire" style="color: #ff9500;"></i> <!-- Fire Room Icon -->
+                        <h4>Fire</h4>
+                        <p>The fire room provides a warm and thrilling experience with hot vibes.</p>
+                    </div>
+                </a>
             </div>
         </div>
+
+        <div class="custom-row">
+            <div class="custom-col">
+                <a href="{{ route('room.category', ['id' => 4]) }}">
+                    <div class="custom-service-item">
+                        <i class="fas fa-snowflake" style="color: #00aaff;"></i>  <!-- Snow Room Icon -->
+                        <h4>Snow</h4>
+                        <p>The snow room offers a cold and refreshing atmosphere for a unique experience.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="custom-col">
+                <a href="{{ route('room.category', ['id' => 5]) }}">
+                    <div class="custom-service-item">
+                        <i class="fas fa-female" style="color: #ff66b3;"></i> <!-- Women Room Icon -->
+                        <h4>Women</h4>
+                        <p>The women’s room offers privacy and comfort for women.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="custom-col">
+                <a href="{{ route('room.category', ['id' => 6]) }}">
+                    <div class="custom-service-item">
+                        <i class="fas fa-paw" style="color: #4caf50;"></i> <!-- Pets Room Icon -->
+                        <h4>Pets</h4>
+                        <p>The pet room is designed for the comfort of pets and their owners.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+            </div>
+        </div>
+
+
+
+        </div>
+    </div>
+
     </div>
 </section>
 <!-- Services Section End -->

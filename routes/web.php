@@ -33,7 +33,7 @@ Route::resource('owner',OwnerController::class);
 
 Route::get('/', function () {
 
-    return view('user.rooms');
+    return view('user.index');
 });
 
 Route::view('/admin', 'admin.dashboard')->name('admin');

@@ -11,7 +11,7 @@ class StoreController extends Controller
 
     public function index()
     {
-        $rooms = Room::with(['image', 'review', 'user', 'category'])->get();
+        $rooms = Room::with(['image', 'review', 'user', 'category'])->paginate(9);
        return view('user.rooms', compact('rooms'));
     }
 
@@ -50,8 +50,7 @@ class StoreController extends Controller
     {
         $rooms = Room::with(['image', 'review', 'user', 'category'])
         ->where('category_id', $id)
-        ->get();
-        dd($rooms);
-       return view('user.rooms', compact('rooms'));
+        ->paginate(9);
+       return view('user.category', compact('rooms'));
     }
 }

@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>Our Rooms</h2>
+                        <h2>{{ $rooms->first()->category ? $rooms->first()->category->name : 'No Category' }} Rooms</h2>
                         <div class="bt-option">
                             <a href="./home.html">Home</a>
                             <span>Rooms</span>
@@ -34,7 +34,8 @@
                 @foreach ($rooms as $room)
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="{{ $room->image->first() ? 'storage/images/'.$room->image->first()->image : 'path/to/default-image.jpg' }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+                        <img src="{{ $room->image->first() ? asset('storage/images/'.$room->image->first()->image) : asset('path/to/default-image.jpg') }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+
                         <div class="ri-text">
                             <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
                             <h3 style="font-size: 22px; margin-bottom: 10px;">{{ $room->price }} JD<span>/Pernight</span></h3>
@@ -77,8 +78,8 @@
                         </div>
                     </div>
                 </div>
-
             @endforeach
+
 
 
 
