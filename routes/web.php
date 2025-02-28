@@ -33,13 +33,11 @@ Route::view('/about', 'user.about_us')->name('about');
 Route::get('/', function () {
 
     return view('user.index');
-    //return view('welcome');
 });
-Route::get('/admin', function () {
 
-    return view('admin.dashboard');
-   
-});
+Route::view('/admin', 'admin.dashboard')->name('admin');
+Route::view('/user-mangment', 'admin.user-mangment')->name('user-mangment');
+
 
 
 Route::middleware(['auth,role:user'])->group(function () {

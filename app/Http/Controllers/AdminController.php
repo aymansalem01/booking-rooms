@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
 
-    public function index()
+    public function indexuser()
     {
-        //
+        
     }
 
     public function create()

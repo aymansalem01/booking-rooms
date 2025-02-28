@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user.html">
+                    <a href="{{ route('user-mangment') }}">
                         <i class="fa-solid fa-user"></i>
                         <p>Users Management</p>
                     </a>
@@ -79,6 +79,18 @@
                     <a href="icons.html">
                         <i class="fa-solid fa-star-half-stroke"></i>
                         <p>Reviews Management</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="icons.html">
+                    <i class="fa-solid fa-calendar"></i>
+                    <p>Booking Management</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="icons.html">
+                    <i class="fa-solid fa-layer-group"></i>
+                        <p>Categories Management</p>
                     </a>
                 </li>
                
