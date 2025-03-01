@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
 
-class ReviewController extends Controller
+class ReviewOwnerController extends Controller
 {
     public function index()
     {

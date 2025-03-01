@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Validator;
 
-class RoomController extends Controller
+class RoomOwnerController extends Controller
 {
     public function index()
     {

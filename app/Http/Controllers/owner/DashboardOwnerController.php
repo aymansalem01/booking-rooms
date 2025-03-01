@@ -10,7 +10,7 @@ use App\Models\Review;
 use App\Models\Booking;
 use Illuminate\Support\Facades\Hash;
 
-class DashboardController extends Controller
+class DashboardOwnerController extends Controller
 {
 
     public function index()

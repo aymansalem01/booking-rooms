@@ -8,7 +8,7 @@ use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdbookingController extends Controller
+class BookingController extends Controller
 {
     public function index(Request $request)
     {

@@ -11,6 +11,15 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\admin\ReviewController;
 use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\owner\BookingController;
+use App\Http\Controllers\owner\CategoryOwnerController;
+use App\Http\Controllers\owner\RoomOwnerController;
+use App\Http\Controllers\owner\ReviewOwnerController;
+use App\Http\Controllers\owner\DashboardOwnerController;
+
+
+
+
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,11 +57,19 @@ Route::prefix('admin')->group(function () {
     Route::resource('room', RoomController::class);
     Route::resource('booking', AdbookingController::class);
 });
+
+
+Route::resource('/owners', DashboardOwnerController::class);
+Route::prefix('owner')->group(function () {
+    Route::resource('category', CategoryOwnerController::class);
+    Route::resource('review', ReviewOwnerController::class);
+    Route::resource('room', RoomOwnerController::class);
+    Route::resource('booking', BookingController::class);
+});
 Route::middleware(['auth,role:admin'])->group(function () {
     //<!------------------------------------------------------------------------------------>
 
 });
-Route::resource('owner', OwnerController::class);
 Route::middleware(['auth,role:owner'])->group(function () {
     //<!------------------------------------------------------------------------------------>
 
