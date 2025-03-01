@@ -40,6 +40,7 @@
                             <h3 style="font-size: 22px; margin-bottom: 10px;">{{ $room->price }} JD<span>/Pernight</span></h3>
                             <table>
                                 <tbody>
+                                    
                                     <tr>
                                         <td class="r-o">Size:</td>
                                         <td>{{ $room->size }}</td>

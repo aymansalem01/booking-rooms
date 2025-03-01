@@ -1,9 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdbookingController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\StoreController;
 
 use Illuminate\Support\Facades\Auth;
@@ -11,122 +16,44 @@ use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
 
-Route::view('/login', 'login');
-Route::view('/signup', 'login');
-Route::post('/login',[AuthController::class,'login'])->name('login');
-Route::post('/signup',[AuthController::class,'signup'])->name('signup');
-Route::get('/logout/{id}',[AuthController::class,'logout'])->name('logout');
-Route::get('/editprofile/{id}',[AuthController::class,'edit']);
-Route::put('/editprofile/{id}',[AuthController::class,'update']);
-Route::view('/feedback','welcome');
-Route::post('/feedback',[FeedbackController::class,'feedback'])->name('feedback');
-Route::post('/subscribe',[FeedbackController::class,'subscribe'])->name('subscribe');
-
-
-Route::resource('store',StoreController::class);
+Route::view('/login', 'login')->name('log');
+Route::view('/signup', 'login')->name('sign');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+//-------------------------------------------------------------------------------------------------
+Route::get('/editprofile', [AuthController::class, 'edit']);
+Route::put('/editprofile/{id}', [AuthController::class, 'update']);
+//------------------------------------------------------------------------------------------------------------
+Route::post('/subscribe', [FeedbackController::class, 'subscribe'])->name('subscribe');
 Route::get('/category/{id}', [StoreController::class, 'roomCategory'])->name('room.category');
-
-Route::resource('admin',AdminController::class);
-Route::resource('owner',OwnerController::class);
-
-
-
-Route::get('/', function () {
-
-    return view('user.index');
-});
-
-Route::view('/admin', 'admin.dashboard')->name('admin');
-Route::view('/user-mangment', 'admin.user-mangment')->name('user-mangment');
-Route::view('/room-mangment', 'admin.room-mangment')->name('room-mangment');
-Route::view('/owner-mangment', 'admin.owner-mangment')->name('owner-mangment');
-Route::view('/discounts-mangment', 'admin.discounts-mangment')->name('discounts-mangment');
-Route::view('/category-mangment', 'admin.category-mangment')->name('category-mangment');
-Route::view('/booking-mangment', 'admin.booking-mangment')->name('booking-mangment');
-Route::view('/review-mangment', 'admin.reviews-mangment')->name('reviews-mangment');
-
+Route::resource('store', StoreController::class);
+Route::post('/contact', [FeedbackController::class, 'feedback'])->name('contact');
 Route::view('/about', 'user.about_us')->name('about');
 Route::view('/blog_detals', 'user.blog')->name('blog_details');
 Route::view('/blog', 'user.blog_details')->name('blog');
 Route::view('/contact', 'user.contact')->name('contact');
-Route::view('/room_details', 'user.room_details')->name('room_details');
-Route::view('/rooms', 'user.rooms')->name('rooms');
-
-
-
-
-
-
-
-
-
 Route::middleware(['auth,role:user'])->group(function () {
     //<!------------------------------------------------------------------------------------>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //<!------------------------------------------------------------------------------------>
-
-
+});
+//--------------------------------------------------------------------------------------------
+Route::resource('/admin', AdminController::class);
+Route::prefix('admin')->group(function () {
+    Route::resource('user', AdminController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('coupon', CouponController::class);
+    Route::resource('review', ReviewController::class);
+    Route::resource('room', RoomController::class);
+    Route::resource('booking', AdbookingController::class);
 });
 Route::middleware(['auth,role:admin'])->group(function () {
-     //<!------------------------------------------------------------------------------------>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //<!------------------------------------------------------------------------------------>
-
 
 });
+Route::resource('owner', OwnerController::class);
 Route::middleware(['auth,role:owner'])->group(function () {
-     //<!------------------------------------------------------------------------------------>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //<!------------------------------------------------------------------------------------>
+
+
 });
