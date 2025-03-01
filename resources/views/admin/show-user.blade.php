@@ -97,12 +97,12 @@
                 @foreach($user->rooms as $room)
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="{{ asset('images/' . $room->images->first()->path) }}" class="card-img-top" alt="Room Image">
+                        <img src="{{ asset('assets/img/' . $room->images->first()->path) }}" class="card-img-top" alt="Room Image">
                         <div class="card-body">
                             <h5 class="card-title">{{ $room->name }}</h5>
                             <p class="card-text"><strong>Price:</strong> ${{ $room->price }}</p>
                             <p class="card-text"><strong>Address:</strong> {{ $room->address }}</p>
-                            <a href="{{ route('admin.room.show', $room->id) }}" class="btn btn-primary btn-sm">View Room</a>
+                            <a href="{{ route('room.show', $room->id) }}" class="btn btn-primary btn-sm">View Room</a>
                         </div>
                     </div>
                 </div>

@@ -55,6 +55,6 @@ class RoomController extends Controller
     {
         $rooms = Room::findOrFail($id);
         $rooms->delete();
-        return redirect()->route('admin.room-mangment.indexRoom')->with('deleted');
+        return redirect()->route('room.index')->with('deleted');
     }
 }

@@ -3,7 +3,14 @@
 @section('content')
 <div class="content">
     <div class="container mt-5">
-        <a class="add-coupon" href="{{ route('coupon.create') }}">Add Coupon</a>
+        <h2 style="color: #777" class="text-center text-purple fw-bold">Coupons Management</h2>
+
+    <div class="text-end mb-3">
+        <a class="btn btn-primary add-coupon adduser" href="{{ route('coupon.create') }}">
+            <i class="fas fa-user-plus"></i> Add Coupon</a>
+        
+    </div>
+       
         <div class="row justify-content-center" style="gap: 20px;">
             @if($coupons->isNotEmpty())  
                 @foreach ($coupons as $coupon)
@@ -120,6 +127,22 @@
         margin-bottom: 20px;
         cursor: pointer;
     }
+    .adduser:hover{
+   
+   border:1px solid #9282ffdd !important;
+   color: #9282ffdd !important;
+   background-color: white !important
+}
+.adduser{
+  
+   background-color: #9282ffdd !important;
+   border:1px solid #9282ffdd !important;
+   color: white !important;
+   width: 20%;
+   margin-left: 20px
+}
+
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

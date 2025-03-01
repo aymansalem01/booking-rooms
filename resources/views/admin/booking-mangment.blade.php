@@ -3,6 +3,7 @@
 @section('content')
 <div class="content">
     <div class="container mt-5">
+        <h2 style="color: #777" class="text-center text-purple fw-bold">Bookings Management</h2>
         <div class="row justify-content-center" style="gap: 20px;">
             @if($booking->isNotEmpty())  
                 @foreach ($booking as $book)

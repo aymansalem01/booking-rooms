@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container mt-4">
-    <h2 class="text-center text-purple fw-bold">Rooms Management</h2>
+    <h2 style="color: #777; padding-bottom:40px" class="text-center text-purple fw-bold">Rooms Management</h2>
 
     @if(session('updated'))
         <div class="alert alert-info">Room updated successfully!</div>
@@ -25,9 +25,9 @@
         <div class="col-md-6">
             <div class="card room-card shadow-sm border-0 rounded-lg mb-3">
                 <div class="row g-0">
-                    {{-- <div class="col-md-4">
-                        <img src="{{ asset('storage/' . $room->image) }}" class="room-img rounded-start" alt="Room Image">
-                    </div> --}}
+                    <div class="col-md-4">
+                        <img src="{{ asset('assets/img/' . $room->image) }}" class="room-img rounded-start" alt="Room Image">
+                    </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="fw-bold">{{ $room->name }}</h5>
@@ -36,11 +36,15 @@
                                 <strong>Price:</strong> {{ $room->price }} <br>
                                 <strong>Status:</strong>
                                 <span class="badge {{ $room->status == 'av' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $room->status == 'av' ? 'Avalible' : 'Not Avalible' }}
                                     {{ ucfirst($room->status) }}
                                 </span> <br>
                                 <strong>Count:</strong> {{ $room->count }}
                             </p>
-                            <div class="d-flex">
+                            <div style="display: flex; gap:5px" class="d-flex">
+                                <a href="{{ route('room.show', $room->id) }}" class="btn btn-sm btn-info me-2">
+                                    <i class="fas fa-eye"></i>
+                                </a>
                                 <a href="{{ route('room.edit', $room->id) }}" class="btn btn-sm btn-warning me-2">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -69,7 +73,9 @@
     border-radius: 10px;
     overflow: hidden;
     transition: 0.3s ease-in-out;
+    padding: 30px;
 }
+
 
 .room-card:hover {
     transform: translateY(-5px);

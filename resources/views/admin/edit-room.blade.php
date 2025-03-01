@@ -2,73 +2,88 @@
 
 
 @section('content')
-<div class="container mt-4">
-    <h2 class="text-center text-purple fw-bold">Edit Room</h2>
+<style>
+    .form-container {
+        max-width: 500px;
+        margin: 50px auto;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        background-image: url("{{ asset('assets/img/create9.jpg') }}");
+        background-size: cover;
+    }
+    
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-weight: bold;
+        color: white;
+    }
+    
+    .form-control, .form-select, .btn-custom {
+        height: 45px;
+        border-radius: 10px;
+        font-size: 16px;
+        width: 100%;
+        color: #333;
+    }
 
-    <div class="card shadow-lg border-0 rounded-lg">
-        <div class="card-body">
-            <form action="{{ route('room.update', $rooms->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+    .btn-custom {
+        background-color: #a92dfc;
+        border: none;
+        color: white;
+        font-weight: bold;
+        transition: 0.3s ease;
+        width: 100%;
+    }
 
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Room Name</label>
-                    <input type="text" class="form-control" value="{{ $rooms->name }}" disabled name="name">
+    .btn-custom:hover {
+        background-color: #911ede;
+        color: white;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+</style>
+
+<div class="form-container">
+    <h2>Edit Room</h2>
+
+    <form action="{{ route('room.update', $rooms->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+
+        <input type="text" class="form-control" value="{{ $rooms->name }}" disabled name="name">
+
+        <input type="text" class="form-control" value="{{ $rooms->address }}" disabled name="address">
+
+        <input type="number" class="form-control" name="price" value="{{ $rooms->price }}" required>
+
+        <select name="status" class="form-select">
+            <option value="av" {{ $rooms->status == 'av' ? 'selected' : '' }}>Available</option>
+            <option value="notav" {{ $rooms->status == 'not_available' ? 'selected' : '' }}>Not Available</option>
+        </select>
+
+        <input type="number" class="form-control" name="count" value="{{ $rooms->count }}" required>
+
+        <textarea class="form-control" name="description" rows="3" required>{{ $rooms->description }}</textarea>
+
+        <h5 class="fw-bold">Current Images</h5>
+        {{-- <div class="row">
+            @foreach($rooms->images as $image)
+                <div class="col-md-3 position-relative">
+                    <img src="{{ asset('assets/img/' . $image->path) }}" class="img-thumbnail" alt="Room Image">
                 </div>
+            @endforeach
+        </div> --}}
 
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Address</label>
-                    <input type="text" class="form-control" value="{{ $rooms->address }}" disabled name="address">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Price ($)</label>
-                    <input type="number" class="form-control" name="price" value="{{ $rooms->price }}" required name="price">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Status</label>
-                    <select name="status" class="form-select" name="status">
-                        <option value="av"  name="av"{{ $rooms->status == 'av' ? 'selected' : '' }}>Available</option>
-                        <option value="notav" name="notav" {{ $rooms->status == 'not_available' ? 'selected' : '' }}>Not Available</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Room Count</label>
-                    <input type="number" class="form-control" name="count" value="{{ $rooms->count }}" required name="count">
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-bold">Description</label>
-                    <textarea class="form-control" name="description" rows="3" required name="description">{{ $rooms->description }}</textarea>
-                </div>
-
-                <!-- <div class="mb-3">
-                    <label class="form-label fw-bold">Add New Images</label>
-                    <input type="file" class="form-control" name="images[]" multiple accept="image/*">
-                </div> -->
-
-                <h5 class="fw-bold">Current Images</h5>
-                {{-- <div class="row">
-                    @foreach($rooms->images as $image)
-                    <div class="col-md-3 position-relative">
-                        <img src="{{ asset('storage/' . $image->path) }}" class="img-thumbnail" alt="Room Image">
-                        {{-- <form action="{{ route('admin.room.deleteImage', $image->id) }}" method="POST" class="position-absolute top-0 end-0">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">X</button>
-                        </form> --}}
-                    {{-- </div>
-                    @endforeach
-                </div> --}} 
-
-                <div class="mt-3 text-end">
-                    <button type="submit" class="btn btn-success">Update Room</button>
-                    <a href="{{ route('room.index') }}" class="btn btn-secondary">Cancel</a>
-                </div>
-            </form>
-        </div>
-    </div>
+        <button type="submit" class="btn btn-custom">Update Room</button>
+        <a href="{{ route('room.index') }}" class="btn btn-custom">Cancel</a>
+    </form>
 </div>
+
 @endsection

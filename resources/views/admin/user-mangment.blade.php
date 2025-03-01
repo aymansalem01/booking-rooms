@@ -18,8 +18,9 @@
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border: 3px solid #ddd;
+    border: 1px solid #ddd;
     padding: 3px;
+    border-radius: 20%
 }
 .icons{
 
@@ -27,16 +28,33 @@
     justify-content: center;
     gap: 5px;
 }
-.adduser{
-   
-    border:1px solid rgb(161, 51, 209);
-    color: rgb(161, 51, 209);
-}
 .adduser:hover{
    
-    background-color: rgb(161, 51, 209);
-    border:1px solid rgb(161, 51, 209);
+    border:1px solid #9282ffdd;
+    color: #9282ffdd;
+}
+.adduser{
+   
+    background-color: #9282ffdd;
+    border:1px solid #9282ffdd;
     color: white;
+    width: 20%;
+}
+.icons{
+    padding: 10px;
+    border-radius: 50%
+}
+.iconn{
+    border-radius: 30%
+}
+.eyeIcon{
+    color: #9282ffdd;
+    border-color: #9282ffdd
+}
+.badge{
+
+    padding: 10px;
+    font-size: 1.4rem
 }
 </style>
 <div class="container mt-4">
@@ -54,7 +72,7 @@
             <div class="card user-card shadow-sm border-0 rounded-lg">
                 <div class="card-body text-center">
                     
-                    <img src="{{ asset('images/' . $user->image) }}" alt="User Image" class="user-img rounded-circle">
+                    <img src="{{ asset('assets/img/' . $user->image) }}" alt="User Image" class="user-img rounded-circle">
                     
                     <h5 class="fw-bold mt-2">{{ $user->name }}</h5>
                     <p class="text-muted">{{ $user->email }}</p>
@@ -63,23 +81,23 @@
                         {{ ucfirst($user->role) }}
                     </span>
 
-                    <span class="badge {{ $user->status == 'av' ? 'bg-success' : 'bg-danger' }}">
-                        {{ $user->status == 'av' ? 'Active' : 'Inactive' }}
+                    <span class="badge {{ $user->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                        {{ $user->status == 'active' ? 'Active' : 'Inactive' }}
                     </span>
 
                     <div class="mt-3 icons">
-                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn-secondary">
+                        <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn-secondary iconn eyeIcon">
                             <i class="fas fa-eye"></i>
                         </a>
 
-                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm iconn">
                             <i class="fas fa-edit"></i>
                         </a>
 
                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline-block">
                             @csrf
                             @method('DELETE')
-                            <button  type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                            <button  type="submit" class="btn btn-sm btn-danger iconn" onclick="return confirm('Are you sure?')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
