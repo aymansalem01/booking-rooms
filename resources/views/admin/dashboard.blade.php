@@ -192,42 +192,30 @@
            
             <div class="card-body">
                 <ul style="border: none" class="list-group list-group-flush">
-                    {{-- @foreach($bookings as $booking) --}}
+                    @foreach($bookings as $booking) 
                     <li class="booking-item d-flex align-items-center justify-content-between hover-effect-list ">
             
                         <div class="user-info">
                         <i class="fas fa-user-circle fa-3x text-purple me-3" style="font-size: 6rem"></i>
         
                         <div class="d-flex flex-column">
-                            <h6 style="font-size: 2rem" class="fw-bold mb-1">User Name <small class="text-muted">(#12345)</small></h6>
-                            <small class="text-muted"><i class="fas fa-clock me-1"></i> 12 Feb 2025 - 3:45 PM</small>
+                            <h6 style="font-size: 2rem" class="fw-bold mb-1">{{ $booking->user->name }} <small class="text-muted">{{ $booking->user->id }}</small></h6>
+                            <small class="text-muted"><i class="fas fa-clock me-1"></i> {{$booking->start_date}}</small>
+                            <small class="text-muted"><i class="fas fa-clock me-1"></i> {{$booking->end_date}}</small>
+
                         </div>
                     </div>
                         <div class="d-flex flex-column align-items-center" style="display:flex; gap: 20px">
-                            <span style="font-size: 2rem" class="badge bg-light text-dark p-2"><i style="font-size: 2rem" class="fas fa-credit-card me-1"></i> Credit Card</span>
-                            <span style="font-size: 2rem" class="text-success fw-bold"><i style="font-size: 2rem" class="fas fa-check-circle me-1"></i> Confirmed</span>
+                            <!-- <span style="font-size: 2rem" class="badge bg-light text-dark p-2"><i style="font-size: 2rem" class="fas fa-credit-card me-1"></i> $booking-></span> -->
+                            <span style="font-size: 2rem" class="text-success fw-bold"><i style="font-size: 2rem" class="fas fa-check-circle me-1"></i>{{  $booking->user->status}}</span>
                         </div>
         
-                        <span  style="font-size: 2rem" class="badge bg-purple p-2 fw-bold fs-6">$120</span>
+                        <span  style="font-size: 2rem" class="badge bg-purple p-2 fw-bold fs-6">{{$booking->price}} $</span>
                     </li>
                     <li class="booking-item d-flex align-items-center justify-content-between hover-effect-list ">
             
-                        <div class="user-info">
-                        <i class="fas fa-user-circle fa-3x text-purple me-3" style="font-size: 6rem"></i>
-        
-                        <div class="d-flex flex-column">
-                            <h6 style="font-size: 2rem" class="fw-bold mb-1">User Name <small class="text-muted">(#12345)</small></h6>
-                            <small class="text-muted"><i class="fas fa-clock me-1"></i> 12 Feb 2025 - 3:45 PM</small>
-                        </div>
-                    </div>
-                        <div class="d-flex flex-column align-items-center" style="display:flex; gap: 20px">
-                            <span style="font-size: 2rem" class="badge bg-light text-dark p-2"><i style="font-size: 2rem" class="fas fa-credit-card me-1"></i> Credit Card</span>
-                            <span style="font-size: 2rem" class="text-success fw-bold"><i style="font-size: 2rem" class="fas fa-check-circle me-1"></i> Confirmed</span>
-                        </div>
-        
-                        <span  style="font-size: 2rem" class="badge bg-purple p-2 fw-bold fs-6">$120</span>
-                    </li>
-                    {{-- @endforeach --}}
+                        
+                     @endforeach 
                 </ul>
             </div>
         </div>

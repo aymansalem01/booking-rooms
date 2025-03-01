@@ -33,7 +33,7 @@
                             <h5 class="fw-bold">{{ $room->name }}</h5>
                             <p class="text-muted mb-2">
                                 <strong>Address:</strong> {{ $room->address }} <br>
-                                <strong>Price:</strong> ${{ $room->price }} <br>
+                                <strong>Price:</strong> {{ $room->price }} <br>
                                 <strong>Status:</strong>
                                 <span class="badge {{ $room->status == 'av' ? 'bg-success' : 'bg-danger' }}">
                                     {{ ucfirst($room->status) }}

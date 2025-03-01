@@ -13,41 +13,41 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Room Name</label>
-                    <input type="text" class="form-control" value="{{ $rooms->name }}" disabled>
+                    <input type="text" class="form-control" value="{{ $rooms->name }}" disabled name="name">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Address</label>
-                    <input type="text" class="form-control" value="{{ $rooms->address }}" disabled>
+                    <input type="text" class="form-control" value="{{ $rooms->address }}" disabled name="address">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Price ($)</label>
-                    <input type="number" class="form-control" name="price" value="{{ $rooms->price }}" required>
+                    <input type="number" class="form-control" name="price" value="{{ $rooms->price }}" required name="price">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Status</label>
-                    <select name="status" class="form-select">
-                        <option value="va" {{ $rooms->status == 'av' ? 'selected' : '' }}>Available</option>
-                        <option value="not_available" {{ $rooms->status == 'not_available' ? 'selected' : '' }}>Not Available</option>
+                    <select name="status" class="form-select" name="status">
+                        <option value="av"  name="av"{{ $rooms->status == 'av' ? 'selected' : '' }}>Available</option>
+                        <option value="notav" name="notav" {{ $rooms->status == 'not_available' ? 'selected' : '' }}>Not Available</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Room Count</label>
-                    <input type="number" class="form-control" name="count" value="{{ $rooms->count }}" required>
+                    <input type="number" class="form-control" name="count" value="{{ $rooms->count }}" required name="count">
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Description</label>
-                    <textarea class="form-control" name="description" rows="3" required>{{ $rooms->description }}</textarea>
+                    <textarea class="form-control" name="description" rows="3" required name="description">{{ $rooms->description }}</textarea>
                 </div>
 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label fw-bold">Add New Images</label>
                     <input type="file" class="form-control" name="images[]" multiple accept="image/*">
-                </div>
+                </div> -->
 
                 <h5 class="fw-bold">Current Images</h5>
                 {{-- <div class="row">

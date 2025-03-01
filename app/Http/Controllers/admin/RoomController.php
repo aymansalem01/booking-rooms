@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Validation\Validator;
 
 class RoomController extends Controller
 {
@@ -17,7 +18,7 @@ class RoomController extends Controller
             $query->where('role', 'owner');
         })->with('user')->get();
 
-        return view('admin.room-mangment' , compact('rooms'));
+        return view('admin\room-mangment' , compact('rooms'));
     }
 
     public function show(string $id)
@@ -37,17 +38,17 @@ class RoomController extends Controller
     public function update(Request $request, string $id)
     {
         $rooms = Room::findOrFail($id);
-        $validatedData =  $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
+        $request->validate([
+            // 'name' => 'required|string|max:255',
+            // 'address' => 'required|string|max:255',
             'price' => 'required|integer',
-            'status' => 'required|in:Default,va',
-            'description' => 'required|text|max:255',
-            'count' => 'required|integer|',
+            'status' => 'required|in:Default,av',
+            'description' => 'required|string|max:255',
+            'count' => 'required|integer',
 
         ]);
-        $rooms->update($validatedData);
-        return redirect()->route('admin.room-mangment.indexRoom')->with('updated');
+        $rooms->update($request->all()); 
+               return redirect()->route('room.index')->with('updated');
     }
 
     public function destroy(string $id)

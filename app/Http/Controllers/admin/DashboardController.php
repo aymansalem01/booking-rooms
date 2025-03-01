@@ -21,10 +21,11 @@ class DashboardController extends Controller
         $revenue = Booking::sum('total_price');
         $reviewsCount = Review::count(); 
         $ownersCount = User::where('role', 'owner')->count(); 
+        $bookings = Booking::all();
 
         return view('admin.dashboard', compact(
             'roomsCount', 'bookingsCount', 'usersCount',
-            'revenue', 'reviewsCount', 'ownersCount'
+            'revenue', 'reviewsCount', 'ownersCount','bookings'
         ));
         
     }
