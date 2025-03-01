@@ -15,16 +15,21 @@ class DashboardOwnerController extends Controller
 
     public function index()
     {
-        $roomsCount = Room::count();
-        $bookingsCount = Booking::count();
-        $usersCount = User::count();
-        $revenue = Booking::sum('total_price');
-        $reviewsCount = Review::count(); 
-        $ownersCount = User::where('role', 'owner')->count(); 
-        $bookings = Booking::All();
-        return view('owner.dashboard', compact(
-            'roomsCount', 'bookingsCount', 'usersCount',
-            'revenue', 'reviewsCount', 'ownersCount','bookings'
-        ));
+        $ownerId = auth()->id(); 
+
+    $ownerRoomsCount = Room::where('user_id', $ownerId)->count();
+    $ownerBookings = Booking::whereHas('room', function ($query) use ($ownerId) {
+        $query->where('user_id', $ownerId);
+    })->get();
+    $ownerBookingsCount = $ownerBookings->count();
+    $ownerRevenue = $ownerBookings->sum('total_price');
+    $ownerReviewsCount = Review::whereHas('room', function ($query) use ($ownerId) {
+        $query->where('user_id', $ownerId);
+    })->count();
+
+    return view('owner.dashboard', compact(
+        'ownerRoomsCount', 'ownerBookingsCount',
+        'ownerRevenue', 'ownerReviewsCount', 'ownerBookings'
+    ));
     }
 }
