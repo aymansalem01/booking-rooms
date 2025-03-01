@@ -7,18 +7,26 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="coupon-form">
-                    <form action="{{ route('category.update', $category->id) }}" method="POST">
+                    <form action="{{ route('adcategory.update', $category->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
                             <label for="name">Category Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $category->name) }}" required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{$category->name}}" required>
                         </div>
                         <div class="form-group">
-                            <label for="name">Category Description</label>
-                            <input type="text" class="form-control" id="text" name="text" value="{{ old('name', $category->text) }}" required>
+                            <label for="name">background color</label>
+                            <input type="text" class="form-control" id="text" name="page" value="{{$category->page}}" required>
                         </div>
-                        
+                        <div class="form-group">
+                            <label for="name">text color</label>
+                            <input type="text" class="form-control" id="text" name="text" value="{{$category->text}}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">button color</label>
+                            <input type="text" class="form-control" id="text" name="color" value="{{$category->color}}" required>
+                        </div>
+
                         <button type="submit" class="btn-submit">Update Category</button>
                     </form>
                 </div>
@@ -37,7 +45,7 @@
     }
     .form-group {
         margin-bottom: 15px;
-        
+
     }
     .form-group label {
         font-weight: bold;

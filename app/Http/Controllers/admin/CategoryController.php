@@ -11,12 +11,12 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::paginate(9);
-        return view('admin\category-mangment', compact('categories'));
+        return view('admin.category.category-mangment', compact('categories'));
     }
 
     public function create()
     {
-        return view('admin.createcategory');
+        return view('admin.category.createcategory');
     }
 
     public function store(Request $request)
@@ -28,16 +28,22 @@ class CategoryController extends Controller
             'text' => 'nullable|string',
         ]);
 
-        Category::create($request->all());
-        return redirect()->route('category.index')->with('success', 'Category created successfully.');
+        Category::create([
+            'name' => $request->name,
+            'page' => $request->page,
+            'color' => $request->color,
+            'text' => $request->text
+        ]);
+        return $this->index()->with('success', 'Category created successfully.');
     }
 
-    public function edit(Category $category)
+    public function edit(string $id)
     {
-        return view('admin.editcategory', compact('category'));
+        $category = Category::find($id);
+        return view('admin.category.editcategory', compact('category'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -46,13 +52,19 @@ class CategoryController extends Controller
             'text' => 'nullable|string',
         ]);
 
-        $category->update($request->all());
-        return redirect()->route('category.index')->with('success', 'Category updated successfully.');
+        Category::find($id)->update([
+            'name' => $request->name,
+            'page' => $request->page,
+            'color' => $request->color,
+            'text' => $request->text
+
+        ]);
+        return $this->index()->with('success', 'Category updated successfully.');
     }
 
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        $category->delete();
-        return redirect()->route('category.index')->with('success', 'Category deleted successfully.');
+        Category::destroy($id);
+        return $this->index()->with('success', 'Category deleted successfully.');
     }
 }

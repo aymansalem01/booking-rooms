@@ -12,13 +12,13 @@ class CouponController extends Controller
     {
         $coupons = Coupon::paginate(9);
 
-        return view('admin\discounts-mangment', compact('coupons'));
+        return view('admin.coupon.discounts-mangment', compact('coupons'));
     }
 
 
     public function create()
     {
-        return view('admin.createcoupon');
+        return view('admin.coupon.createcoupon');
     }
 
 
@@ -32,14 +32,14 @@ class CouponController extends Controller
         Coupon::create($request->all());
 
 
-        return redirect()->route('coupon.index')->with('success', 'Coupon added successfully.');
+        return $this->index()->with('success', 'Coupon added successfully.');
     }
 
 
     public function edit(string $id)
     {
         $coupon = Coupon::findOrFail($id);
-        return view('admin.editcoupon', compact('coupon'));
+        return view('admin.coupon.editcoupon', compact('coupon'));
     }
 
 
@@ -52,7 +52,7 @@ class CouponController extends Controller
 
         Coupon::find($id)->update($request->all());
 
-        return redirect()->route('coupon.index')->with('success', 'Coupon updated successfully.');
+        return $this->index()->with('success', 'Coupon updated successfully.');
     }
 
 
@@ -61,6 +61,6 @@ class CouponController extends Controller
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();
 
-        return redirect()->route('coupon.index')->with('success', 'Coupon deleted successfully.');
+        return $this->index()->with('success', 'Coupon deleted successfully.');
     }
 }

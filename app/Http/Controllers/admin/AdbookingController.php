@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 
 class AdbookingController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
 
         $user = User::all();
@@ -18,20 +18,20 @@ class AdbookingController extends Controller
         $booking = Booking::with('user', 'room');
         $booking = Booking::paginate(6);
 
-        return view('admin/booking-mangment', compact('booking'));
+        return view('admin.booking.booking-mangment', compact('booking'));
     }
 
     public function show(string $id)
 
     {
         $booking = Booking::findOrFail($id);
-        return view('admin.singbooking', compact('booking'));
+        return view('admin.booking.singbooking', compact('booking'));
     }
 
     public function destroy(string $id)
     {
         $booking = Booking::findOrFail($id);
         $booking->delete();
-        return redirect()->route('booking-mangment.index')->with('deleted');
+        return $this->index()->with('deleted');
     }
 }

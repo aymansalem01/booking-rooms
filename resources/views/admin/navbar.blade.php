@@ -67,25 +67,25 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('room.index') }}">
+                        <a href="{{ route('adroom.index') }}">
                             <i class="fa-solid fa-store"></i>
                             <p>Rooms Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('review.index') }}">
+                        <a href="{{ route('adreview.index') }}">
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <p>Reviews Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('booking.index') }}">
+                        <a href="{{ route('adbooking.index') }}">
                             <i class="fa-solid fa-calendar"></i>
                             <p>Booking Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('category.index') }}">
+                        <a href="{{ route('adcategory.index') }}">
                             <i class="fa-solid fa-layer-group"></i>
                             <p>Category Management</p>
                         </a>

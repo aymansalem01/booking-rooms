@@ -16,18 +16,13 @@ use App\Http\Controllers\owner\CategoryOwnerController;
 use App\Http\Controllers\owner\RoomOwnerController;
 use App\Http\Controllers\owner\ReviewOwnerController;
 use App\Http\Controllers\owner\DashboardOwnerController;
-
-
-
-
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 
 
 Route::view('/login', 'login')->name('log');
-Route::view('/signup', 'login')->name('sign');
+Route::view('/signup', 'signup')->name('sign');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -51,11 +46,11 @@ Route::middleware(['auth,role:user'])->group(function () {
 Route::resource('/dashboard', DashboardController::class);
 Route::prefix('admin')->group(function () {
     Route::resource('user', AdminController::class);
-    Route::resource('category', CategoryController::class);
+    Route::resource('adcategory', CategoryController::class);
     Route::resource('coupon', CouponController::class);
-    Route::resource('review', ReviewController::class);
-    Route::resource('room', RoomController::class);
-    Route::resource('booking', AdbookingController::class);
+    Route::resource('adreview', ReviewController::class);
+    Route::resource('adroom', RoomController::class);
+    Route::resource('adbooking', AdbookingController::class);
 });
 
 
