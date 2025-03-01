@@ -17,7 +17,7 @@ class RoomController extends Controller
             $query->where('role', 'owner');
         })->with('user')->get();
 
-        return view('admin.room-mangment' , compact('rooms'));
+        return view('admin.room-mangment', compact('rooms'));
     }
 
     public function show(string $id)
