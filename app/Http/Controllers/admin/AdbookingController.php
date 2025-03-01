@@ -16,7 +16,7 @@ class AdbookingController extends Controller
         $user = User::all();
         $room = Room::all();
         $booking = Booking::with('user', 'room');
-        $booking = Booking::paginate(8);
+        $booking = Booking::paginate(6);
 
         return view('admin/booking-mangment', compact('booking'));
     }

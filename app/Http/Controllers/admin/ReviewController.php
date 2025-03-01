@@ -9,7 +9,7 @@ use App\Models\Review;
 class ReviewController extends Controller {
     public function index()
      {
-        $reviews = Review::paginate(8);
+        $reviews = Review::paginate(6);
         return view('admin\reviews-mangment', compact('reviews'));
     }
 

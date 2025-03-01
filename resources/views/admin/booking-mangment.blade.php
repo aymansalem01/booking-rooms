@@ -1,54 +1,147 @@
 @extends('layouts.adminPage')
 
 @section('content')
-
 <div class="content">
     <div class="container mt-5">
         <div class="row justify-content-center" style="gap: 20px;">
-        @if($booking->isNotEmpty())  
-            @foreach ($booking as $book)
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div style="width: 100%; max-width: 300px; height: 400px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center; text-align: center;">
-                    <img src="{{ asset($book->room->image) }}" alt="Room Image" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;">
-                    <div style="display: flex; flex-direction: column; align-items: center; flex-grow: 1;">
-                        <h5 style="font-weight: bold; color: #333;">Room Name: {{ $book->room->name }}</h5>
-                        <h5 style="font-weight: bold; color: #333;">User Name: {{ $book->user->name }}</h5>
-
-                        <p style="color: #B197FC; font-size: 1.2em; margin-bottom: 10px;">Start Date: {{ $book->start_date }} </p>
-                        <p style="color: #B197FC; font-size: 1.2em; margin-bottom: 10px;">  End Date: {{ $book->end_date }}</p>
-
-                        <p style="color: #777; margin-top: auto;">Total Price: {{ $book->total_price }}</p>
+            @if($booking->isNotEmpty())  
+                @foreach ($booking as $book)
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="review-card">
+                            <img src="{{ asset($book->room->image) }}" alt="Room Image" class="review-image">
+                            <h5 class="user-name">Room: {{ $book->room->name }}</h5>
+                            <h5 class="user-name">User: {{ $book->user->name }}</h5>
+                            <p class="user-rating">Start Date: {{ $book->start_date }}</p>
+                            <p class="user-rating">End Date: {{ $book->end_date }}</p>
+                            <p class="user-rating">Total Price: {{ $book->total_price }}</p>
+                            <div class="action-buttons">
+                                <form action="{{ route('booking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
-                        <a href="#"><i class="fa-solid fa-eye" style="font-size: 20px; cursor: pointer; color: #B197FC;"></i></a>
-
-                        <form action="{{ route('booking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" style="background: none; border: none; cursor: pointer;">
-                                <i class="fa-solid fa-trash" style="font-size: 20px; color: red;"></i>
-                            </button>
-                        </form>
-                    </div>
+                @endforeach
+                <div class="col-12 text-center mt-4">
+                    {{ $booking->links() }}
                 </div>
-            </div>
-            @endforeach
-
-            <div class="col-12 text-center mt-4">
-                {{ $booking->links() }}
-            </div>
-
-        @else
-            <p class="text-center text-muted">No bookings available!</p> 
-        @endif
+            @else
+                <p class="no-reviews">No bookings available!</p>
+            @endif
         </div>
     </div>
 </div>
-
 @endsection
 
-<script>
-    function confirmDelete() {
-        return confirm('Are you sure you want to delete this booking?');
+<style>
+    .review-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+        margin: 20px;
     }
+
+    .review-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .review-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    .user-name {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .user-rating {
+        font-size: 1.1em;
+        color: #B197FC;
+        font-weight: bold;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .view-btn, .delete-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .view-btn {
+        color: #B197FC;
+    }
+
+    .view-btn:hover {
+        color: #8c6efc;
+    }
+
+    .delete-btn {
+        color: red;
+    }
+
+    .delete-btn:hover {
+        color: darkred;
+    }
+
+    .no-reviews {
+        text-align: center;
+        font-size: 1.2em;
+        color: #777;
+        margin-top: 20px;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); 
+                let form = this.closest("form"); 
+                
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The review has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    });
 </script>

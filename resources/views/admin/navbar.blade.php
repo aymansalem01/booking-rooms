@@ -65,12 +65,7 @@
                             <p>Users Management</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('owner.index') }}">
-                            <i class="fa-solid fa-user-tie"></i>
-                            <p>Owners Management</p>
-                        </a>
-                    </li>
+
                     <li>
                         <a href="{{ route('room.index') }}">
                             <i class="fa-solid fa-store"></i>

@@ -10,14 +10,15 @@ class CouponController extends Controller
 {
     public function index()
 {
-    $coupons = Coupon::all();
-    return view('admin.discount-mangment', compact('coupons'));
+    $coupons = Coupon::paginate(9);
+
+    return view('admin\discounts-mangment', compact('coupons'));
 }
 
 
 public function create()
 {
-    return view('admin.create-coupon');
+    return view('admin.createcoupon');
 }
 
 
@@ -30,13 +31,15 @@ public function store(Request $request)
 
     Coupon::create($request->all());
 
-    return redirect()->route('coupons.indexDiscount')->with('success', 'Coupon added successfully.');
+   
+    return redirect()->route('coupon.index')->with('success', 'Coupon added successfully.');
 }
 
 
 public function edit(string $id)
 {
-    return view('admin.editCoupon', compact('coupon'));
+    $coupon = Coupon::findOrFail($id);
+    return view('admin.editcoupon', compact('coupon'));
 }
 
 
@@ -49,13 +52,15 @@ public function update(Request $request, string $id)
 
     Coupon::find($id)->update($request->all());
 
-    return redirect()->route('coupons.index')->with('success', 'Coupon updated successfully.');
+    return redirect()->route('coupon.index')->with('success', 'Coupon updated successfully.');
 }
 
 
 public function destroy(string $id)
 {
-    Coupon::find($id)->delete();
-    return redirect()->route('coupons.index')->with('success', 'Coupon deleted successfully.');
+   $coupon = Coupon::findOrFail($id);
+   $coupon->delete();
+
+    return redirect()->route('coupon.index')->with('success', 'Coupon deleted successfully.');
 }
 }
