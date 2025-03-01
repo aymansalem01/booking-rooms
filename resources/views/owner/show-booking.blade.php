@@ -1,4 +1,4 @@
-@extends('layouts.adminPage')
+@extends('layouts.ownerPage')
 
 @section('content')
 <div class="content">
