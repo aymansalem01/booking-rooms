@@ -23,7 +23,7 @@ class AuthController extends Controller
         $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $image_path);
         User::create([
-            'name' => $request->name ,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone_number' => $request->phone_number,
@@ -31,7 +31,7 @@ class AuthController extends Controller
             'image' => $image_path,
         ]);
 
-            return redirect()->route('log');
+        return redirect()->route('log');
     }
 
     public  function login(Request $request)
@@ -40,23 +40,21 @@ class AuthController extends Controller
             $request->email => 'required | exist:email | email ',
             $request->password => 'required | min:8'
         ]);
-        $user  = User::where('email' , '=' ,$request->email)->first();
-        if(Hash::check($request->password , $user->password))
-        {
+        $user  = User::where('email', '=', $request->email)->first();
+        if (Hash::check($request->password, $user->password)) {
             $user->createToken($user->email)->accessToken;
-            if($user->role = 'user'){
+            if ($user->role = 'user') {
                 return redirect()->route('home');
             }
-            if($user->role = 'admin'){
+            if ($user->role = 'admin') {
                 return redirect()->route('admin');
             }
-            if($user->role = 'owner'){
+            if ($user->role = 'owner') {
                 return redirect()->route('owner');
             }
-        }else{
+        } else {
             return redirect()->back()->with(['password' => 'wrong password']);
         }
-
     }
 
     public function logout()
@@ -68,25 +66,24 @@ class AuthController extends Controller
         return redirect()->route('log');
     }
 
-    public function edit(){
+    public function edit()
+    {
         $id = auth()->user()->id;
-        return redirect()->route('edit',$id);
-
+        return redirect()->route('edit', $id);
     }
-    public function update(Request $request ,string $id)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'name' => ' min:3',
             'phone_number' => ' regex:/^((07)))[0-9]{8}/',
         ]);
         $user = User::find($id);
-        if($user->name != $request->name || $user->phone_number != $request->phone_number || $user->image != $request->image)
-        {
-            if($user->image != $request->image){
+        if ($user->name != $request->name || $user->phone_number != $request->phone_number || $user->image != $request->image) {
+            if ($user->image != $request->image) {
                 $request->validate([$request->image => 'mimes:jpg,bmp,png']);
                 $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
                 $request->image->move(public_path('images'), $image_path);
-            }else{
+            } else {
                 $image_path = $request->image;
             }
             $user->update([

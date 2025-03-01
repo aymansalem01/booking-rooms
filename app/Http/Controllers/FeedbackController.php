@@ -20,8 +20,7 @@ class FeedbackController extends Controller
         return response()->json([
             'message' => 'Feedback submitted successfully',
             'feedback' => $feedback,
-    ]);
-
+        ]);
     }
     public function subscribe(Request $request)
     {
@@ -34,7 +33,7 @@ class FeedbackController extends Controller
     public function comment(Request $request)
     {
         $review = Review::create([
-            
+
             'user_id' => $request->user_id,
             'room_id' => $request->room_id,
             'comment' => $request->comment,
@@ -42,6 +41,5 @@ class FeedbackController extends Controller
 
         ]);
         return response()->json($review);
-
     }
 }

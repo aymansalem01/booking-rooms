@@ -16,17 +16,15 @@ class DashboardController extends Controller
     public function index()
     {
         $roomsCount = Room::count();
-        $bookingsCount = Booking::count(); 
-        $usersCount = User::count(); 
+        $bookingsCount = Booking::count();
+        $usersCount = User::count();
         $revenue = Booking::sum('total_price');
         $reviewsCount = Review::count(); 
         $ownersCount = User::where('role', 'owner')->count(); 
-        $bookings = Booking::all();
 
         return view('admin.dashboard', compact(
             'roomsCount', 'bookingsCount', 'usersCount',
-            'revenue', 'reviewsCount', 'ownersCount','bookings'
+            'revenue', 'reviewsCount', 'ownersCount'
         ));
-        
     }
 }

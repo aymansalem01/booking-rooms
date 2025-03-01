@@ -13,8 +13,7 @@ class AdminController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin/user-mangment' , compact('users'));
-        
+        return view('admin/user-mangment', compact('users'));
     }
 
     public function create()
@@ -67,7 +66,7 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
             'role' => 'required|in:DEFAULT,user',
-           'phone_number' => 'required|regex:/^07[0-9]{8}$/',
+            'phone_number' => 'required|regex:/^07[0-9]{8}$/',
             'status' => 'required|in:Default,active',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ]);
@@ -88,5 +87,4 @@ class AdminController extends Controller
         $user->delete();
         return redirect()->route('admin.user-mangment.userindex')->with('deleted');
     }
-
 }
