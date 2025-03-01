@@ -1,24 +1,54 @@
 @extends('layouts.adminPage')
 
 @section('content')
-    <div class="content">
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-            
-                    <div class="col-md-3 col-sm-6 mb-4">
-                        <div class="card h-100 shadow-lg border-0 rounded-4 p-3 d-flex flex-column align-items-center text-center">
-                            <img src="{{ asset('assets/images/user.png') }}" alt="room image" class="rounded-circle mb-3" width="80" height="80">
-                            <div class="card-body flex-grow-1 d-flex flex-column">
-                                <h5 class="card-title fw-bold text-dark">room name</h5>
-                                <p class="text-warning fs-5 mb-2">start date:   end date:</p>
-                           
-                                <p class="card-text text-muted mt-auto">total price:</p>
-                            </div>
-                            <div style="display: flex; gap: 80px; justify-content:center;"><i class="fa-solid fa-trash" style="color:red;"></i><i class="fa-solid fa-eye" style="color: #B197FC;"></i></div>
-                        </div>
+
+<div class="content">
+    <div class="container mt-5">
+        <div class="row justify-content-center" style="gap: 20px;">
+        @if($booking->isNotEmpty())  
+            @foreach ($booking as $book)
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div style="width: 100%; max-width: 300px; height: 400px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <img src="{{ asset($book->room->image) }}" alt="Room Image" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; flex-grow: 1;">
+                        <h5 style="font-weight: bold; color: #333;">Room Name: {{ $book->room->name }}</h5>
+                        <h5 style="font-weight: bold; color: #333;">User Name: {{ $book->user->name }}</h5>
+
+                        <p style="color: #B197FC; font-size: 1.2em; margin-bottom: 10px;">Start Date: {{ $book->start_date }} </p>
+                        <p style="color: #B197FC; font-size: 1.2em; margin-bottom: 10px;">  End Date: {{ $book->end_date }}</p>
+
+                        <p style="color: #777; margin-top: auto;">Total Price: {{ $book->total_price }}</p>
                     </div>
-             
+                    <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
+                        <a href="#"><i class="fa-solid fa-eye" style="font-size: 20px; cursor: pointer; color: #B197FC;"></i></a>
+
+                        <form action="{{ route('booking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" style="background: none; border: none; cursor: pointer;">
+                                <i class="fa-solid fa-trash" style="font-size: 20px; color: red;"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
+            @endforeach
+
+            <div class="col-12 text-center mt-4">
+                {{ $booking->links() }}
+            </div>
+
+        @else
+            <p class="text-center text-muted">No bookings available!</p> 
+        @endif
         </div>
     </div>
+</div>
+
 @endsection
+
+<script>
+    function confirmDelete() {
+        return confirm('Are you sure you want to delete this booking?');
+    }
+</script>

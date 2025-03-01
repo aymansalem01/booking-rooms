@@ -4,25 +4,24 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Review;
+use App\Models\Review; 
 
-use User;
-
-class ReviewController extends Controller
-{
+class ReviewController extends Controller {
     public function index()
-    {
-        $reviews = Review::with('user')->get();  
-        return view('admin.reviews-mangment', compact('reviews'));  
+     {
+        $reviews = Review::paginate(8);
+        return view('admin\reviews-mangment', compact('reviews'));
     }
+
+
     
     
     
-    public function destroy(Review $review)
-    {
+    public function destroy($id) {
+        $review = Review::findOrFail($id);
         $review->delete();
-        return redirect()->route('reviews.index')->with('success', 'Review deleted successfully.');
-    
+        
+        return redirect()->route('review.index')->with('success', 'Review deleted successfully.');
     }
     
 }

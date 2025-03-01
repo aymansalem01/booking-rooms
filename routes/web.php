@@ -38,7 +38,7 @@ Route::middleware(['auth,role:user'])->group(function () {
 
 });
 //--------------------------------------------------------------------------------------------
-Route::resource('/admin', AdminController::class);
+Route::resource('/dashboard', AdminController::class);
 Route::prefix('admin')->group(function () {
     Route::resource('user', AdminController::class);
     Route::resource('category', CategoryController::class);

@@ -54,7 +54,7 @@
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="{{ route('admin.index') }}">
+                        <a href="{{ route('dashboard.index') }}">
                             <i class="fa-solid fa-gauge"></i>
                             <p>Dashboard</p>
                         </a>
