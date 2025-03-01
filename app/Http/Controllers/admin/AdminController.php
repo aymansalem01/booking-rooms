@@ -12,23 +12,24 @@ class AdminController extends Controller
 
     public function index()
     {
-        $user = User::all();
-        return view('admin.user-mangment');
+        $users = User::all();
+        return view('admin/user-mangment' , compact('users'));
+        
     }
 
     public function create()
     {
-        return view('admin.user-mangment');
+        return view('admin/create-user');
     }
 
     public function store(Request $request)
     {
         $validatedData =  $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:user,email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
-            'role' => 'required|in:DEFAULT,user',
-            'phone_number' => 'required|regex:/^((07)))[0-9]{8}/',
+            'role' => 'required|in:DEFAULT,users',
+            'phone_number' => 'required|regex:/^07[0-9]{8}$/',
             'status' => 'required|in:Default,av',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ]);
@@ -41,20 +42,20 @@ class AdminController extends Controller
 
 
         User::create($validatedData);
-        return redirect()->route('admin.indexuser')->with('user created');
+        return redirect()->route('admin.index')->with('user created');
     }
 
     public function show(string $id)
 
     {
         $user = User::findOrFail($id);
-        return view('admin.single', compact('user'));
+        return view('admin.show-user', compact('user'));
     }
 
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        return view('admin.edit', compact('user'));
+        return view('admin.edit-user', compact('user'));
     }
 
 
@@ -66,8 +67,8 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'string|min:8|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
             'role' => 'required|in:DEFAULT,user',
-            'phone_number' => 'required|regex:/^((07)))[0-9]{8}/',
-            'status' => 'required|in:Default,va',
+           'phone_number' => 'required|regex:/^07[0-9]{8}$/',
+            'status' => 'required|in:Default,active',
             'image' => 'nullable|image|mimes:jpeg,jpg,png,gif',
         ]);
         $validatedData['password'] = Hash::make($validatedData['password']);

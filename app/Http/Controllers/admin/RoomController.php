@@ -12,31 +12,31 @@ class RoomController extends Controller
     public function index()
     {
 
-        $user = User::all();
-        $room = Room::whereHas('user', function ($query) {
+        $users = User::all();
+        $rooms = Room::whereHas('user', function ($query) {
             $query->where('role', 'owner');
         })->with('user')->get();
 
-        return view('admin.room-mangment');
+        return view('admin.room-mangment' , compact('rooms'));
     }
 
     public function show(string $id)
 
     {
-        $room = Room::findOrFail($id);
-        return view('admin.singleroom', compact('room'));
+        $rooms = Room::findOrFail($id);
+        return view('admin.singleroom', compact('rooms'));
     }
 
     public function edit(string $id)
     {
-        $room = Room::findOrFail($id);
-        return view('admin.edit', compact('room'));
+        $rooms = Room::findOrFail($id);
+        return view('admin.edit-room', compact('rooms'));
     }
 
 
     public function update(Request $request, string $id)
     {
-        $room = Room::findOrFail($id);
+        $rooms = Room::findOrFail($id);
         $validatedData =  $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
@@ -46,14 +46,14 @@ class RoomController extends Controller
             'count' => 'required|integer|',
 
         ]);
-        $room->update($validatedData);
+        $rooms->update($validatedData);
         return redirect()->route('admin.room-mangment.indexRoom')->with('updated');
     }
 
     public function destroy(string $id)
     {
-        $room = Room::findOrFail($id);
-        $room->delete();
+        $rooms = Room::findOrFail($id);
+        $rooms->delete();
         return redirect()->route('admin.room-mangment.indexRoom')->with('deleted');
     }
 }
