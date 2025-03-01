@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\owner;
 
 use App\Models\Room;
 use App\Models\User;
@@ -18,14 +18,14 @@ class AdbookingController extends Controller
         $booking = Booking::with('user', 'room');
         $booking = Booking::paginate(6);
 
-        return view('admin/booking-mangment', compact('booking'));
+        return view('owner/booking-mangment', compact('booking'));
     }
 
     public function show(string $id)
 
     {
         $booking = Booking::findOrFail($id);
-        return view('admin.singbooking', compact('booking'));
+        return view('owner.singbooking', compact('booking'));
     }
 
     public function destroy(string $id)

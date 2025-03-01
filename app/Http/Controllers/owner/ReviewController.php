@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\owner;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::paginate(6);
-        return view('admin\reviews-mangment', compact('reviews'));
+        return view('owner\reviews-mangment', compact('reviews'));
     }
 
 
@@ -21,7 +21,7 @@ class ReviewController extends Controller
 
     {
         $review = Review::findOrFail($id);
-        return view('admin.show-review', compact('review'));
+        return view('owner.show-review', compact('review'));
     }
 
 

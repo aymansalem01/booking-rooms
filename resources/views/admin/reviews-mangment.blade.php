@@ -4,18 +4,30 @@
 <div class="content">
     <div class="container mt-5">
         <div class="row justify-content-center" style="gap: 20px;">
+        <h2 style="color: #777" class="text-center text-purple fw-bold">Reviews Management</h2>
+
             @if(isset($reviews) && count($reviews) > 0)
                 @foreach ($reviews as $review)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
+                            
                             <img src="{{ asset($review->user->image) }}" alt="User Image" class="user-img">
                             <h5 class="user-name">{{ $review->user->name }}</h5>
-                            <p class="user-rating">⭐ {{ $review->rate }} / 5</p>
-                            <p class="room-name">Room: {{ $review->room->name }}</p>
+                            <p class="user-rating">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i class="fa-solid fa-star"></i>
+                                            </span>
+                                        @endfor
+                                      
+                                    </p>                            <p class="room-name">Room: {{ $review->room->name }}</p>
                             <div class="comment-box">
                                 <p class="user-comment">{{ $review->comment }}</p>
                             </div>
                             <div class="action-buttons">
+                            <a href="{{ route('review.show', $review->id) }}"  class="view-btn" >
+                            <i class="fas fa-eye"></i>
+                        </a>
+
                                 <form action="{{ route('review.destroy', $review->id) }}" method="POST" onsubmit="return confirmDelete();">
                                     @csrf
                                     @method('DELETE')
@@ -132,6 +144,13 @@
         font-size: 1.2em;
         color: #777;
         margin-top: 20px;
+    }
+    .filled {
+        color: #FFD700;
+    }
+
+    .unfilled {
+        color: #ccc;
     }
 </style>
 
