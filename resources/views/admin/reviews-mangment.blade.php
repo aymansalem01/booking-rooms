@@ -7,16 +7,16 @@
         <div class="row justify-content-center">
         @foreach ($reviews as $review)
     <div class="col-md-3 col-sm-6 mb-4">
-        <div class="card h-100 shadow-lg border-0 rounded-4 p-3 d-flex flex-column align-items-center text-center">
-            <img src="{{ asset('assets/images/user.png') }}" alt="User Image" class="rounded-circle mb-3" width="80" height="80">
-            <div class="card-body flex-grow-1 d-flex flex-column">
-                <h5 class="card-title fw-bold text-dark">{{ $review->user->name }}</h5>
-                <p class="text-warning fs-5 mb-2">{{ $review->rate }} Stars</p>
-                <p class="card-text text-muted mt-auto">{{ $review->comment }}</p>
+        <div style="width: 100%; max-width: 300px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 10px; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <img src="{{ asset('assets/images/user.png') }}" alt="User Image" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 15px;">
+            <div style="display: flex; flex-direction: column; align-items: center; flex-grow: 1;">
+                <h5 style="font-weight: bold; color: #333;">{{ $review->user->name }}</h5>
+                <p style="color: #f39c12; font-size: 1.2em; margin-bottom: 10px;">{{ $review->rate }} Stars</p>
+                <p style="color: #777; margin-top: auto;">{{ $review->comment }}</p>
             </div>
-            <div style="display: flex; gap: 80px; justify-content:center;">
-                <i class="fa-solid fa-trash" style="color:red;"></i>
-                <i class="fa-solid fa-eye" style="color: #B197FC;"></i>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
+                <i class="fa-solid fa-trash" style="font-size: 20px; cursor: pointer; color: red;"></i>
+                <i class="fa-solid fa-eye" style="font-size: 20px; cursor: pointer; color: #B197FC;"></i>
             </div>
         </div>
     </div>

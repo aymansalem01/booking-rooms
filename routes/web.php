@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\AdbookingController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdbookingController;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CouponController;
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\RoomController;
+use App\Http\Controllers\admin\ReviewController;
+use App\Http\Controllers\admin\RoomController;
 use App\Http\Controllers\StoreController;
 
 use Illuminate\Support\Facades\Auth;
@@ -38,8 +38,9 @@ Route::middleware(['auth,role:user'])->group(function () {
 
 });
 //--------------------------------------------------------------------------------------------
-Route::resource('admin', AdminController::class);
+Route::resource('/admin', AdminController::class);
 Route::prefix('admin')->group(function () {
+    Route::resource('user', AdminController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('coupon', CouponController::class);
     Route::resource('review', ReviewController::class);

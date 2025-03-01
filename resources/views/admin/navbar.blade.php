@@ -54,49 +54,49 @@
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="{{ route('admin') }}">
+                        <a href="{{ route('admin.index') }}">
                             <i class="fa-solid fa-gauge"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('user-mangment') }}">
+                        <a href="{{ route('user.index') }}">
                             <i class="fa-solid fa-user"></i>
                             <p>Users Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('owner-mangment') }}">
+                        <a href="{{ route('owner.index') }}">
                             <i class="fa-solid fa-user-tie"></i>
                             <p>Owners Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('room-mangment') }}">
+                        <a href="{{ route('room.index') }}">
                             <i class="fa-solid fa-store"></i>
                             <p>Rooms Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('reviews-mangment') }}">
+                        <a href="{{ route('review.index') }}">
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <p>Reviews Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('booking-mangment') }}">
+                        <a href="{{ route('booking.index') }}">
                             <i class="fa-solid fa-calendar"></i>
                             <p>Booking Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('category-mangment') }}">
+                        <a href="{{ route('category.index') }}">
                             <i class="fa-solid fa-layer-group"></i>
                             <p>Category Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('discounts-mangment') }}">
+                        <a href="{{ route('coupon.index') }}">
                             <i class="fa-solid fa-receipt"></i>
                             <p>coupon Management</p>
                         </a>
