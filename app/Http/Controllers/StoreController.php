@@ -28,7 +28,10 @@ class StoreController extends Controller
 
     public function show(string $id)
     {
-        //
+        $room = Room::with(['image', 'review', 'user', 'category'])
+         ->where('id', $id)
+         ->first();
+        return view('user.room_details', compact('room'));
     }
 
     public function edit(string $id)

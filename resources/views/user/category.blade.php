@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>{{ $rooms->first()->category ? $rooms->first()->category->name : 'No Category' }} Rooms</h2>
+                        <h2>{{ $rooms->first()?->category?->name ?? 'No Category' }} Rooms</h2>
                         <div class="bt-option">
                             <a href="./home.html">Home</a>
                             <span>Rooms</span>
@@ -38,7 +38,17 @@
 
                         <div class="ri-text">
                             <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
-                            <h3 style="font-size: 22px; margin-bottom: 10px;">{{ $room->price }} JD<span>/Pernight</span></h3>
+
+                            <h3 style="font-size: 22px; margin-bottom: 10px;">
+                                @if ($room->discount > 0)
+                                    <span style="color: #999; text-decoration: line-through;">{{ $room->price }} JD</span>
+                                    {{ $room->price - ($room->discount * ($room->price/100)) }} JD
+                                @else
+                                    {{ $room->price }} JD
+                                @endif
+                                <span>/Pernight</span>
+                            </h3>
+
                             <table>
                                 <tbody>
                                     <tr>
@@ -70,12 +80,9 @@
                                 @endfor
                             </div>
 
-
-                            <form action="{{ route('store.show', $room->id) }}" method="GET" id="roomForm">
-                                <input type="hidden" name="room" value="{{ $room->id }}">
-                                <a href="#" class="primary-btn" onclick="document.getElementById('roomForm').submit(); return false;">More Details</a>
-                            </form>
-
+                        </div>
+                        <a href="{{ route('store.show', $room->id) }}" class="primary-btn" >More Details</a>
+                        </div>
                         </div>
                     </div>
                 </div>

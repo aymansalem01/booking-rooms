@@ -1,10 +1,6 @@
 @extends('layouts.uerPage')
 
 @section('content')
-
-
-
-
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
         <div class="container">
@@ -23,9 +19,6 @@
     </div>
     <!-- Breadcrumb Section End -->
 
-
-
-
     <!-- Rooms Section Begin -->
     <section class="rooms-section spad">
         <div class="container">
@@ -37,10 +30,20 @@
                         <img src="{{ $room->image->first() ? 'storage/images/'.$room->image->first()->image : 'path/to/default-image.jpg' }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
                         <div class="ri-text">
                             <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
-                            <h3 style="font-size: 22px; margin-bottom: 10px;">{{ $room->price }} JD<span>/Pernight</span></h3>
+
+                            <h3 style="font-size: 22px; margin-bottom: 10px;">
+                                @if ($room->discount > 0)
+                                    <span style="color: #999; text-decoration: line-through;">{{ $room->price }} JD</span>
+                                    {{ $room->price - ($room->discount * ($room->price/100)) }} JD
+                                @else
+                                    {{ $room->price }} JD
+                                @endif
+                                <span>/Pernight</span>
+                            </h3>
+
                             <table>
                                 <tbody>
-                                    
+
                                     <tr>
                                         <td class="r-o">Size:</td>
                                         <td>{{ $room->size }}</td>
@@ -69,19 +72,11 @@
                                     @endif
                                 @endfor
                             </div>
-
-
-
                                 <a href="{{ route('store.show', $room->id) }}" class="primary-btn" >More Details</a>
-
-
                         </div>
                     </div>
                 </div>
-
-            @endforeach
-
-
+                    @endforeach
 
             <div class="pagination-links">
                 {{ $rooms->links('pagination::bootstrap-4') }}
