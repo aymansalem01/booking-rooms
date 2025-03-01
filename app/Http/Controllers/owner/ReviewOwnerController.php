@@ -5,15 +5,26 @@ namespace App\Http\Controllers\owner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
-
+use Illuminate\Support\Facades\Auth;
 class ReviewOwnerController extends Controller
 {
     public function index()
     {
-        $reviews = Review::paginate(6);
-        return view('owner\reviews-mangment', compact('reviews'));
-    }
+        
+    //    $user = Auth::user();
+        $user = Auth::loginUsingId(1);
 
+        if ($user->role !== 'owner') {
+            return redirect()->route('index')->with( 'You are not owner');
+        }
+    
+        $reviews = Review::whereHas('room', function ($query) use ($user) {
+            $query->where('user_id', $user->id); 
+        })->paginate(6);
+    return view('owner\reviews-mangment', compact('reviews'));
+    }
+   
+            
 
 
 

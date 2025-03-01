@@ -7,17 +7,20 @@ use App\Models\User;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class BookingController extends Controller
 {
     public function index(Request $request)
     {
-
-        $user = User::all();
+  //    $user = Auth::user();
+  $user = Auth::loginUsingId(1);
+        // $user = User::all();
         $room = Room::all();
-        $booking = Booking::with('user', 'room');
-        $booking = Booking::paginate(6);
-
+        $booking = Booking::whereHas('room', function ($query) use ($user) {
+            $query->where('user_id', $user->id); 
+        })->paginate(6);
         return view('owner/booking-mangment', compact('booking'));
     }
 
@@ -25,7 +28,7 @@ class BookingController extends Controller
 
     {
         $booking = Booking::findOrFail($id);
-        return view('owner.singbooking', compact('booking'));
+        return view('owner.show-booking', compact('booking'));
     }
 
     public function destroy(string $id)
