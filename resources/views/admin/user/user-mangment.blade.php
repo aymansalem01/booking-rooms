@@ -105,6 +105,9 @@
             </div>
         </div>
         @endforeach
+        <div class="col-12 text-center mt-4">
+                    {{ $users->links() }}
+                </div>
     </div>
 </div>
 

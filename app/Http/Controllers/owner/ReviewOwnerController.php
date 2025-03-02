@@ -12,7 +12,7 @@ class ReviewOwnerController extends Controller
     {
 
     //    $user = Auth::user();
-        $user = Auth::loginUsingId(1);
+        $user = Auth::loginUsingId(10);
 
         if ($user->role !== 'owner') {
             return redirect()->route('log')->with( 'You are not owner');

@@ -107,6 +107,7 @@
                     </div>
                 </div>
                 @endforeach
+                
             </div>
             @else
             <p class="text-muted">This user does not own any rooms.</p>

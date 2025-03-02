@@ -29,7 +29,7 @@
                                     <strong>Count:</strong> {{ $room->count }}
                                 </p>
                                 <div style="display: flex; gap:5px" class="d-flex">
-                                    <a href="{{ route('room.show', $room->id) }}" class="btn btn-sm btn-info me-2">
+                                    <a href="{{ route('adroom.show', $room->id) }}" class="btn btn-sm btn-info me-2">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                     <a href="{{ route('adroom.edit', $room->id) }}" class="btn btn-sm btn-warning me-2">
@@ -50,6 +50,9 @@
             </div>
             @endforeach
         @endif
+        <div class="col-12 text-center mt-4">
+                    {{ $rooms->links() }}
+                </div>
     </div>
 </div>
 

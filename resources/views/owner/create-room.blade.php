@@ -12,6 +12,20 @@
         <input type="text" name="address" class="form-control" placeholder="Address" required>
 
         <input type="number" name="price" class="form-control" placeholder="Price" required>
+        <input type="number" name="discount" class="form-control" placeholder="Discount" required>
+        <input type="number" name="count" class="form-control" placeholder="Count" required>
+        <input type="number" name="size" class="form-control" placeholder="Size" required>
+        <input type="number" name="capacity" class="form-control" placeholder="Capicity" required>
+
+
+
+        <select name="category_id" class="form-select">
+    <option value="" disabled selected>Select Category</option>
+    @foreach($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+    @endforeach
+</select>
+
 
         <select name="status" class="form-select">
             <option value="av">Available</option>

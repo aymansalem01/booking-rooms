@@ -53,24 +53,35 @@
 <div class="form-container">
     <h2>Edit Room</h2>
 
-    <form action="{{ route('room.update', $rooms->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('adroom.update', $room->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
-        <input type="text" class="form-control" value="{{ $rooms->name }}" disabled name="name">
+        <input type="text" class="form-control" value="{{ $room->name }}" disabled name="name">
 
-        <input type="text" class="form-control" value="{{ $rooms->address }}" disabled name="address">
+        <input type="text" class="form-control" value="{{ $room->address }}" disabled name="address">
 
-        <input type="number" class="form-control" name="price" value="{{ $rooms->price }}" required>
+        <input type="number" class="form-control" name="price" value="{{ $room->price }}" required>
+        <input type="number" class="form-control" name="discount" value="{{ $room->discount}}" required>
+
+        <select name="category_id" class="form-select">
+    <option value="" disabled>Select Category</option>
+    @foreach($categories as $category)
+        <option value="{{ $category->id }}" {{ $room->category->id == $category->id ? 'selected' : '' }}>
+            {{ $category->name }}
+        </option>
+    @endforeach
+</select>
+
 
         <select name="status" class="form-select">
-            <option value="av" {{ $rooms->status == 'av' ? 'selected' : '' }}>Available</option>
-            <option value="notav" {{ $rooms->status == 'not_available' ? 'selected' : '' }}>Not Available</option>
+            <option value="av" {{ $room->status == 'av' ? 'selected' : '' }}>Available</option>
+            <option value="notav" {{ $room->status == 'not_available' ? 'selected' : '' }}>Not Available</option>
         </select>
 
-        <input type="number" class="form-control" name="count" value="{{ $rooms->count }}" required>
+        <input type="number" class="form-control" name="count" value="{{ $room->count }}" required>
 
-        <textarea class="form-control" name="description" rows="3" required>{{ $rooms->description }}</textarea>
+        <textarea class="form-control" name="description" rows="3" required>{{ $room->description }}</textarea>
 
         <h5 class="fw-bold">Current Images</h5>
         {{-- <div class="row">
@@ -82,7 +93,7 @@
         </div> --}}
 
         <button type="submit" class="btn btn-custom">Update Room</button>
-        <a href="{{ route('room.index') }}" class="btn btn-custom">Cancel</a>
+        <a href="{{ route('adroom.index') }}" class="btn btn-custom">Cancel</a>
     </form>
 </div>
 

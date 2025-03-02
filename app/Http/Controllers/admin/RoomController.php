@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Room;
+use App\Models\Category;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use Illuminate\Validation\Validator;
 
 class RoomController extends Controller
@@ -16,7 +19,9 @@ class RoomController extends Controller
         $users = User::all();
         $rooms = Room::whereHas('user', function ($query) {
             $query->where('role', 'owner');
-        })->with('user')->get();
+        })->with('user')->paginate(4);
+        
+
 
         return view('admin.room.room-mangment' , compact('rooms'));
     }
@@ -30,25 +35,48 @@ class RoomController extends Controller
 
     public function edit(string $id)
     {
-        $rooms = Room::findOrFail($id);
-        return view('admin.room.edit-room', compact('rooms'));
+        $categories = Category::get();
+        $room = Room::findOrFail($id);
+        return view('admin.room.edit-room', compact('room','categories'));
     }
-
 
     public function update(Request $request, string $id)
     {
-        $rooms = Room::findOrFail($id);
+        $room = Room::findOrFail($id);
+
         $request->validate([
             // 'name' => 'required|string|max:255',
             // 'address' => 'required|string|max:255',
             'price' => 'required|integer',
-            'status' => 'required|in:Default,av',
-            'description' => 'required|string|max:255',
-            'count' => 'required|integer',
+            'status' => 'required',
+            // 'description' => 'required|string|max:255',
+            'discount' => 'required|integer',
+            // 'total_price' => 'required|integer',
+            'count'=> 'required|integer',
+            // 'size'=>'required|integer',
+            'category_id'  => 'required|exists:categories,id',
 
         ]);
-        $rooms->update($request->all());
-        return redirect()->route('adroom.index')->with('success', 'Room Updated successfully!');
+        $totalPrice = $request->price - $request->discount;
+        $room->update([
+            // 'name' => $request->name,
+            // 'address' => $request->address,
+            'price' => $request->price,
+            'status' => $request->status,
+            // 'description' => $request->description,
+            // 'size' => $request->size,
+            // 'capacity' => $request->capacity,
+            // 'user_id' => $request->category_id,
+            'discount'=>$request->discount,
+            'count'=>$request->count,
+            'total_price' => $totalPrice,
+            'category_id' => $request->category_id,
+
+        ]);
+
+
+        // $room->update($request->all());
+        return $this->index()->with('success', 'Room updated successfully');
     }
 
     public function destroy(string $id)

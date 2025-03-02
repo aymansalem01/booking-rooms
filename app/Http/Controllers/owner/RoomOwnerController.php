@@ -8,13 +8,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Validation\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class RoomOwnerController extends Controller
 {public function index()
     {
+        $user = Auth::loginUsingId(10);
+
         $rooms = Room::whereHas('user', function ($query) {
             $query->where('role', 'owner');
-        })->with('user')->get();
+        })->with('user')->paginate(10);
 
         return view('owner.room-mangment', compact('rooms'));
     }
@@ -27,8 +30,9 @@ class RoomOwnerController extends Controller
 
     public function edit(string $id)
     {
+        $categories = Category::get();
         $room = Room::findOrFail($id);
-        return view('owner.edit-room', compact('room'));
+        return view('owner.edit-room', compact('room','categories'));
     }
 
     public function update(Request $request, string $id)
@@ -36,13 +40,37 @@ class RoomOwnerController extends Controller
         $room = Room::findOrFail($id);
 
         $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
             'price' => 'required|integer',
-            'status' => 'required|in:Default,av,notav',
+            'status' => 'required',
             'description' => 'required|string|max:255',
-            'count' => 'required|integer',
+            'discount' => 'required|integer',
+            // 'total_price' => 'required|integer',
+            'count'=> 'required|integer',
+            'size'=>'required|integer',
+            'category_id'  => 'required|exists:categories,id',
+
+        ]);
+        $totalPrice = $request->price - $request->discount;
+        $room->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'price' => $request->price,
+            'status' => $request->status,
+            'description' => $request->description,
+            'size' => $request->size,
+            'capacity' => $request->capacity,
+            'user_id' => auth()->user()->id,
+            'discount'=>$request->discount,
+            'count'=>$request->count,
+            'total_price' => $totalPrice,
+            'category_id' => $request->category_id,
+
         ]);
 
-        $room->update($request->all());
+
+        // $room->update($request->all());
         return $this->index()->with('success', 'Room updated successfully');
     }
 
@@ -67,7 +95,14 @@ class RoomOwnerController extends Controller
             'price' => 'required|integer',
             'status' => 'required',
             'description' => 'required|string|max:255',
+            'discount' => 'required|integer',
+            // 'total_price' => 'required|integer',
+            'count'=> 'required|integer',
+            'size'=>'required|integer',
+            'category_id'  => 'required|exists:categories,id',
+
         ]);
+        $totalPrice = $request->price - $request->discount;
 
         Room::create([
             'name' => $request->name,
@@ -75,10 +110,13 @@ class RoomOwnerController extends Controller
             'price' => $request->price,
             'status' => $request->status,
             'description' => $request->description,
-            'size' => 4,
-            'capacity' => 4,
+            'size' => $request->size,
+            'capacity' => $request->capacity,
             'user_id' => auth()->user()->id,
-            'category' => $request->category
+            'discount'=>$request->discount,
+            'count'=>$request->count,
+            'total_price' => $totalPrice,
+            'category_id' => $request->category_id,
 
         ]);
         return $this->index()->with('success', 'Room added successfully');

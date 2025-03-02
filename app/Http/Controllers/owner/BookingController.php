@@ -15,7 +15,7 @@ class BookingController extends Controller
     public function index(Request $request)
     {
   //    $user = Auth::user();
-        $user = Auth::loginUsingId(1);
+        $user = Auth::loginUsingId(10);
         // $user = User::all();
         $room = Room::all();
         $booking = Booking::whereHas('room', function ($query) use ($user) {

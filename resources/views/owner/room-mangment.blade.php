@@ -7,12 +7,14 @@
 
     <a href="{{ route('room.create') }}" class="btn btn-primary mb-3">Add New Room</a>
 
-    <table class="table table-striped">
+    <table class="table table-striped" >
         <thead>
             <tr>
                 <th>#</th>
                 <th>Room Name</th>
                 <th>Price</th>
+                <th>Discount</th>
+                <th>Total Price</th>
                 <th>Status</th>
                 <th>Owner</th>
                 <th>Actions</th>
@@ -24,6 +26,8 @@
                 <td>{{ $room->id }}</td>
                 <td>{{ $room->name }}</td>
                 <td>${{ $room->price }}</td>
+                <td>%{{ $room->discount }}</td>
+                <td>${{ $room->total_price }}</td>
                 <td>{{ $room->status }}</td>
                 <td>{{ $room->user->name }}</td>
                 <td>
@@ -37,8 +41,12 @@
                 </td>
             </tr>
             @endforeach
+            <div class="col-12 text-center mt-4">
+                    {{ $rooms->links() }}
+                </div>
         </tbody>
     </table>
+    
 </div>
 
 @endsection

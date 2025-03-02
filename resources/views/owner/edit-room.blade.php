@@ -7,13 +7,24 @@
     <form action="{{ route('room.update', $room->id) }}" method="POST">
         @csrf
         @method('PUT')
-
-        <input type="text" class="form-control" value="{{ $room->name }}" disabled>
-
-        <input type="text" class="form-control" value="{{ $room->address }}" disabled>
+        <input type="text" name="name" class="form-control" value="{{ $room->name }}" required>
+        <input type="text" name="address" class="form-control" value="{{ $room->address }}" required>
 
         <input type="number" class="form-control" name="price" value="{{ $room->price }}" required>
 
+        <input type="number" name="discount" class="form-control" value="{{ $room->discount }}" required>
+        <input type="number" name="count" class="form-control" value="{{ $room->count }}" required>
+        <input type="number" name="size" class="form-control" value="{{ $room->size }}" required>
+        <input type="number" name="capacity" class="form-control" value="{{ $room->capacity }}" required>
+
+        <select name="category_id" class="form-select">
+    <option value="" disabled>Select Category</option>
+    @foreach($categories as $category)
+        <option value="{{ $category->id }}" {{ $room->category->id == $category->id ? 'selected' : '' }}>
+            {{ $category->name }}
+        </option>
+    @endforeach
+</select>
         <select name="status" class="form-select">
             <option value="av" {{ $room->status == 'av' ? 'selected' : '' }}>Available</option>
             <option value="notav" {{ $room->status == 'notav' ? 'selected' : '' }}>Not Available</option>

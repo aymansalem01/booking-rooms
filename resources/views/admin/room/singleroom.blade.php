@@ -26,8 +26,16 @@
             </div>
             <div class="col-md-7">
                 <div class="card-body">
+                <p><strong>Owner:</strong> {{ $rooms->user->name }}</p>
+                <p><strong>Type:</strong> {{ $rooms->category->name }}</p>
+
+
                     <p><strong>Address:</strong> {{ $rooms->address }}</p>
                     <p><strong>Price:</strong> ${{ $rooms->price }}</p>
+                    <p><strong>Discount:</strong> ${{ $rooms->discount }}</p>
+                    <p><strong>Total Price:</strong> ${{ $rooms->total_price }}</p>
+
+
                     <p><strong>Status:</strong> 
                         <span class="badge {{ $rooms->status == 'av' ? 'bg-success' : 'bg-danger' }}">
                             {{ $rooms->status == 'av' ? 'Avalible' : 'Not Avalible' }}
@@ -35,6 +43,9 @@
                         </span>
                     </p>
                     <p><strong>Count:</strong> {{ $rooms->count }}</p>
+                    <p><strong>Size:</strong> {{ $rooms->size}}</p>
+                    <p><strong>Capicity:</strong> {{ $rooms->capacity}}</p>
+
                     <p><strong>Description:</strong> {{ $rooms->description }}</p>
 <div style="display: flex; gap:7px;">
                     <a href="{{ route('room.edit', $rooms->id) }}" class="btn btn-warning">Edit</a>
