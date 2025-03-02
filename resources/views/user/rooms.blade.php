@@ -19,6 +19,9 @@
     </div>
     <!-- Breadcrumb Section End -->
     @if ($rooms->contains(fn($room) => $room->discount > 0))
+    @php
+    $discountedRooms = $rooms->filter(fn($room) => $room->discount > 0);
+@endphp
         <div class="my-unique-container" style="margin: 20px">
             <header class="my-unique-header">
             <h2 style="padding:15px; margin:20px;">Rooms with Special Discount</h2>
@@ -26,10 +29,11 @@
 
             <section class="my-unique-content">
                 <div class="my-unique-board-container">
-                    <button class="my-unique-scroll-btn left-btn" id="scrollLeft">←</button>
+                    @if ($discountedRooms->count() > 3)
+                <button class="my-unique-scroll-btn left-btn" id="scrollLeft">←</button>
+            @endif
                     <div class="my-unique-board" id="board">
                         @foreach ($rooms as $room)
-                        @if ($room->discount > 0)
                             <div class="col-lg-4 col-md-6" >
                                 <div class="room-item" style="width: 23vw">
                                     <img src="{{ $room->image->first() ? 'storage/images/'.$room->image->first()->image : 'path/to/default-image.jpg' }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
@@ -75,11 +79,12 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
                     @endforeach
 
                     </div>
-                    <button class="my-unique-scroll-btn right-btn" id="scrollRight">→</button>
+                    @if ($discountedRooms->count() > 3)
+                <button class="my-unique-scroll-btn right-btn" id="scrollRight">→</button>
+               @endif
                 </div>
             </section>
         </div>

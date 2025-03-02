@@ -42,23 +42,18 @@
             <a href="./index.html">
                 <img src="img/logo.png" alt="">
             </a>
-
-            <div class="search-icon  search-switch" style="padding-top: 5px;">
-                <ul class="dropdown">
-                  @auth
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Logout</a> </li>
-                  @else
-                  <li><a href="#">Login</a></li>
-                  @endauth
-                </ul>
-            </div>
         </div>
 
 
 
         <nav class="mainmenu mobile-menu">
             <ul>
+                  @auth
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a> </li>
+                    @else
+                    <li><a href="#">Login</a></li>
+                    @endauth
                 <li class="active"><a href="{{route('home')}}">Home</a></li>
                 <li><a href="{{url('/store')}}">Rooms</a></li>
                 <li><a href="{{ route('about') }}">About Us</a></li>
@@ -72,7 +67,7 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="{{url('/contact')}}">Contact</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
