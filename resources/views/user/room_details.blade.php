@@ -111,7 +111,7 @@
                                        @endfor
                                         </div>
                                         <h5>{{ $review->user->name }}</h5>
-                                        <p>{{ $review->comment }}</p>
+                                        <p>{{ $review->comment }}.</p>
                                     </div>
                                 </div>
                             @endforeach

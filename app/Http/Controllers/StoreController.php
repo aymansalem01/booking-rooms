@@ -22,8 +22,7 @@ class StoreController extends Controller
                         ->with(['review' => function($query) {
                             $query->orderByDesc('rate');
                         }])
-                        ->take(4)->get();  ;
-
+                        ->take(4)->get();
             return view('user.index', compact('rooms'));
     }
 

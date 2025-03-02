@@ -157,11 +157,33 @@
                                         <td>{{ $room->size }} ft</td>
                                     </tr>
                                     <tr>
+                                        <td class="r-o">Category:</td>
+                                        <td> {{ $room->category->name }}</td>
+                                    </tr>
+                                    <tr>
                                         <td class="r-o">Capacity:</td>
-                                        <td>Max person {{ $room->capacity }}</td>
+                                        <td>Max  {{ $room->capacity }}</td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="rating" style="margin-bottom: 10px;">
+                                @php
+                                    $averageRating = $room->review->avg('rate') ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = ($averageRating - $fullStars) >= 0.5 ? 1 : 0;
+                                @endphp
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $fullStars)
+                                        <span class="fa fa-star checked"></span>
+                                    @elseif ($halfStar && $i == $fullStars + 1)
+                                        <span class="fa fa-star-half-alt checked"></span>
+                                        @php $halfStar = 0; @endphp
+                                    @else
+                                        <span class="fa fa-star"></span>
+                                    @endif
+                                @endfor
+                            </div>
                             <a href="{{ route('store.show', $room->id) }}" class="primary-btn">More Details</a>
                         </div>
                     </div>
@@ -191,40 +213,24 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="testimonial-slider owl-carousel">
+                    @foreach ($rooms as $room)
+                      @php
+                          $review = $room->review->sortByDesc('rate')->first();
+                      @endphp
                     <div class="ts-item">
-                        <p>After a construction project took longer than expected, my husband, my daughter and I
-                            needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
-                            city, neighborhood and the types of housing options available and absolutely love our
-                            vacation at Sona Hotel.</p>
+                        <p>{{ $review->comment }}.</p>
                         <div class="ti-author">
                             <div class="rating">
+                                @for ($i = 1; $i <= $review->rate; $i++)
                                 <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star-half_alt"></i>
+                                @endfor
                             </div>
-                            <h5> - Alexander Vasquez</h5>
+                            <h5> - {{ $review->user->name }}</h5>
                         </div>
-                        <img src="img/testimonial-logo.png" alt="">
+                        <img src="{{ $review->user->image ?? asset('img\room\avatar\default-avatar.webp') }}" alt="User Image">
                     </div>
-                    <div class="ts-item">
-                        <p>After a construction project took longer than expected, my husband, my daughter and I
-                            needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
-                            city, neighborhood and the types of housing options available and absolutely love our
-                            vacation at Sona Hotel.</p>
-                        <div class="ti-author">
-                            <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star-half_alt"></i>
-                            </div>
-                            <h5> - Alexander Vasquez</h5>
-                        </div>
-                        <img src="{{ asset('img/testimonial-logo.png') }}" alt="">
-                    </div>
+
+                    @endforeach
                 </div>
             </div>
         </div>
