@@ -26,13 +26,13 @@ Route::view('/signup', 'signup')->name('sign');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::view('/', 'user.index')->name('home');
+// Route::view('/', 'user.index')->name('home');
 //-------------------------------------------------------------------------------------------------
 Route::get('/editprofile', [AuthController::class, 'edit']);
 Route::put('/editprofile/{id}', [AuthController::class, 'update']);
 //------------------------------------------------------------------------------------------------------------
 Route::post('/subscribe', [FeedbackController::class, 'subscribe'])->name('subscribe');
-Route::get('/home', [StoreController::class, 'homePage'])->name('hoom');
+Route::get('/', [StoreController::class, 'homePage'])->name('home');
 Route::get('/category/{id}', [StoreController::class, 'roomCategory'])->name('room.category');
 Route::resource('store', StoreController::class);
 Route::post('/contact', [FeedbackController::class, 'feedback'])->name('contact');

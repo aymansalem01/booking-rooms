@@ -17,8 +17,9 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
             'phone_number' => 'required|regex:/^07[0-9]{8}$/',
-            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            'image' => 'required|mimes:jpg,jpeg,png|max:2048'
         ]);
+        
 
         $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $image_path);

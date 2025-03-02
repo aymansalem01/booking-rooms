@@ -132,7 +132,7 @@
 <body>
     <div class="signup-container">
         <h1>Sign Up</h1>
-        <form method="post" action="{{ route('signup') }}" >
+        <form method="post" action="{{ route('signup') }}" enctype="multipart/form-data">
             @csrf
             <div class="input-group">
                 <label for="name">Full Name</label>
