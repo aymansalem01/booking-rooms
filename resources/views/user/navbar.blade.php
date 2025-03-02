@@ -44,7 +44,14 @@
             </a>
 
             <div class="search-icon  search-switch" style="padding-top: 5px;">
-                <i class="icon_search"></i>
+                <ul class="dropdown">
+                  @auth
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Logout</a> </li>
+                  @else
+                  <li><a href="#">Login</a></li>
+                  @endauth
+                </ul>
             </div>
         </div>
 
@@ -57,13 +64,14 @@
                 <li><a href="{{ route('about') }}">About Us</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="./room-details.html">Room Details</a></li>
-                        <li><a href="#">Deluxe Room</a></li>
-                        <li><a href="#">Family Room</a></li>
-                        <li><a href="#">Premium Room</a></li>
+                        @php
+                          $categories = \App\Models\Category::all();
+                        @endphp
+                            @foreach ($categories as $category)
+                        <li style="color: {{ $category->text }}" ><a href="{{ url('/category/' . $category->id) }}">  {{ $category->name }}</a></li>
+                        @endforeach
                     </ul>
                 </li>
-                <li><a href="./blog.html">News</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -94,19 +102,23 @@
                                     <li><a href="{{route('about')  }}">About Us</a></li>
                                     <li><a href="#">Pages</a>
                                         <ul class="dropdown">
-                                            <li><a href="./room-details.html">Room Details</a></li>
-                                            <li><a href="./blog-details.html">Blog Details</a></li>
-                                            <li><a href="#">Family Room</a></li>
-                                            <li><a href="#">Premium Room</a></li>
+                                                @foreach ($categories as $category)
+                                            <li style="color: {{ $category->text }}"><a href="{{ url('/category/' . $category->id) }}">  {{ $category->name }}</a></li>
+                                            @endforeach
                                         </ul>
                                     </li>
-                                    <li><a href="./blog.html">News</a></li>
                                     <li><a href="{{url('/contact')}}">Contact</a></li>
                                 </ul>
                             </nav>
-                            <div class="nav-right search-switch">
-                                <i class="icon_search"></i>
-                            </div>
+                <div class="mainmenu"> <ul class="dropdown">
+                    @auth
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a> </li>
+                    @else
+                    <li><a href="#">Login</a></li>
+                    @endauth
+                </ul></div>
+
                         </div>
                     </div>
                 </div>

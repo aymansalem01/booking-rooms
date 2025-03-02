@@ -11,7 +11,7 @@
                 <div class="breadcrumb-text">
                     <h2>Blog</h2>
                     <div class="bt-option">
-                        <a href="./home.html">Home</a>
+                        <a href="{{route('home')}}">Home</a>
                         <span>Blog Grid</span>
                     </div>
                 </div>

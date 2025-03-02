@@ -11,7 +11,7 @@
                     <div class="breadcrumb-text">
                         <h2>{{ $room->name }}</h2>
                         <div class="bt-option">
-                            <a href="./home.html">Home</a>
+                            <a href="{{route('home')}}">Home</a>
                             <span>{{ $room->name }}</span>
                         </div>
                     </div>
