@@ -51,6 +51,16 @@
         flex-direction: column;
         gap: 20px;
     }
+    .custom-error {
+    background-color: #ffceec;
+    font-weight: bold;
+    font-size: 14px;
+    color: #a49e9e;
+    padding: 10px;
+    border-radius: 20px;
+    
+    
+}
 </style>
 
 <div class="form-container">
@@ -58,30 +68,52 @@
     <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
-        <input type="text" name="name" value="{{ $user->name }}" class="form-control mb-3" placeholder="Enter your name" required>
-
-        <input type="email" name="email" value="{{ $user->email }}" class="form-control mb-3" placeholder="Enter your email" required>
-
+    
+        <input type="text" name="name" value="{{ old('name', $user->name) }}" class="form-control mb-3" placeholder="Enter your name" required>
+        @error('name')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
+        <input type="email" name="email" value="{{ old('email', $user->email) }}" class="form-control mb-3" placeholder="Enter your email" required>
+        @error('email')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
         <input type="password" name="password" class="form-control mb-3" placeholder="Enter a new password (optional)">
-
+        @error('password')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
         <select name="role" class="form-select mb-3" required>
-            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-            <option value="owner" {{ $user->role == 'owner' ? 'selected' : '' }}>Owner</option>
-            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+            <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+            <option value="owner" {{ old('role', $user->role) == 'owner' ? 'selected' : '' }}>Owner</option>
+            <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
         </select>
-
-        <input type="text" name="phone_number" value="{{ $user->phone_number }}" class="form-control mb-3" pattern="^07[0-9]{8}$" placeholder="07XXXXXXXX" required>
-
+        @error('role')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
+        <input type="text" name="phone_number" value="{{ old('phone_number', $user->phone_number) }}" class="form-control mb-3" pattern="^07[0-9]{8}$" placeholder="07XXXXXXXX" required>
+        @error('phone_number')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
         <select name="status" class="form-select mb-3" required>
-            <option value="active" {{ $user->status == 'active' ? 'selected' : '' }}>Active</option>
-            <option value="block" {{ $user->status == 'block' ? 'selected' : '' }}>Block</option>
+            <option value="active" {{ old('status', $user->status) == 'active' ? 'selected' : '' }}>Active</option>
+            <option value="block" {{ old('status', $user->status) == 'block' ? 'selected' : '' }}>Block</option>
         </select>
-
+        @error('status')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
         <input type="file" name="image" class="form-control mb-3" accept="image/*">
-
+        @error('image')
+            <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+    
         <button type="submit" class="btn btn-custom">Update User</button>
     </form>
+    
 </div>
 
 @endsection

@@ -28,12 +28,15 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-12 text-center mt-4">
-                    {{ $categories->links() }}
-                </div>
+                
+               
+                
             @else
                 <p class="no-reviews">No categories available!</p>
             @endif
+        </div>
+        <div class="pagination-container">
+            {{ $categories->links('pagination::bootstrap-4') }}
         </div>
     </div>
 </div>
@@ -89,19 +92,19 @@
     }
 
     .edit-btn {
-        color: green;
+        color: rgb(60, 60, 60);
     }
 
     .edit-btn:hover {
-        color: darkgreen;
+        color: rgb(40, 41, 40);
     }
 
     .delete-btn {
-        color: red;
+        color: #9282ffdd;
     }
 
     .delete-btn:hover {
-        color: darkred;
+        color: #8c6efc;
     }
 
     .no-reviews {
@@ -134,6 +137,41 @@
    width: 20%;
    margin-left: 20px
 }
+
+.pagination-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .pagination .page-item .page-link {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        color: #9282ffdd;
+        border-radius: 8px;
+        padding: 8px 12px;
+        transition: 0.3s;
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #9282ffdd;
+        color: white;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #9282ffdd;
+        color: white;
+        border: none;
+    }
 
 </style>
 

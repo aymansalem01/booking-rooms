@@ -3,24 +3,33 @@
 @section('content')
 <div class="content">
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Update Coupon</h2>
+        <h2  style="color: #777; padding-bottom:20px" class="text-center mb-4">Update Coupon</h2>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="coupon-form">
                     <form action="{{ route('coupon.update', $coupon->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                    
                         <div class="form-group">
                             <label for="name">Coupon Name</label>
                             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $coupon->name) }}" required>
+                            @error('name')
+                                <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+                            @enderror
                         </div>
+                    
                         <div class="form-group">
                             <label for="discount">Discount Percentage</label>
                             <input type="number" class="form-control" id="discount" name="discount" value="{{ old('discount', $coupon->discount) }}" min="1" max="100" required>
+                            @error('discount')
+                                <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+                            @enderror
                         </div>
-                        
+                    
                         <button type="submit" class="btn-submit">Update Coupon</button>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -34,6 +43,9 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+
+        margin-left: 60%;
+        margin-right: -200px;
     }
     .form-group {
         margin-bottom: 15px;

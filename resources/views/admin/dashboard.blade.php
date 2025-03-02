@@ -146,8 +146,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url("{{asset('assets/img/card-3.jpg') }}");
-        background-size:cover;
+        background-image: url("{{asset('assets/img/card5.jpg') }}");
+        background-size:cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+   
     }
 
     .hover-effect {

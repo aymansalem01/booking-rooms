@@ -10,21 +10,37 @@
                     <form action="{{ route('adcategory.update', $category->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+
                         <div class="form-group">
                             <label for="name">Category Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{$category->name}}" required>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $category->name) }}" required>
+                            @error('name')
+                                <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="name">background color</label>
-                            <input type="text" class="form-control" id="text" name="page" value="{{$category->page}}" required>
+                            <label for="page">Background Color</label>
+                            <input type="text" class="form-control" id="page" name="page" value="{{ old('page', $category->page) }}" required>
+                            @error('page')
+                                <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="name">text color</label>
-                            <input type="text" class="form-control" id="text" name="text" value="{{$category->text}}" required>
+                            <label for="text">Text Color</label>
+                            <input type="text" class="form-control" id="text" name="text" value="{{ old('text', $category->text) }}" required>
+                            @error('text')
+                                <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="name">button color</label>
-                            <input type="text" class="form-control" id="text" name="color" value="{{$category->color}}" required>
+                            <label for="color">Button Color</label>
+                            <input type="text" class="form-control" id="color" name="color" value="{{ old('color', $category->color) }}" required>
+                            @error('color')
+                                <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn-submit">Update Category</button>
@@ -42,10 +58,12 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+
+        margin-left: 60%;
+        margin-right: -200px;
     }
     .form-group {
         margin-bottom: 15px;
-
     }
     .form-group label {
         font-weight: bold;
@@ -70,5 +88,10 @@
     }
     .btn-submit:hover {
         background-color: #8c6efc;
+    }
+    .custom-error {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
     }
 </style>

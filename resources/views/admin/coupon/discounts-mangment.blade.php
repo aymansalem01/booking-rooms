@@ -96,19 +96,19 @@
     }
 
     .edit-btn {
-        color: green;
+        color: rgb(70, 70, 70);
     }
 
     .edit-btn:hover {
-        color: darkgreen;
+        color: rgb(55, 55, 55);
     }
 
     .delete-btn {
-        color: red;
+        color: #9282ffdd
     }
 
     .delete-btn:hover {
-        color: darkred;
+        color: #8c6efc;
     }
 
     .no-reviews {
