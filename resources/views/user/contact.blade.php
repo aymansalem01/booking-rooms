@@ -9,7 +9,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="contact-text">
-                        <h2>Escape Reality – Where Imagination Knows No Limits</h2>
+                        <h2>Escape Reality </h2>
+                        <h3>Where Imagination Knows No Limits</h3>
                         <p>Step into a world beyond the ordinary, where dreams take shape and boundaries fade away. At Escaping Reality, we offer a sanctuary from the everyday—whether through immersive stories, breathtaking experiences, or a space to unwind and recharge. Lose yourself in adventure,
                             creativity, and inspiration as you explore a realm where reality is just the beginning.</p>
                         <table>
@@ -32,17 +33,17 @@
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
-                    <form action="{{route('contact')}}" method="post" class="contact-form">
-                        @csrf
+                    <form action="#" class="contact-form">
                         <div class="row">
                             <div class="col-lg-6">
                                 <input type="text" placeholder="Your Name">
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" name="email" placeholder="Your Email">
+                                <input type="text" placeholder="Your Email">
                             </div>
                             <div class="col-lg-12">
                                 <textarea placeholder="Your Message"></textarea>
+                                
                                 <button type="submit">Submit Now</button>
                             </div>
                         </div>

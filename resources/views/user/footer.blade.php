@@ -11,12 +11,12 @@
                                     <img src="img/footer-logo.png" alt="">
                                 </a>
                             </div>
-                            <p>We inspire and reach millions of travelers<br /> across 90 local websites</p>
+                            <p>we offer a unique rental experience where you can  <br />find comfortable and stylish accommodations at competitive prices</p>
                             <div class="fa-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                                <a href="https://www.facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                <a href="https://www.twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>

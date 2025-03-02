@@ -203,8 +203,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <span>Testimonials</span>
-                    <h2>Rooms On Sale</h2>
+                    <span>Rooms For Rent</span>
+                    <h2> Escape Reality Where Imagination Knows No Limits </h2>
                 </div>
             </div>
         </div>
