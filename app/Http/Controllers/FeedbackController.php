@@ -15,31 +15,27 @@ class FeedbackController extends Controller
         $feedback = Feedback::create([
             'email' => $request->email,
             'comment' => $request->comment,
-
         ]);
-        return response()->json([
-            'message' => 'Feedback submitted successfully',
-            'feedback' => $feedback,
-        ]);
+        return redirect()->back()->with(['message'=>'thanks for message']);
     }
     public function subscribe(Request $request)
     {
-        $subscribe = Subscribe::create([
+        Subscribe::create([
             'email' => $request->email,
         ]);
-        return response()->json($subscribe);
+        return redirect()->back()->with(['message' => 'thanks for subscribe ']);
     }
 
-    public function comment(Request $request)
+    public function comment(Request $request , string $id)
     {
         $review = Review::create([
 
-            'user_id' => $request->user_id,
-            'room_id' => $request->room_id,
+            'user_id' => auth()->user()->id,
+            'room_id' => $id,
             'comment' => $request->comment,
             'rate' => $request->rate,
 
         ]);
-        return response()->json($review);
+        return redirect()->back()->with(['message' => 'thanks for your comment']);
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-  
+
   .form-container {
             width: 100%;
             max-width: 400px;
@@ -40,10 +40,10 @@
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         background-image: url("{{asset('assets/img/create9.jpg') }}");
         background-size: cover;
-        
+
     }
-    
-   
+
+
     .form-container h2 {
         text-align: center;
         margin-bottom: 40px;
@@ -55,19 +55,19 @@
         flex-direction: column;
         gap: 20px
     }
-    
+
 </style>
 
 
 <div class="form-container">
-   
+
     <h2>Create User</h2>
     <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <input type="text" name="name" class="form-control mb-3" placeholder="Enter your name" required>
+        <input type="text" name="name" class="form-control mb-3" placeholder="Enter your name" value="{{ old('name') }}" required>
 
-        <input type="email" name="email" class="form-control mb-3" placeholder="Enter your email" required>
+        <input type="email" name="email" class="form-control mb-3" placeholder="Enter your email" value="{{ old('email') }}" required>
 
         <input type="password" name="password" class="form-control mb-3" placeholder="Enter a strong password" required>
 
@@ -78,7 +78,7 @@
             <option value="user">User</option>
         </select>
 
-        <input type="text" name="phone_number" class="form-control mb-3" pattern="^07[0-9]{8}$" placeholder="07XXXXXXXX" required>
+        <input type="text" name="phone_number" class="form-control mb-3" pattern="^07[0-9]{8}$" value="{{ old('phone_number') }}" placeholder="07XXXXXXXX" required>
 
         <select name="status" class="form-select mb-3" required>
             <option value="" disabled selected>Select Status</option>
@@ -86,12 +86,12 @@
             <option value="block">Block</option>
         </select>
 
-        <input type="file" name="image" class="form-control mb-3 " accept="image/*">
+        <input type="file" name="image" class="form-control mb-3 " value="{{ old('image') }}" >
 
         <button type="submit" class="btn btn-custom w-100">Create User</button>
     </form>
     </div>
 
 
-   
+
 @endsection

@@ -27,8 +27,9 @@
                         <div class="ft-newslatter">
                             <h6>New latest</h6>
                             <p>Get the latest updates and offers.</p>
-                            <form action="#" class="fn-form">
-                                <input type="text" placeholder="Email">
+                            <form action="{{route('subscribe')}}" method="post" class="fn-form">
+                                @csrf
+                                <input type="text" name="email" placeholder="Email">
                                 <button type="submit"><i class="fa fa-send"></i></button>
                             </form>
                         </div>

@@ -47,55 +47,45 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="#" class="simple-text">
                         Admin Name
                     </a>
                 </div>
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="{{ route('admin') }}">
+                        <a href="{{ route('owner') }}">
                             <i class="fa-solid fa-gauge"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('user.index') }}">
-                            <i class="fa-solid fa-user"></i>
-                            <p>Users Management</p>
-                        </a>
-                    </li>
+
 
                     <li>
-                        <a href="{{ route('adroom.index') }}">
+                        <a href="{{ route('room.index') }}">
                             <i class="fa-solid fa-store"></i>
                             <p>Rooms Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('adreview.index') }}">
+                        <a href="{{ route('review.index') }}">
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <p>Reviews Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('adbooking.index') }}">
+                        <a href="{{ route('booking.index') }}">
                             <i class="fa-solid fa-calendar"></i>
                             <p>Booking Management</p>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('adcategory.index') }}">
+                        <a href="{{ route('category.index') }}">
                             <i class="fa-solid fa-layer-group"></i>
                             <p>Category Management</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('coupon.index') }}">
-                            <i class="fa-solid fa-receipt"></i>
-                            <p>coupon Management</p>
-                        </a>
-                    </li>
+
 
 
                 </ul>
@@ -123,7 +113,7 @@
                                     <p class="hidden-lg hidden-md">Dashboard</p>
                                 </a>
                             </li>
-                            <!-- <li class="dropdown">
+                            <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-globe"></i>
                                     <b class="caret hidden-lg hidden-md"></b>
@@ -139,7 +129,7 @@
                                 <li><a href="#">Notification 4</a></li>
                                 <li><a href="#">Another notification</a></li>
                               </ul>
-                        </li> -->
+                        </li>
                             <li>
                                 <a href="">
                                     <i class="fa fa-search"></i>
@@ -154,7 +144,7 @@
                                     <p>Account</p>
                                 </a>
                             </li>
-                            <!-- <li class="dropdown">
+                             <li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p>
           Dropdown
@@ -171,7 +161,7 @@
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                               </ul>
-                        </li> -->
+                        </li>
                             <li>
                                 <a href="#">
                                     <p>Log out</p>

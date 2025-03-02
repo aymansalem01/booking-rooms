@@ -135,127 +135,66 @@
 <section class="hp-room-section">
     <div class="container-fluid">
         <div class="hp-room-items">
-            <div class="row">
+            <div class="row" >
+                @foreach ($rooms as $room)
                 <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="img/room/room-b1.jpg">
+                    <div class="hp-room-item set-bg" data-setbg="{{ $room->image->first() ? asset('storage/images/'.$room->image->first()->image) : asset('path/to/default-image.jpg') }}">
                         <div class="hr-text">
-                            <h3>Double Room</h3>
-                            <h2>199$<span>/Pernight</span></h2>
+                            <h3>{{ $room->name }}</h3>
+                            <h2>
+                                @if ($room->discount > 0)
+                                    <span style="color: #999; text-decoration: line-through;">{{ $room->price }} JD</span>
+                                    {{ $room->price - ($room->discount * ($room->price / 100)) }} JD
+                                @else
+                                    {{ $room->price }} JD
+                                @endif
+                                <span>/Pernight</span>
+                            </h2>
                             <table>
                                 <tbody>
                                     <tr>
                                         <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
+                                        <td>{{ $room->size }} ft</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Category:</td>
+                                        <td> {{ $room->category->name }}</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
+                                        <td>Max  {{ $room->capacity }}</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#" class="primary-btn">More Details</a>
+                            <div class="rating" style="margin-bottom: 10px;">
+                                @php
+                                    $averageRating = $room->review->avg('rate') ?? 0;
+                                    $fullStars = floor($averageRating);
+                                    $halfStar = ($averageRating - $fullStars) >= 0.5 ? 1 : 0;
+                                @endphp
+
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= $fullStars)
+                                        <span class="fa fa-star checked"></span>
+                                    @elseif ($halfStar && $i == $fullStars + 1)
+                                        <span class="fa fa-star-half-alt checked"></span>
+                                        @php $halfStar = 0; @endphp
+                                    @else
+                                        <span class="fa fa-star"></span>
+                                    @endif
+                                @endfor
+                            </div>
+                            <a href="{{ route('store.show', $room->id) }}" class="primary-btn">More Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="img/room/room-b2.jpg">
-                        <div class="hr-text">
-                            <h3>Premium King Room</h3>
-                            <h2>159$<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="{{ asset('img/room/room-b3.jpg') }}">
-                        <div class="hr-text">
-                            <h3>Deluxe Room</h3>
-                            <h2>198$<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="hp-room-item set-bg" data-setbg="{{ asset('img/room/room-b4.jpg') }}">
-                        <div class="hr-text">
-                            <h3>Family Room</h3>
-                            <h2>299$<span>/Pernight</span></h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="r-o">Size:</td>
-                                        <td>30 ft</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Capacity:</td>
-                                        <td>Max persion 5</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Bed:</td>
-                                        <td>King Beds</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="r-o">Services:</td>
-                                        <td>Wifi, Television, Bathroom,...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="#" class="primary-btn">More Details</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
 </section>
+
+
 <!-- Home Room Section End -->
 
 <!-- Testimonial Section Begin -->
@@ -269,43 +208,29 @@
                 </div>
             </div>
         </div>
+
+
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="testimonial-slider owl-carousel">
+                    @foreach ($rooms as $room)
+                      @php
+                          $review = $room->review->sortByDesc('rate')->first();
+                      @endphp
                     <div class="ts-item">
-                        <p>After a construction project took longer than expected, my husband, my daughter and I
-                            needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
-                            city, neighborhood and the types of housing options available and absolutely love our
-                            vacation at Sona Hotel.</p>
+                        <p>{{ $review->comment }}.</p>
                         <div class="ti-author">
                             <div class="rating">
+                                @for ($i = 1; $i <= $review->rate; $i++)
                                 <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star-half_alt"></i>
+                                @endfor
                             </div>
-                            <h5> - Alexander Vasquez</h5>
+                            <h5> - {{ $review->user->name }}</h5>
                         </div>
-                        <img src="img/testimonial-logo.png" alt="">
+                        <img src="{{ $review->user->image ?? asset('img\room\avatar\default-avatar.webp') }}" alt="User Image">
                     </div>
-                    <div class="ts-item">
-                        <p>After a construction project took longer than expected, my husband, my daughter and I
-                            needed a place to stay for a few nights. As a Chicago resident, we know a lot about our
-                            city, neighborhood and the types of housing options available and absolutely love our
-                            vacation at Sona Hotel.</p>
-                        <div class="ti-author">
-                            <div class="rating">
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star"></i>
-                                <i class="icon_star-half_alt"></i>
-                            </div>
-                            <h5> - Alexander Vasquez</h5>
-                        </div>
-                        <img src="{{ asset('img/testimonial-logo.png') }}" alt="">
-                    </div>
+
+                    @endforeach
                 </div>
             </div>
         </div>

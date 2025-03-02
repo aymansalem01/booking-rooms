@@ -29,12 +29,12 @@
     gap: 5px;
 }
 .adduser:hover{
-   
+
     border:1px solid #9282ffdd;
     color: #9282ffdd;
 }
 .adduser{
-   
+
     background-color: #9282ffdd;
     border:1px solid #9282ffdd;
     color: white;
@@ -71,9 +71,9 @@
         <div class="col-md-4">
             <div class="card user-card shadow-sm border-0 rounded-lg">
                 <div class="card-body text-center">
-                    
-                    <img src="{{ asset('assets/img/' . $user->image) }}" alt="User Image" class="user-img rounded-circle">
-                    
+
+                    <img src="{{ asset('images/' . $user->image) }}" alt="User Image" class="user-img rounded-circle">
+
                     <h5 class="fw-bold mt-2">{{ $user->name }}</h5>
                     <p class="text-muted">{{ $user->email }}</p>
 
@@ -113,4 +113,3 @@
 
 
 @endsection
-       

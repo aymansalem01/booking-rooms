@@ -5,21 +5,21 @@
     <div class="container mt-5">
         <h2 style="color: #777" class="text-center text-purple fw-bold">Categories Management</h2>
         <div class="text-end mb-3">
-            <a class="btn  adduser" href="{{ route('category.create') }}">
+            <a class="btn  adduser" href="{{ route('adcategory.create') }}">
                 <i class="fas fa-user-plus"></i> Add Category
             </a>
         </div>
-       
+
         <div class="row justify-content-center" style="gap: 20px;">
-            @if($categories->isNotEmpty())  
+            @if($categories->isNotEmpty())
                 @foreach ($categories as $category)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
                             <h5 class="category-name">Category Name: {{ $category->name }}</h5>
                             <p>{{ $category->text }}</p>
                             <div class="action-buttons">
-                                <a href="{{ route('category.edit', parameters: $category->id) }} " class="edit-btn"><i class="fa-solid fa-pen"></i></a>
-                                <form action="{{ route('category.destroy', $category->id) }}" method="POST" onsubmit="return confirmDelete();">
+                                <a href="{{ route('adcategory.edit', parameters: $category->id) }} " class="edit-btn"><i class="fa-solid fa-pen"></i></a>
+                                <form action="{{ route('adcategory.destroy', $category->id) }}" method="POST" onsubmit="return confirmDelete();">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
@@ -121,13 +121,13 @@
         cursor: pointer;
     }
     .adduser:hover{
-   
+
    border:1px solid #9282ffdd !important;
    color: #9282ffdd !important;
    background-color: white !important
 }
 .adduser{
-  
+
    background-color: #9282ffdd !important;
    border:1px solid #9282ffdd !important;
    color: white !important;
@@ -143,9 +143,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault(); 
-                let form = this.closest("form"); 
-                
+                event.preventDefault();
+                let form = this.closest("form");
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",

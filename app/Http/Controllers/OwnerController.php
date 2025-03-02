@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class OwnerController extends Controller
             $request->size => 'required ',
             $request->capacity => 'required'
         ]);
-        Room::create([
+        $room =Room::create([
             'name' => $request->name,
             'address' => $request->address,
             'category' => $request->category,
@@ -43,6 +44,10 @@ class OwnerController extends Controller
             'description' => $request->description,
             'size' => $request->size,
             'capacity' => $request->capacity
+        ]);
+        Image::create([
+            'room_id' => $room->id,
+            'image' => $request->image
         ]);
         return redirect()->back()->with(['message' => 'added successfully']);
     }

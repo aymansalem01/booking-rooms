@@ -11,11 +11,18 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::paginate(6);
-        return view('admin\reviews-mangment', compact('reviews'));
+        return view('admin.review.reviews-mangment', compact('reviews'));
     }
 
 
 
+
+    public function show(string $id)
+
+    {
+        $review = Review::findOrFail($id);
+        return view('admin.show-review', compact('review'));
+    }
 
 
     public function destroy($id)
@@ -23,6 +30,6 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return redirect()->route('review.index')->with('success', 'Review deleted successfully.');
+        return $this->index()->with('success', 'Review deleted successfully.');
     }
 }
