@@ -58,7 +58,9 @@
 }
 </style>
 
-<div class="container mt-4">
+<div class="container mt-4" style="min-height: 100vh;
+        display: flex;
+        flex-direction: column;">
     <h2 style="color: #777" class="text-center text-purple fw-bold">User Management</h2>
 
     <div class="text-end mb-3">
