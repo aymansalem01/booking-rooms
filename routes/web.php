@@ -60,7 +60,6 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('owner')->group(function () {
     Route::get('/dashboard', [DashboardOwnerController::class, 'index'])->name('owner');
-    Route::resource('category', CategoryOwnerController::class);
     Route::resource('review', ReviewOwnerController::class);
     Route::resource('room', RoomOwnerController::class);
     Route::resource('booking', BookingController::class);
