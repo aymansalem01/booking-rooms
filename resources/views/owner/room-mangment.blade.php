@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="container mt-4">
     <h2 class="text-center text-purple fw-bold">Rooms Management</h2>
 
@@ -30,10 +29,10 @@
                 <td>
                     <a href="{{ route('room.show', $room->id) }}" class="btn btn-info btn-sm">View</a>
                     <a href="{{ route('room.edit', $room->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('room.destroy', $room->id) }}" method="POST" style="display:inline-block;">
+                    <form action="{{ route('room.destroy', $room->id) }}" method="POST" style="display:inline-block;" class="delete-form">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="btn btn-danger btn-sm delete-btn"><i class="fa-solid fa-trash"></i> Delete</button>
                     </form>
                 </td>
             </tr>
@@ -42,5 +41,36 @@
     </table>
 </div>
 
-
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                let form = this.closest("form");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The room has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    });
+</script>

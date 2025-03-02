@@ -24,7 +24,7 @@
                                 <p class="user-comment">{{ $review->comment }}</p>
                             </div>
                             <div class="action-buttons">
-                            <a href="{{ route('review.show', $review->id) }}"  class="view-btn" >
+                            <a href="{{ route('adreview.show', $review->id) }}"  class="view-btn" >
                             <i class="fas fa-eye"></i>
                         </a>
 

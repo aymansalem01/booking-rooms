@@ -79,13 +79,7 @@
                             <p>Booking Management</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('category.index') }}">
-                            <i class="fa-solid fa-layer-group"></i>
-                            <p>Category Management</p>
-                        </a>
-                    </li>
-
+                    
 
 
                 </ul>

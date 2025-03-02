@@ -48,13 +48,13 @@ class RoomController extends Controller
 
         ]);
         $rooms->update($request->all());
-             return $this->index()->with('updated');
+        return redirect()->route('adroom.index')->with('success', 'Room Updated successfully!');
     }
 
     public function destroy(string $id)
     {
         $rooms = Room::findOrFail($id);
         $rooms->delete();
-        return $this->index()->with('deleted');
+        return redirect()->route('adroom.index')->with('success', 'Room deleted successfully!');
     }
 }

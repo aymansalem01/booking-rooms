@@ -6,7 +6,7 @@
     padding: 20px;
     border-radius: 15px;
     transition: 0.3s ease-in-out;
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 .user-card:hover {
@@ -20,43 +20,44 @@
     object-fit: cover;
     border: 1px solid #ddd;
     padding: 3px;
-    border-radius: 20%
+    border-radius: 20%;
 }
-.icons{
 
+.icons {
     display: flex;
     justify-content: center;
     gap: 5px;
+    padding: 10px;
+    border-radius: 50%;
 }
-.adduser:hover{
 
-    border:1px solid #9282ffdd;
-    color: #9282ffdd;
-}
-.adduser{
-
+.adduser {
     background-color: #9282ffdd;
-    border:1px solid #9282ffdd;
+    border: 1px solid #9282ffdd;
     color: white;
     width: 20%;
 }
-.icons{
-    padding: 10px;
-    border-radius: 50%
-}
-.iconn{
-    border-radius: 30%
-}
-.eyeIcon{
-    color: #9282ffdd;
-    border-color: #9282ffdd
-}
-.badge{
 
+.adduser:hover {
+    border: 1px solid #9282ffdd;
+    color: #9282ffdd;
+}
+
+.iconn {
+    border-radius: 30%;
+}
+
+.eyeIcon {
+    color: #9282ffdd;
+    border-color: #9282ffdd;
+}
+
+.badge {
     padding: 10px;
-    font-size: 1.4rem
+    font-size: 1.4rem;
 }
 </style>
+
 <div class="container mt-4">
     <h2 style="color: #777" class="text-center text-purple fw-bold">User Management</h2>
 
@@ -71,9 +72,7 @@
         <div class="col-md-4">
             <div class="card user-card shadow-sm border-0 rounded-lg">
                 <div class="card-body text-center">
-
                     <img src="{{ asset('images/' . $user->image) }}" alt="User Image" class="user-img rounded-circle">
-
                     <h5 class="fw-bold mt-2">{{ $user->name }}</h5>
                     <p class="text-muted">{{ $user->email }}</p>
 
@@ -94,15 +93,14 @@
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline-block">
+                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="delete-form">
                             @csrf
                             @method('DELETE')
-                            <button  type="submit" class="btn btn-sm btn-danger iconn" onclick="return confirm('Are you sure?')">
+                            <button type="submit" class="btn btn-sm btn-danger iconn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -110,6 +108,35 @@
     </div>
 </div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); 
+                let form = this.closest("form"); 
+                
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The user has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    });
+</script>
 
 @endsection

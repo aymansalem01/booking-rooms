@@ -21,7 +21,7 @@ class ReviewController extends Controller
 
     {
         $review = Review::findOrFail($id);
-        return view('admin.show-review', compact('review'));
+        return view('admin.review.show-review', compact('review'));
     }
 
 
@@ -30,6 +30,6 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return $this->index()->with('success', 'Review deleted successfully.');
+        return redirect()->route('adreview.index')->with('success', 'Booking deleted successfully!');
     }
 }

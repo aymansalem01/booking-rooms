@@ -16,7 +16,7 @@
                             <p class="user-rating">End Date: {{ $book->end_date }}</p>
                             <p class="user-rating">Total Price: {{ $book->total_price }}</p>
                             <div class="action-buttons">
-                                <form action="{{ route('booking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
+                                <form action="{{ route('adbooking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
