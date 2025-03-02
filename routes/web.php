@@ -28,8 +28,8 @@ Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::view('/', 'user.index')->name('home');
 //-------------------------------------------------------------------------------------------------
-Route::get('/editprofile', [AuthController::class, 'edit']);
-Route::put('/editprofile/{id}', [AuthController::class, 'update']);
+Route::get('/editprofile', [AuthController::class, 'edit'])->name('edit');
+Route::put('/editprofile/{id}', [AuthController::class, 'update'])->name('update');
 //------------------------------------------------------------------------------------------------------------
 Route::post('/subscribe', [FeedbackController::class, 'subscribe'])->name('subscribe');
 Route::get('/', [StoreController::class, 'homePage'])->name('home');
@@ -40,6 +40,9 @@ Route::view('/about', 'user.about_us')->name('about');
 Route::view('/blog_detals', 'user.blog')->name('blog_details');
 Route::view('/blog', 'user.blog_details')->name('blog');
 Route::view('/contact', 'user.contact')->name('contact');
+Route::post('/store/{id}',[FeedbackController::class,'comment'])->name('review');
+Route::get('/get-booked-dates/{id}', [StoreController::class, 'getBookingdates']);
+Route::post('/store-booking/{id}', [StoreController::class, 'storeBooking'])->name('book');
 
 Route::middleware(['auth,role:user'])->group(function () {
     //<!------------------------------------------------------------------------------------>

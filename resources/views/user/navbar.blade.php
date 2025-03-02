@@ -49,11 +49,12 @@
         <nav class="mainmenu mobile-menu">
             <ul>
                   @auth
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Logout</a> </li>
-                    @else
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{route('edit')}}">Profile</a></li>
+                    <li><a href="{{route('log')}}">Logout</a> </li>
                     @endauth
+                    @guest
+                    <li><a href="{{route('log')}}">Login</a></li>
+                    @endguest
                 <li class="active"><a href="{{route('home')}}">Home</a></li>
                 <li><a href="{{url('/store')}}">Rooms</a></li>
                 <li><a href="{{ route('about') }}">About Us</a></li>
@@ -107,10 +108,10 @@
                             </nav>
                 <div class="mainmenu"> <ul class="dropdown">
                     @auth
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Logout</a> </li>
+                    <li><a href="{{route('edit')}}">Profile</a></li>
+                    <li><a href="{{route('logout')}}">Logout</a> </li>
                     @else
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{route('log')}}">Login</a></li>
                     @endauth
                 </ul></div>
 

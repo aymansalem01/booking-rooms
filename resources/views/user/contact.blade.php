@@ -1,8 +1,6 @@
 @extends('layouts.uerPage')
 
 @section('content')
-
-
     <!-- Contact Section Begin -->
     <section class="contact-section spad">
         <div class="container">
@@ -11,7 +9,9 @@
                     <div class="contact-text">
                         <h2>Escape Reality </h2>
                         <h3>Where Imagination Knows No Limits</h3>
-                        <p>Step into a world beyond the ordinary, where dreams take shape and boundaries fade away. At Escaping Reality, we offer a sanctuary from the everyday—whether through immersive stories, breathtaking experiences, or a space to unwind and recharge. Lose yourself in adventure,
+                        <p>Step into a world beyond the ordinary, where dreams take shape and boundaries fade away. At
+                            Escaping Reality, we offer a sanctuary from the everyday—whether through immersive stories,
+                            breathtaking experiences, or a space to unwind and recharge. Lose yourself in adventure,
                             creativity, and inspiration as you explore a realm where reality is just the beginning.</p>
                         <table>
                             <tbody>
@@ -27,12 +27,17 @@
                                     <td class="c-o">Email:</td>
                                     <td>info.colorlib@gmail.com</td>
                                 </tr>
-                            
+
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="col-lg-7 offset-lg-1">
+                    @if (session('message'))
+                    <div class="alert alert-primary">
+                        {{ session('message') }}
+                    </div>
+                    @endif
                     <form action="#" class="contact-form">
                         <div class="row">
                             <div class="col-lg-6">
@@ -43,7 +48,7 @@
                             </div>
                             <div class="col-lg-12">
                                 <textarea placeholder="Your Message"></textarea>
-                                
+
                                 <button type="submit">Submit Now</button>
                             </div>
                         </div>
@@ -58,7 +63,4 @@
         </div>
     </section>
     <!-- Contact Section End -->
-
-
-
 @endsection

@@ -19,7 +19,7 @@ class AuthController extends Controller
             'phone_number' => 'required|regex:/^07[0-9]{8}$/',
             'image' => 'required|mimes:jpg,jpeg,png|max:2048'
         ]);
-        
+
 
         $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $image_path);
@@ -45,13 +45,13 @@ class AuthController extends Controller
         if (Hash::check($request->password, $user->password)) {
             Auth::login(user: $user);
             $user->createToken($user->email)->accessToken;
-            if ($user->role = 'user') {
-                return redirect()->route('contact');
+            if ($user->role == 'user') {
+                return redirect()->route('home');
             }
-            if ($user->role = 'admin') {
+            if ($user->role == 'admin') {
                 return redirect()->route('admin');
             }
-            if ($user->role = 'owner') {
+            if ($user->role == 'owner') {
                 return redirect()->route('owner');
             }
         } else {

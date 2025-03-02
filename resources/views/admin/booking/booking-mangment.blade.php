@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <h2 style="color: #777" class="text-center text-purple fw-bold">Bookings Management</h2>
         <div class="row justify-content-center" style="gap: 20px;">
-            @if($booking->isNotEmpty())  
+            @if($booking->isNotEmpty())
                 @foreach ($booking as $book)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
@@ -14,6 +14,7 @@
                             <h5 class="user-name">User: {{ $book->user->name }}</h5>
                             <p class="user-rating">Start Date: {{ $book->start_date }}</p>
                             <p class="user-rating">End Date: {{ $book->end_date }}</p>
+                            <p class="user-rating"> Price: {{ $book->price }}</p>
                             <p class="user-rating">Total Price: {{ $book->total_price }}</p>
                             <div class="action-buttons">
                                 <form action="{{ route('adbooking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
@@ -25,7 +26,7 @@
                         </div>
                     </div>
                 @endforeach
-             
+
             @else
                 <p class="no-reviews">No bookings available!</p>
             @endif
@@ -155,9 +156,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault(); 
-                let form = this.closest("form"); 
-                
+                event.preventDefault();
+                let form = this.closest("form");
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
