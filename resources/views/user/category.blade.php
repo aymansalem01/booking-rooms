@@ -13,7 +13,7 @@
                     <div class="breadcrumb-text">
                         <h2>{{ $rooms->first()?->category?->name ?? 'No Category' }} Rooms</h2>
                         <div class="bt-option">
-                            <a href="./home.html">Home</a>
+                            <a href="{{route('home')}}">Home</a>
                             <span>Rooms</span>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <!-- Breadcrumb Section End -->
-
+    @if ($rooms->contains(fn($room) => $room->discount > 0))
     <div class="my-unique-container" style="margin: 20px">
         <header class="my-unique-header">
         <h2 style="padding:15px; margin:20px;">Rooms with Special Discount</h2>
@@ -87,7 +87,7 @@
             </div>
         </section>
     </div>
-
+@endif
 
     <!-- Rooms Section Begin -->
     <section class="rooms-section spad">
