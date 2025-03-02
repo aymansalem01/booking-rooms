@@ -50,7 +50,7 @@ class AdminController extends Controller
     public function show(string $id)
 
     {
-        $user = User::findOrFail($id);
+        $user = User::with('room')->findOrFail($id);
         return view('admin.user.show-user', compact('user'));
     }
 

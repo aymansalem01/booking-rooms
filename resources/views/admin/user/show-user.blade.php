@@ -91,7 +91,7 @@
                 <li class="list-group-item"><strong>Joined:</strong> {{ $user->created_at->format('d M Y') }}</li>
             </ul>
 
-            @if($user->role == 'owner' && $user->rooms->count() > 0)
+            @if($user->role == 'owner' && optional($user->rooms)->count() > 0)
             <h5 class="fw-bold">Rooms Owned</h5>
             <div class="row">
                 @foreach($user->rooms as $room)
