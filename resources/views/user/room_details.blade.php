@@ -101,8 +101,7 @@
                             @foreach ($room->review as $review)
                                 <div class="review-item">
                                     <div class="ri-pic">
-                                        <img src="{{ $review->user->image ?? asset('public\img\room\avatar\default-avatar.webp') }}" alt="User Image">
-
+                                        <img src="{{ $review->user->image ?? asset('img\room\avatar\default-avatar.webp') }}" alt="User Image">
                                     </div>
                                     <div class="ri-text">
                                         <span>{{ ($review->created_at)->format('d M Y') }}</span>

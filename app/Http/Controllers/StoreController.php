@@ -16,14 +16,15 @@ class StoreController extends Controller
     }
 
 
-    public function create()
+    public function homePage()
     {
-        //
-    }
+            $rooms = Room::with(['image', 'review', 'user', 'category'])
+                        ->with(['review' => function($query) {
+                            $query->orderByDesc('rate');
+                        }])
+                        ->take(4)->get();  ;
 
-    public function store(Request $request)
-    {
-        //
+            return view('user.index', compact('rooms'));
     }
 
     public function show(string $id)

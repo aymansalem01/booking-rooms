@@ -2002,6 +2002,129 @@ ul, ol {
 .map iframe {
 	width: 100%;
 }
+
+      /* Discount section */
+
+      .my-unique-board-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+
+    .my-unique-board {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        overflow: hidden;
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .my-unique-room-item {
+        flex: 0 0 20%;
+        max-width: 20%;
+        box-sizing: border-box;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .my-unique-room-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .my-unique-ri-text h4 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .my-unique-room-price {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .my-unique-price-strike {
+        color: #999;
+        text-decoration: line-through;
+    }
+
+    .my-unique-discount-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: rgba(21, 21, 21, 0.355);
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .my-unique-rating {
+        margin-top: 10px;
+    }
+
+    .my-unique-scroll-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #00000091;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .left-btn {
+        left: -60px;
+    }
+
+    .right-btn {
+        right: -60px;
+    }
+
+    .my-unique-scroll-btn:hover {
+        background-color: #6a1d9f;
+    }
+
+    .my-unique-scroll-btn:focus {
+        outline: none;
+    }
+
+    .my-unique-scroll-btn:active {
+        background-color: #4a148c;
+    }
+
+    @media (max-width: 768px) {
+        .my-unique-room-item {
+            flex: 1 1 45%;
+            max-width: 45%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .my-unique-room-item {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+    }
+
+
 /*-------------------------------- Respinsive Media Styles --------------------------------*/
 
 @media only screen and (min-width: 1554px) and (max-width: 1920px) {

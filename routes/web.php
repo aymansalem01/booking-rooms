@@ -32,6 +32,7 @@ Route::get('/editprofile', [AuthController::class, 'edit']);
 Route::put('/editprofile/{id}', [AuthController::class, 'update']);
 //------------------------------------------------------------------------------------------------------------
 Route::post('/subscribe', [FeedbackController::class, 'subscribe'])->name('subscribe');
+Route::get('/home', [StoreController::class, 'homePage'])->name('hoom');
 Route::get('/category/{id}', [StoreController::class, 'roomCategory'])->name('room.category');
 Route::resource('store', StoreController::class);
 Route::post('/contact', [FeedbackController::class, 'feedback'])->name('contact');
