@@ -32,8 +32,4 @@ class CategoryOwnerController extends Controller
     //     return redirect()->route('category.index')->with('success', 'Category created successfully.');
     // }
 
-    
-  
-
-   
 }

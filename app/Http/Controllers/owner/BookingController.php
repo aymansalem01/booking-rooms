@@ -15,11 +15,11 @@ class BookingController extends Controller
     public function index(Request $request)
     {
   //    $user = Auth::user();
-  $user = Auth::loginUsingId(1);
+        $user = Auth::loginUsingId(1);
         // $user = User::all();
         $room = Room::all();
         $booking = Booking::whereHas('room', function ($query) use ($user) {
-            $query->where('user_id', $user->id); 
+            $query->where('user_id', $user->id);
         })->paginate(6);
         return view('owner/booking-mangment', compact('booking'));
     }

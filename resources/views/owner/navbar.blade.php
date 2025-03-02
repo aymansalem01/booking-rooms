@@ -47,19 +47,19 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="#" class="simple-text">
                         Admin Name
                     </a>
                 </div>
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="{{ route('dashboard.index') }}">
+                        <a href="{{ route('owner') }}">
                             <i class="fa-solid fa-gauge"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                  
+
 
                     <li>
                         <a href="{{ route('room.index') }}">
@@ -85,7 +85,7 @@
                             <p>Category Management</p>
                         </a>
                     </li>
-                    
+
 
 
                 </ul>
@@ -161,7 +161,7 @@
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                               </ul>
-                        </li> 
+                        </li>
                             <li>
                                 <a href="#">
                                     <p>Log out</p>

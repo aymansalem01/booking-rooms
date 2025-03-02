@@ -10,21 +10,21 @@ class ReviewOwnerController extends Controller
 {
     public function index()
     {
-        
+
     //    $user = Auth::user();
         $user = Auth::loginUsingId(1);
 
         if ($user->role !== 'owner') {
-            return redirect()->route('index')->with( 'You are not owner');
+            return redirect()->route('log')->with( 'You are not owner');
         }
-    
+
         $reviews = Review::whereHas('room', function ($query) use ($user) {
-            $query->where('user_id', $user->id); 
+            $query->where('user_id', $user->id);
         })->paginate(6);
     return view('owner\reviews-mangment', compact('reviews'));
     }
-   
-            
+
+
 
 
 
@@ -36,7 +36,7 @@ class ReviewOwnerController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(string $id)
     {
         $review = Review::findOrFail($id);
         $review->delete();

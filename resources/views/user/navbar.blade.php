@@ -52,10 +52,10 @@
 
         <nav class="mainmenu mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./rooms.html">Rooms</a></li>
+                <li class="active"><a href="{{route('home')}}">Home</a></li>
+                <li><a href="{{url('/store')}}">Rooms</a></li>
                 <li><a href="{{ route('about') }}">About Us</a></li>
-                <li><a href="./pages.html">Pages</a>
+                <li><a href="#">Pages</a>
                     <ul class="dropdown">
                         <li><a href="./room-details.html">Room Details</a></li>
                         <li><a href="#">Deluxe Room</a></li>
@@ -89,10 +89,10 @@
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Home</a></li>
-                                    <li><a href="./rooms.html">Rooms</a></li>
+                                    <li class="active"><a href="{{route('home')}}">Home</a></li>
+                                    <li><a href="{{url('/store')}}">Rooms</a></li>
                                     <li><a href="{{route('about')  }}">About Us</a></li>
-                                    <li><a href="./pages.html">Pages</a>
+                                    <li><a href="#">Pages</a>
                                         <ul class="dropdown">
                                             <li><a href="./room-details.html">Room Details</a></li>
                                             <li><a href="./blog-details.html">Blog Details</a></li>
@@ -101,7 +101,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="./blog.html">News</a></li>
-                                    <li><a href="./contact.html">Contact</a></li>
+                                    <li><a href="{{url('/contact')}}">Contact</a></li>
                                 </ul>
                             </nav>
                             <div class="nav-right search-switch">

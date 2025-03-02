@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Validation\Validator;
 
 class RoomOwnerController extends Controller
@@ -42,19 +43,20 @@ class RoomOwnerController extends Controller
         ]);
 
         $room->update($request->all());
-        return redirect()->route('rooms.index')->with('success', 'Room updated successfully');
+        return $this->index()->with('success', 'Room updated successfully');
     }
 
     public function destroy(string $id)
     {
         $room = Room::findOrFail($id);
         $room->delete();
-        return redirect()->route('rooms.index')->with('success', 'Room deleted successfully');
+        return $this->index()->with('success', 'Room deleted successfully');
     }
 
     public function create()
     {
-        return view('owner.create-room');
+        $categories = Category::get();
+        return view('owner.create-room' ,['categories' => $categories] );
     }
 
     public function store(Request $request)
@@ -63,12 +65,22 @@ class RoomOwnerController extends Controller
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'price' => 'required|integer',
-            'status' => 'required|in:Default,av,notav',
+            'status' => 'required',
             'description' => 'required|string|max:255',
-            'count' => 'required|integer',
         ]);
 
-        Room::create($request->all());
-        return redirect()->route('room.index')->with('success', 'Room added successfully');
+        Room::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'price' => $request->price,
+            'status' => $request->status,
+            'description' => $request->description,
+            'size' => 4,
+            'capacity' => 4,
+            'user_id' => auth()->user()->id,
+            'category' => $request->category
+
+        ]);
+        return $this->index()->with('success', 'Room added successfully');
     }
 }

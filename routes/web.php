@@ -26,6 +26,7 @@ Route::view('/signup', 'signup')->name('sign');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::view('/', 'user.index')->name('home');
 //-------------------------------------------------------------------------------------------------
 Route::get('/editprofile', [AuthController::class, 'edit']);
 Route::put('/editprofile/{id}', [AuthController::class, 'update']);
@@ -38,13 +39,15 @@ Route::view('/about', 'user.about_us')->name('about');
 Route::view('/blog_detals', 'user.blog')->name('blog_details');
 Route::view('/blog', 'user.blog_details')->name('blog');
 Route::view('/contact', 'user.contact')->name('contact');
+
 Route::middleware(['auth,role:user'])->group(function () {
     //<!------------------------------------------------------------------------------------>
 
 });
 //--------------------------------------------------------------------------------------------
-Route::resource('/dashboard', DashboardController::class);
+
 Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('admin');
     Route::resource('user', AdminController::class);
     Route::resource('adcategory', CategoryController::class);
     Route::resource('coupon', CouponController::class);
@@ -54,8 +57,8 @@ Route::prefix('admin')->group(function () {
 });
 
 
-Route::resource('/owners', DashboardOwnerController::class);
 Route::prefix('owner')->group(function () {
+    Route::get('/dashboard', [DashboardOwnerController::class, 'index'])->name('owner');
     Route::resource('category', CategoryOwnerController::class);
     Route::resource('review', ReviewOwnerController::class);
     Route::resource('room', RoomOwnerController::class);
