@@ -19,7 +19,7 @@ class RoomController extends Controller
         $users = User::all();
         $rooms = Room::whereHas('user', function ($query) {
             $query->where('role', 'owner');
-        })->with('user')->paginate(4);
+        })->with('user')->paginate(6);
         
 
 

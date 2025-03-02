@@ -28,13 +28,14 @@
                         </div>
                     </div>
                 @endforeach
-                <div class="col-12 text-center mt-4">
-                    {{ $booking->links() }}
-                </div>
+              
             @else
                 <p class="no-reviews">No bookings available!</p>
             @endif
         </div>
+        <div class="pagination-container">
+        {{ $booking->links('pagination::bootstrap-4') }}
+    </div>
     </div>
 </div>
 @endsection
@@ -115,6 +116,39 @@
         font-size: 1.2em;
         color: #777;
         margin-top: 20px;
+        .pagination-container {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .pagination .page-item .page-link {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        color: #9282ffdd;
+        border-radius: 8px;
+        padding: 8px 12px;
+        transition: 0.3s;
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #9282ffdd;
+        color: white;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #9282ffdd;
+        color: white;
+        border: none;
+    }
     }
 </style>
 

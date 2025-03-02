@@ -8,14 +8,42 @@
         @csrf
         @method('PUT')
         <input type="text" name="name" class="form-control" value="{{ $room->name }}" required>
+        @error('name')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
         <input type="text" name="address" class="form-control" value="{{ $room->address }}" required>
+        @error('address')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
 
         <input type="number" class="form-control" name="price" value="{{ $room->price }}" required>
+        @error('price')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
 
         <input type="number" name="discount" class="form-control" value="{{ $room->discount }}" required>
+        @error('discount')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
         <input type="number" name="count" class="form-control" value="{{ $room->count }}" required>
+         @error('count')
+         <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+         @enderror
+
         <input type="number" name="size" class="form-control" value="{{ $room->size }}" required>
+        @error('size')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
         <input type="number" name="capacity" class="form-control" value="{{ $room->capacity }}" required>
+        @error('capacity')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
 
         <select name="category_id" class="form-select">
     <option value="" disabled>Select Category</option>
@@ -25,12 +53,23 @@
         </option>
     @endforeach
 </select>
+@error('category_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
+
         <select name="status" class="form-select">
             <option value="av" {{ $room->status == 'av' ? 'selected' : '' }}>Available</option>
             <option value="notav" {{ $room->status == 'notav' ? 'selected' : '' }}>Not Available</option>
         </select>
+        @error('status')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
 
         <textarea class="form-control" name="description" rows="3" required>{{ $room->description }}</textarea>
+        @error('desciption')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
+
 
         <button type="submit" class="btn btn-custom">Update Room</button>
         <a href="{{ route('room.index') }}" class="btn btn-custom">Cancel</a>
@@ -83,6 +122,16 @@
         flex-direction: column;
         gap: 20px;
     }
+    .custom-error {
+    background-color: #ffceec;
+    font-weight: bold;
+    font-size: 14px;
+    color: #a49e9e;
+    padding: 10px;
+    border-radius: 20px;
+
+
+}
 </style>
 
 @endsection

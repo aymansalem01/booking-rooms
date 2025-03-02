@@ -17,7 +17,7 @@ class RoomOwnerController extends Controller
 
         $rooms = Room::whereHas('user', function ($query) {
             $query->where('role', 'owner');
-        })->with('user')->paginate(10);
+        })->with('user')->paginate(7);
 
         return view('owner.room-mangment', compact('rooms'));
     }

@@ -7,15 +7,41 @@
     <form action="{{ route('room.store') }}" method="POST">
         @csrf
 
-        <input type="text" name="name" class="form-control" placeholder="Room Name" required>
+        <input type="text" name="name" class="form-control" placeholder="Room Name" value="{{ old('name') }}" required>
+        @error('name')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
 
-        <input type="text" name="address" class="form-control" placeholder="Address" required>
+        <input type="text" name="address" class="form-control" placeholder="Address" value="{{ old('address') }}" required>
+        @error('address')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
 
-        <input type="number" name="price" class="form-control" placeholder="Price" required>
-        <input type="number" name="discount" class="form-control" placeholder="Discount" required>
-        <input type="number" name="count" class="form-control" placeholder="Count" required>
-        <input type="number" name="size" class="form-control" placeholder="Size" required>
-        <input type="number" name="capacity" class="form-control" placeholder="Capicity" required>
+        <input type="number" name="price" class="form-control" placeholder="Price" value="{{ old('price') }}" required>
+        @error('price')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
+        <input type="number" name="discount" class="form-control" placeholder="Discount" value="{{ old('discount') }}" required>
+        @error('discount')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
+        <input type="number" name="count" class="form-control" placeholder="Count" value="{{ old('count') }}" required>
+        @error('count')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
+        <input type="number" name="size" class="form-control" placeholder="Size" value="{{ old('size') }}" required>
+        @error('size')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
+        <input type="number" name="capacity" class="form-control" placeholder="Capicity" value="{{ old('capacity') }}" required>
+        @error('capacity')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
 
 
 
@@ -25,16 +51,28 @@
         <option value="{{ $category->id }}">{{ $category->name }}</option>
     @endforeach
 </select>
+@error('category_id')
+
+<div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+@enderror
 
 
         <select name="status" class="form-select">
             <option value="av">Available</option>
             <option value="notav">Not Available</option>
         </select>
+        @error('status')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
 
         {{-- <input type="number" name="count" class="form-control" placeholder="Room Count" required> --}}
 
         <textarea name="description" class="form-control" rows="3" placeholder="Description" required></textarea>
+        @error('description')
+        <div class="custom-error"><i class="fa-solid fa-circle-exclamation"></i> {{ $message }}</div>
+        @enderror
+
 
         <button type="submit" class="btn btn-custom">Add Room</button>
     </form>
@@ -86,6 +124,18 @@
         flex-direction: column;
         gap: 20px;
     }
+    .custom-error {
+    background-color: #ffceec;
+    font-weight: bold;
+    font-size: 14px;
+    color: #a49e9e;
+    padding: 10px;
+    border-radius: 20px;
+
+
+}
+
+
 </style>
 
 

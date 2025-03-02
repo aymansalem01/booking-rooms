@@ -2,7 +2,9 @@
 
 @section('content')
 
-<div class="container mt-4">
+<div class="container mt-4" style="min-height: 100vh;
+        display: flex;
+        flex-direction: column;">
     <h2 style="color: #777; padding-bottom:40px" class="text-center text-purple fw-bold">Rooms Management</h2>
 
     <div class="row">
@@ -50,9 +52,10 @@
             </div>
             @endforeach
         @endif
-        <div class="col-12 text-center mt-4">
-                    {{ $rooms->links() }}
-                </div>
+        
+    </div>
+    <div class="pagination-container">
+        {{ $rooms->links('pagination::bootstrap-4') }}
     </div>
 </div>
 
@@ -64,6 +67,39 @@
     transition: 0.3s ease-in-out;
     padding: 30px;
 }
+.pagination-container {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .pagination .page-item .page-link {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        color: #9282ffdd;
+        border-radius: 8px;
+        padding: 8px 12px;
+        transition: 0.3s;
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #9282ffdd;
+        color: white;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #9282ffdd;
+        color: white;
+        border: none;
+    }
 
 .room-card:hover {
     transform: translateY(-5px);
@@ -75,6 +111,7 @@
     height: 150px;
     object-fit: cover;
 }
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

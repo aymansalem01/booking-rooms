@@ -36,14 +36,15 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-                <div class="col-12 text-center mt-4">
-                    {{ $reviews->links() }}
-                </div>
+                    @endforeach
+              
             @else
                 <p class="no-reviews">No reviews available!</p>
             @endif
         </div>
+        <div class="pagination-container">
+        {{ $reviews->links('pagination::bootstrap-4') }}
+    </div>
     </div>
 </div>
 @endsection
@@ -151,6 +152,39 @@
 
     .unfilled {
         color: #ccc;
+    }
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .pagination .page-item .page-link {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        color: #9282ffdd;
+        border-radius: 8px;
+        padding: 8px 12px;
+        transition: 0.3s;
+    }
+
+    .pagination .page-item .page-link:hover {
+        background-color: #9282ffdd;
+        color: white;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #9282ffdd;
+        color: white;
+        border: none;
     }
 </style>
 
