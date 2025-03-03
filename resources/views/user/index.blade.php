@@ -140,7 +140,7 @@
                     @foreach ($rooms as $room)
                         <div class="col-lg-3 col-md-6">
                             <div class="hp-room-item set-bg"
-                                data-setbg="{{ $room->image->first() ? asset('storage/images/' . $room->image->first()->image) : asset('path/to/default-image.jpg') }}">
+                                data-setbg="{{ asset('images/'.$room->image->first()->image)  }}">
                                 <div class="hr-text">
                                     <h3>{{ $room->name }}</h3>
                                     <h2>
