@@ -5,25 +5,28 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
-        .rating input[type="radio"] {
+        .rate {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .rate input {
             display: none;
         }
 
-        .rating i {
+        .rate label {
             font-size: 30px;
             color: #ccc;
-        }
-
-        .rating input[type="radio"]:checked~label i {
-            color: #ffcc00;
-        }
-
-        .rating label {
             cursor: pointer;
+            transition: color 0.3s;
         }
 
-        .rating label i {
-            transition: color 0.3s ease;
+        .rate input:checked~label,
+        .rate label:hover,
+        .rate label:hover~label {
+            color: #ffc700;
         }
 
         .popup {
@@ -102,6 +105,7 @@
         #confirm-payment:hover {
             background-color: #5a3791;
         }
+
         #close-popup {
             width: 100%;
             padding: 10px;
@@ -247,27 +251,21 @@
                                 <div class="col-lg-12">
                                     <div>
                                         <h5>Your Rating:</h5>
-                                        <div class="rating">
-                                            <label for="star5">
-                                                <input type="radio" id="star5" name="rate" value="5">
-                                                <i class="icon_star"></i>
-                                            </label>
-                                            <label for="star4">
-                                                <input type="radio" id="star4" name="rate" value="4">
-                                                <i class="icon_star"></i>
-                                            </label>
-                                            <label for="star3">
-                                                <input type="radio" id="star3" name="rate" value="3">
-                                                <i class="icon_star"></i>
-                                            </label>
-                                            <label for="star2">
-                                                <input type="radio" id="star2" name="rate" value="2">
-                                                <i class="icon_star"></i>
-                                            </label>
-                                            <label for="star1">
-                                                <input type="radio" id="star1" name="rate" value="1">
-                                                <i class="icon_star"></i>
-                                            </label>
+                                        <div class="rate">
+                                            <input type="radio" id="star5" name="rate" value="5" />
+                                            <label for="star5" title="5 stars">★</label>
+
+                                            <input type="radio" id="star4" name="rate" value="4" />
+                                            <label for="star4" title="4 stars">★</label>
+
+                                            <input type="radio" id="star3" name="rate" value="3" />
+                                            <label for="star3" title="3 stars">★</label>
+
+                                            <input type="radio" id="star2" name="rate" value="2" />
+                                            <label for="star2" title="2 stars">★</label>
+
+                                            <input type="radio" id="star1" name="rate" value="1" />
+                                            <label for="star1" title="1 star">★</label>
                                         </div>
                                     </div>
                                     <textarea placeholder="Your Review" name="comment" required></textarea>
@@ -284,12 +282,14 @@
                             @csrf
                             <div class="check-date">
                                 <label for="date-in">Check In:</label>
-                                <input type="date" class="date-input" name="start_date" id="date-in" required>
+                                <input type="inpute" class="date-input" name="start_date" id="date-in"
+                                    placeholder="MM/DD/YYYY" required>
                                 <i class="icon_calendar"></i>
                             </div>
                             <div class="check-date">
                                 <label for="date-out">Check Out:</label>
-                                <input type="date" class="date-input" name="end_date" id="date-out" required>
+                                <input type="input" class="date-input" name="end_date" id="date-out"
+                                    placeholder="MM/DD/YYYY" required>
                                 <i class="icon_calendar"></i>
                             </div>
                             @if (session('booking'))
@@ -331,6 +331,59 @@
     </div>
     <!-- Room Details Section End -->
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const stars = document.querySelectorAll(".rate label");
+    const inputs = document.querySelectorAll(".rate input");
+
+    stars.forEach((star) => {
+        star.addEventListener("mouseover", function () {
+            highlightStars(this);
+        });
+
+        star.addEventListener("mouseout", function () {
+            resetStars();
+        });
+
+        star.addEventListener("click", function () {
+            persistHighlight(this);
+        });
+    });
+
+    function highlightStars(star) {
+        resetStars();
+        let starValue = star.getAttribute("for").replace("star", "");
+        stars.forEach((s) => {
+            if (s.getAttribute("for").replace("star", "") <= starValue) {
+                s.style.color = "#ffc700";
+            }
+        });
+    }
+
+    function resetStars() {
+        stars.forEach((s) => {
+            s.style.color = "#ccc";
+        });
+        const checkedStar = document.querySelector(".rate input:checked");
+        if (checkedStar) {
+            persistHighlight(document.querySelector(`label[for="${checkedStar.id}"]`));
+        }
+    }
+
+    function persistHighlight(star) {
+        let starValue = star.getAttribute("for").replace("star", "");
+        stars.forEach((s) => {
+            if (s.getAttribute("for").replace("star", "") <= starValue) {
+                s.style.color = "#ffc700";
+            }
+        });
+    }
+});
+
+
+
+
+
+
         document.addEventListener("DOMContentLoaded", function() {
             const thumbnails = document.querySelectorAll(".thumbnail");
             const mainImage = document.getElementById("main-room-image");

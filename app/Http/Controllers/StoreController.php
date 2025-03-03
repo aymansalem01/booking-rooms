@@ -6,10 +6,11 @@ use DateTime;
 use DatePeriod;
 use DateInterval;
 use App\Models\Room;
+use App\Models\Coupon;
+use Livewire\Livewire;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Coupon;
 
 class StoreController extends Controller
 {
@@ -106,7 +107,6 @@ class StoreController extends Controller
             'coupon_id' => 4,
             'total_price' => $total_price,
         ]);
-
         return redirect()->back()->with(['message' => 'booking successfully']);
     }
 }
