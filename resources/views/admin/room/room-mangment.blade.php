@@ -52,7 +52,7 @@
             </div>
             @endforeach
         @endif
-        
+
     </div>
     <div class="pagination-container">
         {{ $rooms->links('pagination::bootstrap-4') }}
@@ -120,9 +120,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault(); 
-                let form = this.closest("form"); 
-                
+                event.preventDefault();
+                let form = this.closest("form");
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",

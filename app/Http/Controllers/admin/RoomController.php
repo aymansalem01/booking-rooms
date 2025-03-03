@@ -16,13 +16,8 @@ class RoomController extends Controller
     public function index()
     {
 
-        $users = User::all();
-        $rooms = Room::whereHas('user', function ($query) {
-            $query->where('role', 'owner');
-        })->with('user')->paginate(6);
-        
-
-
+        $rooms = Room::with(['user', 'category', 'image'])
+        ->paginate(6);
         return view('admin.room.room-mangment' , compact('rooms'));
     }
 
@@ -83,6 +78,6 @@ class RoomController extends Controller
     {
         $rooms = Room::findOrFail($id);
         $rooms->delete();
-        return redirect()->route('adroom.index')->with('success', 'Room deleted successfully!');
+        return redirect()->back()->with('success', 'Room deleted successfully!');
     }
 }

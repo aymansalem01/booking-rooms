@@ -65,6 +65,7 @@ class AuthController extends Controller
         Auth::user()->tokens->each(function ($token, $key) {
             $token->delete();
         });
+        Auth::logout();
         return redirect()->route('log');
     }
 

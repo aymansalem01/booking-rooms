@@ -102,6 +102,6 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return $this->index()->with([ 'message' => 'deleted']);
+        return redirect()->back()->with([ 'message' => 'deleted']);
     }
 }

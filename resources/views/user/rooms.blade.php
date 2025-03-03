@@ -36,7 +36,7 @@
                         @foreach ($rooms as $room)
                             <div class="col-lg-4 col-md-6" >
                                 <div class="room-item" style="width: 23vw">
-                                    <img src="{{ $room->image->first() ? 'storage/images/'.$room->image->first()->image : 'path/to/default-image.jpg' }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+                                    <img src="{{ asset('images/'. $room->image->first()->image)}}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
                                     <div class="ri-text">
                                         <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
 
@@ -97,7 +97,7 @@
                 @foreach ($rooms as $room)
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item">
-                        <img src="{{ $room->image->first() ? 'storage/images/'.$room->image->first()->image : 'path/to/default-image.jpg' }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+                        <img src="{{ asset('images/'. $room->image->first()->image)}}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
                         <div class="ri-text">
                             <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
 

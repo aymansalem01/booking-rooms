@@ -1275,7 +1275,7 @@ ul, ol {
 
 .thumbnail:hover, .thumbnail.active {
     opacity: 1;
-    border: 2px solid #ff9800;
+    border: 2px solid #ce05a2;
 }
 
 .room-details-section {

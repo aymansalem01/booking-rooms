@@ -51,12 +51,10 @@
                 <div class="col-lg-8">
                     <div class="room-details-item">
                         <img id="main-room-image" style="margin-bottom: 5px" width="750" height="600"
-                            src="{{ asset('/images/' . $room->image->first()) }}" alt="">
+                            src="{{ asset('images/' . $room->image->first()->image) }}" alt="">
                         <div class="room-thumbnails" style="margin-bottom: 0">
                             @foreach ($room->image as $key => $image)
-                                <img class="thumbnail {{ asset('/images/' . $loop->first) }}"
-                                    src="{{ $room->image->first() ? asset('storage/images/' . $room->image->first()->image) : asset('path/to/default-image.jpg') }}"
-                                    alt="">
+                                <img class="thumbnail" src="{{ asset('images/' . $image->image) }}" alt="">
                             @endforeach
                         </div>
                         <div class="rd-text" style="margin-top: 1px">
@@ -147,10 +145,10 @@
 
                     <div class="review-add">
                         @if (session('message'))
-                        <div class="alert alert-primary">
-                            {{ session('message') }}
-                        </div>
-                    @endif
+                            <div class="alert alert-primary">
+                                {{ session('message') }}
+                            </div>
+                        @endif
                         <h4>Add Review</h4>
                         <form action="{{ route('review', $room->id) }}" method="post" class="ra-form">
                             @csrf

@@ -30,6 +30,6 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $review->delete();
 
-        return redirect()->route('adreview.index')->with('success', 'Booking deleted successfully!');
+        return redirect()->back()->with('success', 'Booking deleted successfully!');
     }
 }

@@ -31,6 +31,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
 <body>
@@ -79,7 +80,7 @@
                             <p>Booking Management</p>
                         </a>
                     </li>
-                    
+
 
 
                 </ul>
@@ -108,45 +109,31 @@
                                 </a>
                             </li>
                             <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-globe"></i>
                                     <b class="caret hidden-lg hidden-md"></b>
-         <p class="hidden-lg hidden-md">
-          5 Notifications
-          <b class="caret"></b>
-         </p>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa fa-search"></i>
-                                    <p class="hidden-lg hidden-md">Search</p>
+                                    <p class="hidden-lg hidden-md">
+                                        <b class="caret"></b>
+                                    </p>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Notification 1</a></li>
+                                    <li><a href="#">Notification 2</a></li>
+                                    <li><a href="#">Notification 3</a></li>
+                                    <li><a href="#">Notification 4</a></li>
+                                    <li><a href="#">Another notification</a></li>
+                                </ul>
                             </li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="">
+                                <a href="{{ route('edit') }}">
                                     <p>Account</p>
                                 </a>
                             </li>
-                             <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>
-          Dropdown
-          <b class="caret"></b>
-         </p>
 
-                              </a>
-                              <ul class="dropdown-menu">
+                            <ul class="dropdown-menu">
                                 <li><a href="#">Action</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
@@ -154,10 +141,10 @@
                                 <li><a href="#">Something</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li>
+                            </ul>
+                            </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('logout') }}">
                                     <p>Log out</p>
                                 </a>
                             </li>

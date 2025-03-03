@@ -66,6 +66,8 @@ Route::prefix('owner')->group(function () {
     Route::resource('review', ReviewOwnerController::class);
     Route::resource('room', RoomOwnerController::class);
     Route::resource('booking', BookingController::class);
+    Route::get('addimage/{id}',[RoomOwnerController::class,'addimage'])->name('addimage');
+    Route::post('addimage/{id}',[RoomOwnerController::class,'storeimage'])->name('storeimage');
 });
 Route::middleware(['auth,role:admin'])->group(function () {
     //<!------------------------------------------------------------------------------------>

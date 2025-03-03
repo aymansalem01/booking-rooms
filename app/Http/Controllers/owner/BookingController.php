@@ -15,7 +15,7 @@ class BookingController extends Controller
     public function index(Request $request)
     {
   //    $user = Auth::user();
-        $user = Auth::loginUsingId(10);
+        $user = Auth::loginUsingId(1);
         // $user = User::all();
         $room = Room::all();
         $booking = Booking::whereHas('room', function ($query) use ($user) {
@@ -28,6 +28,7 @@ class BookingController extends Controller
 
     {
         $booking = Booking::findOrFail($id);
+
         return view('owner.show-booking', compact('booking'));
     }
 
@@ -35,6 +36,6 @@ class BookingController extends Controller
     {
         $booking = Booking::findOrFail($id);
         $booking->delete();
-        return redirect()->route('booking-mangment.index')->with('deleted');
+        return redirect()->back()->with('deleted');
     }
 }

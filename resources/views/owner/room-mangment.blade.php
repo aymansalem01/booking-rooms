@@ -32,6 +32,9 @@
                     <td>{{ $room->status }}</td>
                     <td>{{ $room->user->name }}</td>
                     <td>
+                        <a href="{{ route('addimage', $room->id) }}" class="btn btn-sm btn-info me-2">
+                            <i class="fa-solid fa-images"></i>
+                        </a>
                         <a href="{{ route('room.show', $room->id) }}" class="btn btn-info btn-sm">View</a>
                         <a href="{{ route('room.edit', $room->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('room.destroy', $room->id) }}" method="POST" style="display:inline-block;" class="delete-form">

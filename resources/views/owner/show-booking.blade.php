@@ -7,16 +7,16 @@
             @if(isset($booking))
                 <div class="col-md-8 mb-5">
                     <div class="review-card">
-                        <img src="{{ asset($booking->room->image) }}" alt="Room Image" class="room-img">
+                        <img src="{{ asset(  'images/'.$booking->room->image->first()->image) }}" alt="Room Image" class="room-img">
                         <h5 class="user-name">{{ $booking->room->name }}<span style="color:#B197FC"> {{ $booking->room->price }}$</span> </h5>
-                        
+
 
                         <div class="review-content">
                             <div class="user-info">
                                 <img src="{{ asset($booking->user->image) }}" alt="User Image" class="user-img">
                                 <div>
                                     <h5 class="user-name">{{ $booking->user->name }} <small> ({{ $booking->user->id }})</small></h5>
-                                    
+
                                 </div>
                             </div>
                             <div class="comment-box">

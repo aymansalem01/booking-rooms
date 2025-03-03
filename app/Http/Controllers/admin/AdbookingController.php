@@ -32,6 +32,6 @@ class AdbookingController extends Controller
     {
         $booking = Booking::findOrFail($id);
         $booking->delete();
-        return redirect()->route('adbooking.index')->with('success', 'Booking deleted successfully!');
+        return redirect()->back()->with('success', 'Booking deleted successfully!');
     }
 }
