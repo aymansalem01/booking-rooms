@@ -94,9 +94,7 @@
                     </div>
         
                     <div class="col-md-6 search">
-                       
                         <input type="number" name="min_price" id="min_price" placeholder="Min Price" class="form-control num" value="{{ request('min_price') }}">
-                   
                         <input type="number" name="max_price" id="max_price" class="form-control num" placeholder="Max Price" value="{{ request('max_price') }}">
                     </div>
         
@@ -112,49 +110,53 @@
         </div>
         
         
-        
         <a href="{{ route('room.create') }}" class="btn btn-primary mb-3 adduser" style=" margin-bottom: 2%; margin-left: 1%">Add New Room</a>
 
         <div class="container mt-4">
             <div class="row">
-                @foreach ($rooms as $room)
-                    <div class="col-md-4">
-                        <div class="card shadow-lg mb-4 border-primary rounded">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">
-                                  {{ $room->name }}
-                                </h5>
-                                <h6 class="" style="font-size: 1.8rem; color:#777">
-                                    {{ $room->price }} $
-                                </h6>
-                                <p class="card-text"><strong>Status:</strong> {{ ucfirst($room->status) }}</p>
-                                
-                                <p class="card-text"><strong>Owner:</strong> {{ $room->user->name }}</p>
-        
-                                <div class="d-flex justify-content-center gap-2 mt-3 ">
-                                   
-                                    <form action="{{ route('room.destroy', $room->id) }}" method="POST" class="icons">
-                                        <a href="{{ route('addimage', $room->id) }}" class="btn btn-sm btn-outline-info iconi icongroup">
-                                            <i class="fa-solid fa-images "></i>
-                                        </a>
-                                        <a href="{{ route('room.edit', $room->id) }}" class="btn btn-sm btn-outline-warning icone icongroup">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </a>
-                                        <a href="{{ route('room.show', $room->id) }}" class="btn btn-sm btn-outline-primary iconsh icongroup">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
-                                        
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger delete-btn icond icongroup">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                @if($rooms->isEmpty())
+                    <div class="col-12 text-center">
+                        <h4 style="color: #777;">There are no rooms available</h4>
+                    </div>
+                @else
+                    @foreach ($rooms as $room)
+                        <div class="col-md-4">
+                            <div class="card shadow-lg mb-4 border-primary rounded">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">
+                                      {{ $room->name }}
+                                    </h5>
+                                    <h6 class="" style="font-size: 1.8rem; color:#777">
+                                        {{ $room->price }} $
+                                    </h6>
+                                    <p class="card-text"><strong>Status:</strong> {{ ucfirst($room->status) }}</p>
+                                    
+                                    <p class="card-text"><strong>Owner:</strong> {{ $room->user->name }}</p>
+                
+                                    <div class="d-flex justify-content-center gap-2 mt-3 ">
+                                        <form action="{{ route('room.destroy', $room->id) }}" method="POST" class="icons">
+                                            <a href="{{ route('addimage', $room->id) }}" class="btn btn-sm btn-outline-info iconi icongroup">
+                                                <i class="fa-solid fa-images "></i>
+                                            </a>
+                                            <a href="{{ route('room.edit', $room->id) }}" class="btn btn-sm btn-outline-warning icone icongroup">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </a>
+                                            <a href="{{ route('room.show', $room->id) }}" class="btn btn-sm btn-outline-primary iconsh icongroup">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                            
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger delete-btn icond icongroup">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
         
@@ -295,5 +297,36 @@
    background-color: white !important
 }
 
-
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".delete-btn").forEach(button => {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                let form = this.closest("form");
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Submits the form to perform deletion
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "The room has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    });
+</script>

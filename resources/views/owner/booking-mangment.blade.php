@@ -3,145 +3,72 @@
 @section('content')
 
 <style>
+    .filter-box {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
 
-    .search{
+    .filter-form .form-control {
+        border-radius: 6px;
+    }
 
+    .search, .filter {
         display: flex;
-        gap: 4px
+        gap: 10px;
+        align-items: center;
     }
-    .filter{
 
-        display: flex;
-        align-items: center
-
+    .searcTxt {
+        width: 100%; /* Making it take full width */
     }
-  
-    .searcTxt{
 
-        width: 52%;
-    }
-    .num{
-        width: 40%
+    .num {
+        width: 100%;
     }
 
     .adduser {
-background-color: #9282ffdd;
-border: 1px solid #9282ffdd;
-color: white;
-width: 20%;
+        background-color: #9282ffdd !important;
+        border: 1px solid #9282ffdd !important;
+        color: white !important;
+        width: 100%;
+        margin-left: 20px;
+    }
 
-}
+    .adduser:hover {
+        border: 1px solid #9282ffdd !important;
+        color: #9282ffdd !important;
+        background-color: white !important;
+    }
 
-.adduser:hover {
-border: 1px solid #9282ffdd;
-color: #9282ffdd;
-}
     .apply {
-color: #9282ffdd;
-border: 1px solid #9282ffdd;
-background-color: white;
+        background-color: #9282ffdd;
+        border: 1px solid #9282ffdd;
+        color: white;
+        padding: 8px 20px;
+    }
 
-}
+    .apply:hover {
+        background-color: white;
+        border-color: #9282ffdd;
+        color: #9282ffdd;
+    }
 
-.apply:hover {
-border: 1px solid #9282ffdd;
-background-color: #9282ffdd;
-color: white
-}
+    .reset-btn {
+        background-color: white !important;
+        border: 1px solid #ddd;
+        color: #9282ffdd !important;
+        width: auto;
+    }
 
-</style>
-<div class="content">
-    <div class="container mt-5">
-        <h2 style="color: #777; padding-bottom:50px" class="text-center text-purple fw-bold">Bookings Management</h2>
-        <div>
-        <form method="GET" action="{{ route('booking.index') }}" class="row g-3">
-            <div class="col-md-8 search">
-                <input type="text" name="search" class="form-control searcTxt" placeholder="Search" value="{{ request('search') }}">
-           
-                <button type="submit" class="btn btn-primary me-2 adduser"><i class="fas fa-search"></i> Search</button>
-            </div>
-        </form>
-        
+    .reset-btn:hover {
+        background-color: #9282ffdd;
+        border-color: #9282ffdd;
+        color: white;
+    }
 
-        <form method="GET" action="{{ route('booking.index') }}" class="row g-3 filter">
-            <div class="col-md-3">
-                <input placeholder="User Name" type="text" name="user_name" id="user_name" class="form-control" value="{{ request('user_name') }}">
-            </div>
-        
-            <div class="col-md-3">
-                <label for="room_id" class="form-label">Room</label>
-                <select name="room_id" id="room_id" class="form-select">
-                    <option value="">All</option>
-                    @foreach ($rooms as $room)
-                        <option value="{{ $room->id }}" {{ request('room_id') == $room->id ? 'selected' : '' }}>
-                            {{ $room->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        
-            <div class="col-md-3" style="display: flex">
-              <!--  <label for="start_date" class="form-label">Start Date</label> -->
-                <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
-            </div>
-         
-           <!-- <div class="col-md-3" style="display: flex">
-                <label for="end_date" class="form-label">End Date</label>
-                <input type="date" name="end_date" id="end_date" class="form-control" value="{{ request('end_date') }}">
-            </div> -->
-        
-            <div class="col-md-3">
-                <input placeholder="Min Price" type="number" name="total_price" id="total_price" class="form-control" value="{{ request('total_price') }}">
-            </div>
-        
-             
-            <div class="col-12 text-center mt-3 search">
-                <button type="submit" class="btn btn-success px-4 apply"><i class="fas fa-filter"></i> Apply Filters</button>
-                
-            <a href="{{ route('booking.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
-             
-            </div>
-            
-        </form>
-    </div>
-        
-        <div class="row justify-content-center" style="gap: 20px;">
-            @if($booking->isNotEmpty())
-                @foreach ($booking as $book)
-                    <div class="col-md-4 col-sm-6 mb-4">
-                        <div class="review-card">
-                            <img src="{{ asset('images/'. $book->room->image->first()->image) }}" alt="Room Image" class="review-image">
-                            <h5 class="user-name">Room: {{ $book->room->name }}</h5>
-                            <h5 class="user-name">User: {{ $book->user->name }}</h5>
-                            <p class="user-rating"><span class="user-name">Start Date:</span> {{ $book->start_date }}</p>
-                            <p class="user-rating"><span class="user-name">End Date:</span>{{ $book->end_date }}</p>
-                            <p class="user-rating"><span class="user-name">Total Price:</span> {{ $book->total_price }}</p>
-                            <div class="action-buttons">
-                            <a href="{{ route('booking.show', $book->id) }}"  class="view-btn" >
-                            <i class="fas fa-eye"></i>
-                        </a>
-                                <form action="{{ route('booking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            @else
-                <p class="no-reviews">No bookings available!</p>
-            @endif
-        </div>
-        <div class="pagination-container">
-        {{ $booking->links('pagination::bootstrap-4') }}
-    </div>
-    </div>
-</div>
-@endsection
-
-<style>
     .review-card {
         width: 100%;
         max-width: 350px;
@@ -217,10 +144,11 @@ color: white
         font-size: 1.2em;
         color: #777;
         margin-top: 20px;
-        .pagination-container {
+    }
+
+    .pagination-container {
         display: flex;
         justify-content: center;
-
     }
 
     .pagination {
@@ -250,8 +178,87 @@ color: white
         color: white;
         border: none;
     }
-    }
 </style>
+
+<div class="content">
+    <div class="container mt-5">
+        <h2 style="color: #777; padding-bottom: 50px" class="text-center text-purple fw-bold">Bookings Management</h2>
+
+        <div class="filter-box">
+            <form method="GET" action="{{ route('booking.index') }}" class="filter-form">
+                <div class="row">
+                    <div class="col-md-8 search">
+                        <input type="text" name="search" class="form-control searcTxt" placeholder="Search" value="{{ request('search') }}">
+                    </div>
+                    <div class="col-md-4 filter">
+                        <button type="submit" class="btn btn-success px-4 apply">Filters</button>
+                        <a href="{{ route('booking.index') }}" class="btn btn-secondary reset-btn"><i class="fas fa-sync-alt"></i> Reset</a>
+                    </div>
+                </div>
+            </form>
+
+            <form method="GET" action="{{ route('booking.index') }}" class="filter-form">
+                <div class="row">
+                    <div class="col-md-2">
+                        <input type="text" name="user_name" id="user_name" class="form-control" placeholder="User Name" value="{{ request('user_name') }}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <select name="room_id" id="room_id" class="form-control">
+                            <option value="">All</option>
+                            @foreach ($rooms as $room)
+                                <option value="{{ $room->id }}" {{ request('room_id') == $room->id ? 'selected' : '' }}>
+                                    {{ $room->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="date" name="start_date" id="start_date" class="form-control" value="{{ request('start_date') }}">
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="number" name="total_price" id="total_price" class="form-control" placeholder="Min Price" value="{{ request('total_price') }}">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row justify-content-center" style="gap: 20px;">
+            @if($booking->isNotEmpty())
+                @foreach ($booking as $book)
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="review-card">
+                            <img src="{{ asset('images/'. $book->room->image->first()->image) }}" alt="Room Image" class="review-image">
+                            <h5 class="user-name">Room: {{ $book->room->name }}</h5>
+                            <h5 class="user-name">User: {{ $book->user->name }}</h5>
+                            <p class="user-rating"><span class="user-name">Start Date:</span> {{ $book->start_date }}</p>
+                            <p class="user-rating"><span class="user-name">End Date:</span>{{ $book->end_date }}</p>
+                            <p class="user-rating"><span class="user-name">Total Price:</span> {{ $book->total_price }}</p>
+                            <div class="action-buttons">
+                                <a href="{{ route('booking.show', $book->id) }}" class="view-btn"><i class="fas fa-eye"></i></a>
+                                <form action="{{ route('booking.destroy', $book->id) }}" method="POST" onsubmit="return confirmDelete();">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="no-reviews">No bookings available!</p>
+            @endif
+        </div>
+
+        <div class="pagination-container">
+            {{ $booking->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
+</div>
+
+@endsection
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -275,7 +282,7 @@ color: white
                         form.submit();
                         Swal.fire({
                             title: "Deleted!",
-                            text: "The review has been deleted.",
+                            text: "The booking has been deleted.",
                             icon: "success"
                         });
                     }
