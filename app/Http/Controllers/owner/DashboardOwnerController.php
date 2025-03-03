@@ -32,4 +32,6 @@ class DashboardOwnerController extends Controller
         'ownerRevenue', 'ownerReviewsCount', 'ownerBookings'
     ));
     }
+
+    
 }

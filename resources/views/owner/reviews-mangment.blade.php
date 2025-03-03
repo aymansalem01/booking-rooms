@@ -1,11 +1,110 @@
 @extends('layouts.ownerPage')
 
 @section('content')
+
+<style>
+
+    .search{
+
+        display: flex;
+        gap: 4px
+    }
+    .filter{
+
+        display: flex;
+        align-items: center
+
+    }
+  
+    .searcTxt{
+
+        width: 52%;
+    }
+    .num{
+        width: 40%
+    }
+
+    .adduser {
+background-color: #9282ffdd;
+border: 1px solid #9282ffdd;
+color: white;
+width: 20%;
+
+}
+
+.adduser:hover {
+border: 1px solid #9282ffdd;
+color: #9282ffdd;
+}
+    .apply {
+color: #9282ffdd;
+border: 1px solid #9282ffdd;
+background-color: white;
+
+}
+
+.apply:hover {
+border: 1px solid #9282ffdd;
+background-color: #9282ffdd;
+color: white
+}
+
+</style>
 <div class="content">
     <div class="container mt-5">
         <div class="row justify-content-center" style="gap: 20px;">
-        <h2 style="color: #777" class="text-center text-purple fw-bold">Reviews Management</h2>
-
+        <h2 style="color: #777;  padding-bottom:50px" class="text-center text-purple fw-bold">Reviews Management</h2>
+<div style="display:flex; flex-direction:column;">
+        <form method="GET" action="{{ route('review.index') }}" class="row g-3 ">
+            <div class="col-md-8 search">
+                <input type="text" name="search" class="form-control searcTxt" placeholder="Search" value="{{ request('search') }}">
+           
+                <button type="submit" class="btn btn-primary me-2 adduser"><i class="fas fa-search"></i> Search</button>
+            </div>
+           
+        </form>
+        
+        <div class="filter-container mb-4">
+            <form method="GET" action="{{  route('review.index') }}" class="row g-3 filter">
+                <div class="col-md-4">
+                    <input placeholder="User Name" type="text" name="user_name" id="user_name" class="form-control" value="{{ request('user_name') }}">
+                </div>
+        
+                <div class="col-md-4">
+                    <label for="room_id" class="form-label">Room:</label>
+                    <select name="room_id" id="room_id" class="form-select">
+                        <option value="">All</option>
+                        @foreach($rooms as $room)
+                            <option value="{{ $room->id }}" {{ request('room_id') == $room->id ? 'selected' : '' }}>
+                                {{ $room->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+        
+                <div class="col-md-4">
+                    <label for="rate" class="form-label">Rating:</label>
+                    <select name="rate" id="rate" class="form-select">
+                        <option value="">All</option>
+                        @for ($i = 5; $i >= 1; $i--)
+                            <option value="{{ $i }}" {{ request('rate') == $i ? 'selected' : '' }}>
+                                {{ $i }} Stars
+                            </option>
+                        @endfor
+                    </select>
+                </div>
+        
+                
+                <div class="col-12 text-center mt-3 search">
+                    <button type="submit" class="btn btn-success px-4 apply"><i class="fas fa-filter"></i> Apply Filters</button>
+                    
+                <a href="{{  route('review.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
+                 
+                </div>
+            </form>
+        </div>
+        
+</div>
             @if(isset($reviews) && count($reviews) > 0)
                 @foreach ($reviews as $review)
                     <div class="col-md-4 col-sm-6 mb-4">
@@ -133,11 +232,11 @@
     }
 
     .delete-btn {
-        color: red;
+        color: #e95ecbdd;
     }
 
     .delete-btn:hover {
-        color: darkred;
+        color: #aa248ddd;
     }
 
     .no-reviews {

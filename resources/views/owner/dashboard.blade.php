@@ -9,8 +9,9 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card custom-card text-white shadow-lg border-0 hover-effect">
+                           
                             <div class="card-body text-center">
                                 <i class="fas fa-bed fa-4x mb-3 icon-style"></i>
                                 <h5 class="card-title">My Rooms</h5>
@@ -18,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                             <div class="card-body text-center">
                                 <i class="fas fa-calendar-check fa-3x icon-style"></i>
@@ -27,7 +28,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                             <div class="card-body text-center">
                                 <i class="fas fa-dollar-sign fa-3x icon-style"></i>
@@ -36,9 +37,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mt-4">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                             <div class="card-body text-center">
                                 <i class="fas fa-star fa-3x icon-style"></i>
@@ -48,6 +47,7 @@
                         </div>
                     </div>
                 </div>
+              
                 <div class="card-header text-white fw-bold">My Recent Bookings</div>
                 <div class="card mt-4 shadow-lg border-0 rounded-lg cardItem">
                     <div class="card-body">
@@ -152,6 +152,8 @@
         justify-content: center;
         background-image: url("{{asset('assets/img/card-3.jpg') }}");
         background-size:cover;
+        opacity: 0.8;
+       
     }
 
     .hover-effect {

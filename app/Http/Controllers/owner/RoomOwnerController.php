@@ -13,14 +13,62 @@ use Illuminate\Support\Facades\Auth;
 
 class RoomOwnerController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+
+    //     $rooms = Room::with(['user', 'category', 'image'])->where('user_id', '=', 9)
+    //         ->paginate(7);
+
+    //     return view('owner.room-mangment', compact('rooms'));
+    // }
+    public function index(Request $request)
     {
-
-        $rooms = Room::with(['user', 'category', 'image'])->where('user_id', '=', 1)
-            ->paginate(7);
-
-        return view('owner.room-mangment', compact('rooms'));
+        $query = Room::where('user_id', 10); 
+    
+        
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', "%{$search}%")
+                  ->orWhere('status', 'LIKE', "%{$search}%")
+                  ->orWhere('price', 'LIKE', "%{$search}%")
+                  ->orWhereHas('category', function ($catQuery) use ($search) {
+                      $catQuery->where('name', 'LIKE', "%{$search}%");
+                  })
+                  ->orWhereHas('user', function ($userQuery) use ($search) {
+                      $userQuery->where('name', 'LIKE', "%{$search}%");
+                  });
+            });
+        }
+    
+        if ($request->has('room_name') && $request->room_name != '') {
+            $query->where('name', 'LIKE', "%{$request->room_name}%");
+        }
+    
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+    
+        if ($request->has('category_id') && $request->category_id != '') {
+            $query->where('category_id', $request->category_id);
+        }
+    
+        if ($request->has('min_price') && $request->min_price != '') {
+            $query->where('price', '>=', $request->min_price);
+        }
+    
+        if ($request->has('max_price') && $request->max_price != '') {
+            $query->where('price', '<=', $request->max_price);
+        }
+    
+        $rooms = $query->paginate(10);
+        $categories = Category::all(); 
+    
+        return view('owner.room-mangment', compact('rooms', 'categories'));
     }
+    
+
+
 
     public function show(string $id)
     {
@@ -71,7 +119,7 @@ class RoomOwnerController extends Controller
 
 
         // $room->update($request->all());
-        return $this->index()->with('success', 'Room updated successfully');
+        return $this->index( $request)->with('success', 'Room updated successfully');
     }
 
     public function destroy(string $id)
@@ -126,7 +174,7 @@ class RoomOwnerController extends Controller
             'image' => $image_path,
             'room_id' => $room->id
         ]);
-        return $this->index()->with('success', 'Room added successfully');
+        return $this->index( $request)->with('success', 'Room added successfully');
     }
     public function addimage(string $id)
     {
@@ -144,6 +192,9 @@ class RoomOwnerController extends Controller
             'room_id' => $id,
             'image' => $image_path
         ]);
-        return $this->index()->with('success' , 'added image successfully');
+        return $this->index( $request)->with('success' , 'added image successfully');
     }
+
+    
+
 }

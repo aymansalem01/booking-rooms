@@ -1,6 +1,13 @@
 @extends('layouts.ownerPage')
 
 @section('content')
+
+<style>
+    .container{
+
+        margin: auto
+    }
+</style>
 <div class="content">
     <div class="container mt-5">
         <div class="row justify-content-center">
