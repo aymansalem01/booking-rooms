@@ -18,7 +18,7 @@
                 align-items: center
 
             }
-          
+
             .searcTxt{
 
                 width: 52%;
@@ -32,7 +32,7 @@
     border: 1px solid #9282ffdd;
     color: white;
     width: 20%;
-   
+
 }
 
 .adduser:hover {
@@ -43,7 +43,7 @@
     color: #9282ffdd;
     border: 1px solid #9282ffdd;
     background-color: white;
-   
+
 }
 
 .apply:hover {
@@ -60,27 +60,27 @@
             <form method="GET" action="{{ route('room.index') }}" class="row align-items-center mb-4 p-3 bg-light rounded shadow-sm">
                 <div class="col-md-8 search">
                     <input type="text" name="search" class="form-control searcTxt" placeholder="Search" value="{{ request('search') }}">
-               
+
                     <button type="submit" class="btn btn-primary me-2 adduser"><i class="fas fa-search"></i> Search</button>
                 </div>
             </form>
-            
-          
+
+
             <div class="filter-container p-4 bg-white shadow rounded">
                 <form method="GET" action="{{ route('room.index') }}" class="row g-3 filter">
                     <div class="col-md-4">
                         <input type="text" placeholder="Room Name" name="room_name" id="room_name" class="form-control" value="{{ request('room_name') }}">
                     </div>
-        
+
                     <div class="col-md-4">
                         <label for="status" class="form-label fw-bold">Status:</label>
                         <select name="status" id="status" class="form-select">
                             <option value="">All</option>
-                            <option value="available" {{ request('status') == 'av' ? 'selected' : '' }}>Available</option>
-                            <option value="booked" {{ request('status') == 'notav' ? 'selected' : '' }}>Booked</option>
+                            <option value="av">Available</option>
+                            <option value="notav" >Booked</option>
                         </select>
                     </div>
-        
+
                     <div class="col-md-4">
                         <label for="category_id" class="form-label fw-bold">Category:</label>
                         <select name="category_id" id="category_id" class="form-select">
@@ -92,24 +92,24 @@
                             @endforeach
                         </select>
                     </div>
-        
+
                     <div class="col-md-6 search">
                         <input type="number" name="min_price" id="min_price" placeholder="Min Price" class="form-control num" value="{{ request('min_price') }}">
                         <input type="number" name="max_price" id="max_price" class="form-control num" placeholder="Max Price" value="{{ request('max_price') }}">
                     </div>
-        
+
                     <div class="col-12 text-center mt-3 search">
                         <button type="submit" class="btn btn-success px-4 apply"><i class="fas fa-filter"></i> Apply Filters</button>
-                        
+
                     <a href="{{ route('room.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
-                     
+
                     </div>
                 </form>
             </div>
-           
+
         </div>
-        
-        
+
+
         <a href="{{ route('room.create') }}" class="btn btn-primary mb-3 adduser" style=" margin-bottom: 2%; margin-left: 1%">Add New Room</a>
 
         <div class="container mt-4">
@@ -130,9 +130,9 @@
                                         {{ $room->price }} $
                                     </h6>
                                     <p class="card-text"><strong>Status:</strong> {{ ucfirst($room->status) }}</p>
-                                    
+
                                     <p class="card-text"><strong>Owner:</strong> {{ $room->user->name }}</p>
-                
+
                                     <div class="d-flex justify-content-center gap-2 mt-3 ">
                                         <form action="{{ route('room.destroy', $room->id) }}" method="POST" class="icons">
                                             <a href="{{ route('addimage', $room->id) }}" class="btn btn-sm btn-outline-info iconi icongroup">
@@ -144,7 +144,7 @@
                                             <a href="{{ route('room.show', $room->id) }}" class="btn btn-sm btn-outline-primary iconsh icongroup">
                                                 <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            
+
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-outline-danger delete-btn icond icongroup">
@@ -159,7 +159,7 @@
                 @endif
             </div>
         </div>
-        
+
 
         <div class="pagination-container">
             {{ $rooms->links('pagination::bootstrap-4') }}

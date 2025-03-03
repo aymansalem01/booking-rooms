@@ -80,16 +80,16 @@
     <header class="header-section">
 
         <div class="menu-item">
-            <div class="container">
+            <div style="width:98%">
                 <div class="row">
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         <div class="logo">
-                            <a href="./index.html">
-                                <img src="img/logo.png" alt="">
+                            <a href="{{route('home')}}">
+                                <img src="img/logo.png" alt="" style="width: 200px;height:80px">
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-9">
                         <div class="nav-menu">
                             <nav class="mainmenu">
                                 <ul>

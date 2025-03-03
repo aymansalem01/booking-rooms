@@ -49,7 +49,7 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
-                        Admin Name
+                        {{auth()->user()->name}}
                     </a>
                 </div>
 

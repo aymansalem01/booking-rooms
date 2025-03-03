@@ -6,8 +6,8 @@
                 <div class="col-lg-4">
                     <div class="ft-about">
                         <div class="logo">
-                            <a href="#">
-                                <img src="img/footer-logo.png" alt="">
+                            <a href="{{route('home')}}">
+                                <img src="img/logo.png" alt="" style="margin-top:-30px;width:500px ">
                             </a>
                         </div>
                         <p>we offer a unique rental experience where you can <br />find comfortable and stylish
