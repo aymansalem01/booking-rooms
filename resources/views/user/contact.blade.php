@@ -21,12 +21,21 @@
                                 </tr>
                                 <tr>
                                     <td class="c-o">Phone:</td>
-                                    <td>(00962) 7704651114</td>
+                                    <td><a href="tel:+962777370766" 
+                                        style="color: blueviolet;text-decoration: none;"
+                                        onmouseover="this.style.color='blue'"
+                                        onmouseout="this.style.color='blueviolet'" 
+                                        >0777370766</a></td>
                                 </tr>
                                 <tr>
                                     <td class="c-o">Email:</td>
-                                    <td>info.colorlib@gmail.com</td>
+                                    <td><a href="mailto:mosababuhazeem4@gmail.com"
+                                        style="color: blueviolet;text-decoration: none;"
+                                        onmouseover="this.style.color='blue'"
+                                        onmouseout="this.style.color='blueviolet'"
+                                        >mosababuhazeem4@gmail.com</a></td>
                                 </tr>
+
 
                             </tbody>
                         </table>
