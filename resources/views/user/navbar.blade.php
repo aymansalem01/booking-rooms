@@ -110,9 +110,10 @@
                     @auth
                     <li><a href="{{route('edit')}}">Profile</a></li>
                     <li><a href="{{route('logout')}}">Logout</a> </li>
-                    @else
-                    <li><a href="{{route('log')}}">Login</a></li>
                     @endauth
+                    @guest
+                    <li><a href="{{route('log')}}">Login</a></li>
+                    @endguest
                 </ul></div>
 
                         </div>

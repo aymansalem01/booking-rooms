@@ -3,7 +3,7 @@
 
     <section class="rooms-section spad">
         <div class="container">
-            {{-- حقل البحث --}}
+
             <div class="row mb-5">
                 <div class="col-12">
                     <input
@@ -15,10 +15,10 @@
                 </div>
             </div>
 
-            {{-- نتائج البحث --}}
+
             <div class="row">
                 @if($search)
-                    {{-- عنوان النتائج --}}
+
                     <div class="col-12 mb-5">
                         <h2 class="results-title">Search results for "{{ $search }}"</h2>
                         <p class="results-count">
@@ -31,7 +31,7 @@
                             @foreach($rooms as $room)
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-item">
-                                        <img src="{{ $room->image->first() ? 'storage/images/'.$room->image->first()->image : 'path/to/default-image.jpg' }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+                                        <img src="{{ asset('images/'. $room->image->first()->image)}}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
                                         <div class="ri-text">
                                             <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
 
