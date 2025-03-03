@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-flaticon@5.15.0/css/font-flaticon.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-flaticon/css/font-flaticon.css">
-
+@livewireStyles
 </head>
 <body>
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>

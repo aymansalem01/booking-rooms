@@ -17,6 +17,9 @@
             </div>
         </div>
     </div>
+
+    @livewire('search-component')
+
     <!-- Breadcrumb Section End -->
     @if ($rooms->contains(fn($room) => $room->discount > 0))
     @php
@@ -33,7 +36,7 @@
                 <button class="my-unique-scroll-btn left-btn" id="scrollLeft">←</button>
             @endif
                     <div class="my-unique-board" id="board">
-                        @foreach ($rooms as $room)
+                        @foreach ($discountedRooms as $room)
                             <div class="col-lg-4 col-md-6" >
                                 <div class="room-item" style="width: 23vw">
                                     <img src="{{ asset('images/'. $room->image->first()->image)}}" alt="" style="width: 100%; height: 250px; object-fit: cover;">

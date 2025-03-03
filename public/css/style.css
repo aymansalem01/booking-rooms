@@ -2513,3 +2513,31 @@ ul, ol {
 		margin-bottom: 10px;
 	}
 }
+.category-item .category-content {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.category-item:hover .category-content {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+}
+
+.related-search-box {
+    position: sticky;
+    top: 20px;
+}
+
+.results-title {
+    font-size: 1.8rem;
+    color: #333;
+    border-bottom: 2px solid #eee;
+
+}
+
+.results-count {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
