@@ -45,7 +45,7 @@
 
                                         <h3 style="font-size: 22px; margin-bottom: 10px;">
                                             <span style="color: #999; text-decoration: line-through;">{{ $room->price }} JD</span>
-                                            {{ $room->price - ($room->discount * ($room->price / 100)) }} JD
+                                            {{ $room->price - ($room->price*($room->discount/ 100)) }} JD
                                             <span>/Pernight</span>
                                         </h3>
                                         <table>
