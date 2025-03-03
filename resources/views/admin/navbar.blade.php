@@ -172,11 +172,9 @@
                                 <li><a href="#">Separated link</a></li>
                               </ul>
                         </li> -->
-                            <li>
-                                <a href="#">
-                                    <p>Log out</p>
-                                </a>
-                            </li>
+                        @auth
+                    <li><a href="{{route('logout')}}">Logout</a> </li>
+                    @endauth
                             <li class="separator hidden-lg"></li>
                         </ul>
                     </div>
