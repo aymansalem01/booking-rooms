@@ -15,6 +15,8 @@ class RoomController extends Controller
 {
     public function index()
     {
+        $categories = Category::all(); 
+
 
         $rooms = Room::with(['user', 'category', 'image'])
         ->paginate(6);
@@ -45,9 +47,9 @@ class RoomController extends Controller
             'price' => 'required|integer',
             'status' => 'required',
             // 'description' => 'required|string|max:255',
-            'discount' => 'required|integer',
+            'discount' => 'required|integer|min:0|max:100',
             // 'total_price' => 'required|integer',
-            'count'=> 'required|integer',
+            'count'=> 'integer',
             // 'size'=>'required|integer',
             'category_id'  => 'required|exists:categories,id',
 

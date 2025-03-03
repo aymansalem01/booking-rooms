@@ -3,9 +3,18 @@
 @section('content')
 <div class="content">
     <div class="container mt-5">
+      
+
         <h2 style="color: #777" class="text-center text-purple fw-bold">Categories Management</h2>
+        <form method="GET" action="{{ route('admin.search') }}">
+            <div class="search-container">
+                <input type="text" name="query" class="form-control search-input" placeholder="Search categories..." value="{{ request('query') }}">
+                <input type="hidden" name="page" value="categories">
+                <button type="submit" class="btn btn-primary mt-2 search-btn">Search</button>
+            </div>
+        </form>
         <div class="text-end mb-3">
-            <a class="btn  adduser" href="{{ route('adcategory.create') }}">
+            <a class="btn adduser" href="{{ route('adcategory.create') }}">
                 <i class="fas fa-user-plus"></i> Add Category
             </a>
         </div>
@@ -28,13 +37,11 @@
                         </div>
                     </div>
                 @endforeach
-                
-               
-                
             @else
                 <p class="no-reviews">No categories available!</p>
             @endif
         </div>
+
         <div class="pagination-container">
             {{ $categories->links('pagination::bootstrap-4') }}
         </div>
@@ -43,6 +50,7 @@
 @endsection
 
 <style>
+    /* Existing Styles for the Category Cards */
     .review-card {
         width: 80%;
         max-width: 350px;
@@ -114,6 +122,7 @@
         margin-top: 20px;
     }
 
+    /* Styling for Add Category Button */
     .add-category {
         display: block;
         text-align: center;
@@ -123,26 +132,56 @@
         margin-bottom: 20px;
         cursor: pointer;
     }
-    .adduser:hover{
 
-   border:1px solid #9282ffdd !important;
-   color: #9282ffdd !important;
-   background-color: white !important
-}
-.adduser{
+    .adduser:hover {
+        border:1px solid #9282ffdd !important;
+        color: #9282ffdd !important;
+        background-color: white !important
+    }
 
-   background-color: #9282ffdd !important;
-   border:1px solid #9282ffdd !important;
-   color: white !important;
-   width: 20%;
-   margin-left: 20px
-}
+    .adduser {
+        background-color: #9282ffdd !important;
+        border:1px solid #9282ffdd !important;
+        color: white !important;
+        width: 20%;
+        margin-left: 20px
+    }
 
-.pagination-container {
+    /* Search form styles */
+    .search-container {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .search-input {
+        width: 300px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 1em;
+    }
+
+    .search-btn {
+        background-color: #9282ffdd;
+        border: 1px solid #9282ffdd;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background-color: #8c6efc;
+    }
+
+    /* Pagination Styles */
+    .pagination-container {
         display: flex;
         justify-content: center;
         gap: 10px;
-
     }
 
     .pagination {
@@ -172,7 +211,6 @@
         color: white;
         border: none;
     }
-
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -197,7 +235,7 @@
                         form.submit();
                         Swal.fire({
                             title: "Deleted!",
-                            text: "The review has been deleted.",
+                            text: "The category has been deleted.",
                             icon: "success"
                         });
                     }

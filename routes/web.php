@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\SearchController;
+
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\admin\ReviewController;
@@ -58,6 +60,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('adreview', ReviewController::class);
     Route::resource('adroom', RoomController::class);
     Route::resource('adbooking', AdbookingController::class);
+    Route::get('search', [SearchController::class, 'search'])->name('admin.search');
+
 });
 
 

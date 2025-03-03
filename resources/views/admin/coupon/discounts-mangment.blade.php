@@ -5,19 +5,47 @@
     <div class="container mt-5">
         <h2 style="color: #777" class="text-center text-purple fw-bold">Coupons Management</h2>
 
-    <div class="text-end mb-3">
-        <a class="btn btn-primary add-coupon adduser" href="{{ route('coupon.create') }}">
-            <i class="fas fa-user-plus"></i> Add Coupon</a>
-        
-    </div>
-       
+        <div class="filter-box">
+            <form method="GET" action="{{ route('admin.search') }}" class="filter-form">
+                <input type="hidden" name="page" value="coupons">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" name="query" class="form-control" placeholder="Search by name..." value="{{ request('query') }}">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="min_discount" class="form-control" placeholder="Min Discount (%)" value="{{ request('min_discount') }}" min="0">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" name="max_discount" class="form-control" placeholder="Max Discount (%)" value="{{ request('max_discount') }}" max="100">
+                    </div>
+                    <div class="col-md-2">
+                        <select name="sort_by_discount" class="form-control">
+                            <option value="">Sort by Discount</option>
+                            <option value="asc" {{ request('sort_by_discount') == 'asc' ? 'selected' : '' }}>Low to High</option>
+                            <option value="desc" {{ request('sort_by_discount') == 'desc' ? 'selected' : '' }}>High to Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-end mb-3">
+            <a class="btn btn-primary add-coupon adduser" href="{{ route('coupon.create') }}">
+                <i class="fas fa-user-plus"></i> Add Coupon
+            </a>
+        </div>
+
         <div class="row justify-content-center" style="gap: 20px;">
             @if($coupons->isNotEmpty())  
                 @foreach ($coupons as $coupon)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
                             <h5 class="user-name">{{ $coupon->name }}</h5>
-                            <p class="user-rating">Discount: {{ $coupon->discount }}%</p>
+                            <p class="user-rating">Discount: <span class="discount-value">{{ $coupon->discount }}%</span></p>
                             <div class="action-buttons">
                                 <a href="{{ route('coupon.edit', $coupon->id) }}" class="edit-btn"><i class="fa-solid fa-pen"></i></a>
                                 <form action="{{ route('coupon.destroy', $coupon->id) }}" method="POST" onsubmit="return confirmDelete();">
@@ -41,6 +69,18 @@
 @endsection
 
 <style>
+    .filter-box {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-form .form-control {
+        border-radius: 6px;
+    }
+
     .review-card {
         width: 100%;
         max-width: 350px;
@@ -73,26 +113,23 @@
         font-weight: bold;
     }
 
+    .discount-value {
+        font-weight: bold;
+        color: #28a745;
+    }
+
     .action-buttons {
         display: flex;
         gap: 10px;
         justify-content: center;
     }
 
-    .view-btn, .edit-btn, .delete-btn {
+    .edit-btn, .delete-btn {
         background: none;
         border: none;
         font-size: 20px;
         cursor: pointer;
         transition: color 0.3s ease;
-    }
-
-    .view-btn {
-        color: #B197FC;
-    }
-
-    .view-btn:hover {
-        color: #8c6efc;
     }
 
     .edit-btn {
@@ -104,7 +141,7 @@
     }
 
     .delete-btn {
-        color: #9282ffdd
+        color: #9282ffdd;
     }
 
     .delete-btn:hover {
@@ -118,31 +155,19 @@
         margin-top: 20px;
     }
 
-    .add-coupon {
-        display: block;
-        text-align: center;
-        font-size: 1.2em;
-        font-weight: bold;
-        color: #B197FC;
-        margin-bottom: 20px;
-        cursor: pointer;
+    .adduser {
+        background-color: #9282ffdd !important;
+        border: 1px solid #9282ffdd !important;
+        color: white !important;
+        width: 20%;
+        margin-left: 20px;
     }
-    .adduser:hover{
-   
-   border:1px solid #9282ffdd !important;
-   color: #9282ffdd !important;
-   background-color: white !important
-}
-.adduser{
-  
-   background-color: #9282ffdd !important;
-   border:1px solid #9282ffdd !important;
-   color: white !important;
-   width: 20%;
-   margin-left: 20px
-}
 
-
+    .adduser:hover {
+        border: 1px solid #9282ffdd !important;
+        color: #9282ffdd !important;
+        background-color: white !important;
+    }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -167,7 +192,7 @@
                         form.submit();
                         Swal.fire({
                             title: "Deleted!",
-                            text: "The review has been deleted.",
+                            text: "The coupon has been deleted.",
                             icon: "success"
                         });
                     }

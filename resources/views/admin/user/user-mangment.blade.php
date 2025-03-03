@@ -1,67 +1,141 @@
 @extends('layouts.adminPage')
+
 @section('content')
 <style>
-.user-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 15px;
-    transition: 0.3s ease-in-out;
-    margin-top: 20px;
-}
+    .user-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        transition: 0.3s ease-in-out;
+        margin-top: 20px;
+    }
 
-.user-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-}
+    .user-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    }
 
-.user-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    padding: 3px;
-    border-radius: 20%;
-}
+    .user-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border: 1px solid #ddd;
+        padding: 3px;
+        border-radius: 20%;
+    }
 
-.icons {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    padding: 10px;
-    border-radius: 50%;
-}
+    .icons {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        padding: 10px;
+        border-radius: 50%;
+    }
 
-.adduser {
-    background-color: #9282ffdd;
-    border: 1px solid #9282ffdd;
-    color: white;
-    width: 20%;
-}
+    .adduser {
+        background-color: #9282ffdd;
+        border: 1px solid #9282ffdd;
+        color: white;
+        width: 20%;
+    }
 
-.adduser:hover {
-    border: 1px solid #9282ffdd;
-    color: #9282ffdd;
-}
+    .adduser:hover {
+        border: 1px solid #9282ffdd;
+        color: #9282ffdd;
+    }
 
-.iconn {
-    border-radius: 30%;
-}
+    .iconn {
+        border-radius: 30%;
+    }
 
-.eyeIcon {
-    color: #9282ffdd;
-    border-color: #9282ffdd;
-}
+    .eyeIcon {
+        color: #9282ffdd;
+        border-color: #9282ffdd;
+    }
 
-.badge {
-    padding: 10px;
-    font-size: 1.4rem;
-}
+    .badge {
+        padding: 10px;
+        font-size: 1.4rem;
+    }
+
+    .form-container {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .search-input {
+        width: 250px;
+    }
+
+    .filter-select {
+        width: 180px;
+    }
+
+    .form-group button {
+        margin-top: 0;
+    }
+
+    .filter-box {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-form .form-control {
+        border-radius: 6px;
+    }
+
+    @media (max-width: 768px) {
+        .form-container {
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
 </style>
 
-<div class="container mt-4" style="min-height: 100vh;
-        display: flex;
-        flex-direction: column;">
+<div class="container mt-4" style="min-height: 100vh; display: flex; flex-direction: column;">
+    
+
     <h2 style="color: #777" class="text-center text-purple fw-bold">User Management</h2>
+    <form method="GET" action="{{ route('admin.search') }}" class="filter-box filter-form">
+        <input type="hidden" name="page" value="users">
+
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" name="query" class="form-control search-input" placeholder="Search users..." value="{{ request('query') }}">
+            </div>
+
+            <div class="form-group">
+                <select name="role" class="form-control filter-select">
+                    <option value="">Filter by role</option>
+                    <option value="admin" {{ request('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>User</option>
+                    <option value="owner" {{ request('role') == 'owner' ? 'selected' : '' }}>Owner</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select name="status" class="form-control filter-select">
+                    <option value="">Filter by status</option>
+                    <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
+                    <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </div>
+    </form>
 
     <div class="text-end mb-3">
         <a href="{{ route('user.create') }}" class="btn btn-primary adduser">
@@ -107,58 +181,21 @@
             </div>
         </div>
         @endforeach
-        
     </div>
+
     <div class="pagination-container">
-        {{ $users->links('pagination::bootstrap-4') }}
+        {{ $users->appends(['query' => request('query'), 'role' => request('role')])->links('pagination::bootstrap-4') }}
     </div>
 </div>
-
-
-<style>
-    .pagination-container {
-        display: flex;
-        justify-content: center;
-       
-    }
-
-    .pagination {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .pagination .page-item .page-link {
-        background: #f8f9fa;
-        border: 1px solid #ddd;
-        color: #9282ffdd;
-        border-radius: 8px;
-        padding: 8px 12px;
-        transition: 0.3s;
-    }
-
-    .pagination .page-item .page-link:hover {
-        background-color: #9282ffdd;
-        color: white;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #9282ffdd;
-        color: white;
-        border: none;
-    }
-</style>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault(); 
-                let form = this.closest("form"); 
-                
+                event.preventDefault();
+                let form = this.closest("form");
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",

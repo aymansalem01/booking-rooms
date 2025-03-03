@@ -3,30 +3,52 @@
 @section('content')
 <div class="content">
     <div class="container mt-5">
-        <div class="row justify-content-center" style="gap: 20px;">
         <h2 style="color: #777" class="text-center text-purple fw-bold">Reviews Management</h2>
 
+        <div class="filter-box">
+            <form method="GET" action="{{ route('admin.search') }}" class="filter-form">
+                <input type="hidden" name="page" value="reviews">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" name="query" class="form-control" placeholder="Search reviews..." value="{{ request('query') }}">
+                    </div>
+                    <div class="col-md-2">
+                        <select name="sort_by_rating" class="form-control">
+                            <option value="">Sort by Rating</option>
+                            <option value="asc" {{ request('sort_by_rating') == 'asc' ? 'selected' : '' }}>Low to High</option>
+                            <option value="desc" {{ request('sort_by_rating') == 'desc' ? 'selected' : '' }}>High to Low</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row justify-content-center" style="gap: 20px;">
             @if(isset($reviews) && count($reviews) > 0)
                 @foreach ($reviews as $review)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
-
                             <img src="{{ asset('images/'.$review->user->image) }}" alt="User Image" class="user-img">
                             <h5 class="user-name">{{ $review->user->name }}</h5>
                             <p class="user-rating">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i class="fa-solid fa-star"></i>
-                                            </span>
-                                        @endfor
-
-                                    </p>                            <p class="room-name">Room: {{ $review->room->name }}</p>
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}">
+                                        <i class="fa-solid fa-star"></i>
+                                    </span>
+                                @endfor
+                            </p>
+                            <p class="room-name">Room: {{ $review->room->name }}</p>
                             <div class="comment-box">
                                 <p class="user-comment">{{ $review->comment }}</p>
                             </div>
                             <div class="action-buttons">
-                            <a href="{{ route('adreview.show', $review->id) }}"  class="view-btn" >
-                            <i class="fas fa-eye"></i>
-                        </a>
+                                <a href="{{ route('adreview.show', $review->id) }}" class="view-btn">
+                                    <i class="fas fa-eye"></i>
+                                </a>
 
                                 <form action="{{ route('review.destroy', $review->id) }}" method="POST" onsubmit="return confirmDelete();">
                                     @csrf
@@ -37,20 +59,31 @@
                         </div>
                     </div>
                 @endforeach
-
-
             @else
                 <p class="no-reviews">No reviews available!</p>
             @endif
         </div>
+
         <div class="pagination-container">
-                {{ $reviews->links('pagination::bootstrap-4') }}
-    </div>
+            {{ $reviews->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 @endsection
 
 <style>
+    .filter-box {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-form .form-control {
+        border-radius: 6px;
+    }
+
     .review-card {
         width: 100%;
         max-width: 350px;
@@ -147,45 +180,13 @@
         color: #777;
         margin-top: 20px;
     }
+
     .filled {
         color: #FFD700;
     }
 
     .unfilled {
         color: #ccc;
-    }
-    .pagination-container {
-        display: flex;
-        justify-content: center;
-
-    }
-
-    .pagination {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .pagination .page-item .page-link {
-        background: #f8f9fa;
-        border: 1px solid #ddd;
-        color: #9282ffdd;
-        border-radius: 8px;
-        padding: 8px 12px;
-        transition: 0.3s;
-    }
-
-    .pagination .page-item .page-link:hover {
-        background-color: #9282ffdd;
-        color: white;
-    }
-
-    .pagination .page-item.active .page-link {
-        background-color: #9282ffdd;
-        color: white;
-        border: none;
     }
 </style>
 
@@ -220,4 +221,3 @@
         });
     });
 </script>
-

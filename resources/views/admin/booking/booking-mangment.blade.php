@@ -4,6 +4,39 @@
 <div class="content">
     <div class="container mt-5">
         <h2 style="color: #777" class="text-center text-purple fw-bold">Bookings Management</h2>
+
+        <div class="filter-box">
+            <form action="{{ route('admin.search') }}" method="GET" class="filter-form">
+                <input type="hidden" name="page" value="booking">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select name="sort_by_date" class="form-control">
+                            <option value="">Sort by Date</option>
+                            <option value="asc" {{ request('sort_by_date') == 'asc' ? 'selected' : '' }}>Oldest to Newest</option>
+                            <option value="desc" {{ request('sort_by_date') == 'desc' ? 'selected' : '' }}>Newest to Oldest</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select name="sort_by_price" class="form-control">
+                            <option value="">Sort by Price</option>
+                            <option value="asc" {{ request('sort_by_price') == 'asc' ? 'selected' : '' }}>Lowest to Highest</option>
+                            <option value="desc" {{ request('sort_by_price') == 'desc' ? 'selected' : '' }}>Highest to Lowest</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select name="sort_by_total_price" class="form-control">
+                            <option value="">Sort by Total Price</option>
+                            <option value="asc" {{ request('sort_by_total_price') == 'asc' ? 'selected' : '' }}>Lowest to Highest</option>
+                            <option value="desc" {{ request('sort_by_total_price') == 'desc' ? 'selected' : '' }}>Highest to Lowest</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <button type="submit" class="btn btn-primary">Sort</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="row justify-content-center" style="gap: 20px;">
             @if($booking->isNotEmpty())
                 @foreach ($booking as $book)
@@ -26,19 +59,31 @@
                         </div>
                     </div>
                 @endforeach
-
             @else
                 <p class="no-reviews">No bookings available!</p>
             @endif
         </div>
+
         <div class="pagination-container">
-        {{ $booking->links('pagination::bootstrap-4') }}
-    </div>
+            {{ $booking->links('pagination::bootstrap-4') }}
+        </div>
     </div>
 </div>
 @endsection
 
 <style>
+    .filter-box {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-form .form-control {
+        border-radius: 6px;
+    }
+
     .review-card {
         width: 100%;
         max-width: 350px;
@@ -59,14 +104,14 @@
     }
 
     .review-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
         margin-bottom: 15px;
     }
 
     .user-name {
-        font-size: 1.1em;
+        font-size: 1.2em;
         font-weight: bold;
         color: #333;
         margin-bottom: 5px;
@@ -85,23 +130,12 @@
         margin-top: 10px;
     }
 
-    .view-btn, .delete-btn {
+    .delete-btn {
         background: none;
         border: none;
         font-size: 20px;
         cursor: pointer;
         transition: color 0.3s ease;
-    }
-
-    .view-btn {
-        color: #B197FC;
-    }
-
-    .view-btn:hover {
-        color: #8c6efc;
-    }
-
-    .delete-btn {
         color: red;
     }
 
@@ -115,10 +149,10 @@
         color: #777;
         margin-top: 20px;
     }
+
     .pagination-container {
         display: flex;
         justify-content: center;
-
     }
 
     .pagination {
@@ -149,6 +183,7 @@
         border: none;
     }
 </style>
+
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

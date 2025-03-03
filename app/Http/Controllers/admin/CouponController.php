@@ -26,7 +26,7 @@ class CouponController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:coupons',
-            'discount' => 'required|numeric|min:1|max:100',
+            'discount' => 'required|numeric|min:0|max:100',
         ]);
 
         Coupon::create($request->all());
@@ -47,7 +47,7 @@ class CouponController extends Controller
     {
         $request->validate([
             'name' => 'string:coupons,name,',
-            'discount' => 'required|numeric|min:1|max:100',
+            'discount' => 'required|numeric|min:0|max:100',
         ]);
 
         Coupon::find($id)->update($request->all());
