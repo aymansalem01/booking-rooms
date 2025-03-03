@@ -9,7 +9,7 @@
                 @foreach ($booking as $book)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
-                            <img src="{{ asset($book->room->image) }}" alt="Room Image" class="review-image">
+                            <img src="{{ asset('images/' . $book->room->image->first()->image) }}" alt="Room Image" class="review-image">
                             <h5 class="user-name">Room: {{ $book->room->name }}</h5>
                             <h5 class="user-name">User: {{ $book->user->name }}</h5>
                             <p class="user-rating">Start Date: {{ $book->start_date }}</p>

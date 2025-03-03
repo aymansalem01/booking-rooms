@@ -10,15 +10,15 @@
                 @foreach ($reviews as $review)
                     <div class="col-md-4 col-sm-6 mb-4">
                         <div class="review-card">
-                            
-                            <img src="{{ asset($review->user->image) }}" alt="User Image" class="user-img">
+
+                            <img src="{{ asset('images/'.$review->user->image) }}" alt="User Image" class="user-img">
                             <h5 class="user-name">{{ $review->user->name }}</h5>
                             <p class="user-rating">
                                         @for ($i = 1; $i <= 5; $i++)
                                             <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i class="fa-solid fa-star"></i>
                                             </span>
                                         @endfor
-                                      
+
                                     </p>                            <p class="room-name">Room: {{ $review->room->name }}</p>
                             <div class="comment-box">
                                 <p class="user-comment">{{ $review->comment }}</p>
@@ -37,8 +37,8 @@
                         </div>
                     </div>
                 @endforeach
-             
-    
+
+
             @else
                 <p class="no-reviews">No reviews available!</p>
             @endif
@@ -195,9 +195,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".delete-btn").forEach(button => {
             button.addEventListener("click", function (event) {
-                event.preventDefault(); 
-                let form = this.closest("form"); 
-                
+                event.preventDefault();
+                let form = this.closest("form");
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",

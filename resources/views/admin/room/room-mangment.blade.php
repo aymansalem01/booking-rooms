@@ -16,7 +16,7 @@
                 <div class="card room-card shadow-sm border-0 rounded-lg mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="{{ asset('assets/img/' . $room->image) }}" class="room-img rounded-start" alt="Room Image">
+                            <img src="{{ asset('images/' . $room->image->first()->image) }}" class="room-img rounded-start" alt="Room Image">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">

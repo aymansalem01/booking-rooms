@@ -7,11 +7,11 @@
             @if(isset($review))
                 <div class="col-md-8 mb-5">
                     <div class="review-card">
-                        <img src="{{ asset($review->room->image) }}" alt="Room Image" class="room-img">
-                        
+                        <img src="{{ asset('images/'. $review->room->image->first()->image) }}" alt="Room Image" class="room-img">
+
                         <div class="review-content">
                             <div class="user-info">
-                                <img src="{{ asset($review->user->image) }}" alt="User Image" class="user-img">
+                                <img src="{{ asset('images/' . $review->user->image) }}" alt="User Image" class="user-img">
                                 <div>
                                     <h5 class="user-name">{{ $review->user->name }} <small> ({{ $review->user->id }})</small></h5>
                                     <p class="user-rating">
@@ -19,7 +19,7 @@
                                             <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i class="fa-solid fa-star"></i>
                                             </span>
                                         @endfor
-                                        
+
                                     </p>
                                 </div>
                             </div>
