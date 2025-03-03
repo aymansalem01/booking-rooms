@@ -3,7 +3,7 @@
 @section('content')
 <div class="content">
     <div class="container mt-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" style="padding-left: 30%">
             @if(isset($review))
                 <div class="col-md-8 mb-5">
                     <div class="review-card">

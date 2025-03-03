@@ -2,6 +2,50 @@
 
 @section('content')
 <style>
+
+   
+
+       
+        .filter{
+
+            display: flex;
+            align-items: center
+
+        }
+      
+        .searcTxt{
+
+            width: 52%;
+        }
+        .num{
+            width: 40%
+        }
+
+        .adduser {
+background-color: #9282ffdd;
+border: 1px solid #9282ffdd;
+color: white;
+
+
+}
+
+.adduser:hover {
+border: 1px solid #9282ffdd;
+color: #9282ffdd;
+}
+        .apply {
+            background-color: #9282ffdd;
+border: 1px solid #9282ffdd;
+color: white;
+
+}
+
+.apply:hover {
+border: 1px solid #9282ffdd;
+color: #9282ffdd;
+background-color: white
+}
+
     .user-card {
         background: #fff;
         padding: 20px;
@@ -96,6 +140,11 @@
         border-radius: 6px;
     }
 
+    .filter-form{
+        display: flex;
+        justify-content: space-between;
+        align-content: center
+    }
     @media (max-width: 768px) {
         .form-container {
             flex-direction: column;
@@ -108,7 +157,9 @@
     
 
     <h2 style="color: #777" class="text-center text-purple fw-bold">User Management</h2>
-    <form method="GET" action="{{ route('admin.search') }}" class="filter-box filter-form">
+    <div>
+    <form method="GET" action="{{ route('admin.search') }}" class="filter-box filter-form ">
+  
         <input type="hidden" name="page" value="users">
 
         <div class="form-container">
@@ -132,10 +183,16 @@
                     <option value="inactive" {{ request('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                 </select>
             </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        <div class="col-12 text-center mt-3 search"">
+            <a href="{{ route('user.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
+            <button type="submit" class="btn btn-primary apply">Filter</button>
+            
+         
         </div>
     </form>
+</div>
 
     <div class="text-end mb-3">
         <a href="{{ route('user.create') }}" class="btn btn-primary adduser">

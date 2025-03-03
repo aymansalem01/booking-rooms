@@ -1,9 +1,59 @@
 @extends('layouts.adminPage')
 
 @section('content')
+<style>
+
+    .search{
+
+        display: flex;
+        gap: 4px;
+        flex-direction: row-reverse;
+        padding-right: 30px
+    }
+    .filter{
+
+        display: flex;
+        align-items: center
+
+    }
+  
+    .searcTxt{
+
+        width: 52%;
+    }
+    .num{
+        width: 40%
+    }
+
+    .adduser {
+background-color: #9282ffdd;
+border: 1px solid #9282ffdd;
+color: white;
+width: 20%;
+
+}
+
+.adduser:hover {
+border: 1px solid #9282ffdd;
+color: #9282ffdd;
+}
+    .apply {
+        background-color: #9282ffdd;
+border: 1px solid #9282ffdd;
+color: white;
+
+}
+
+.apply:hover {
+border: 1px solid #9282ffdd;
+color: #9282ffdd;
+background-color: white
+}
+
+</style>
 <div class="content">
     <div class="container mt-5">
-        <h2 style="color: #777" class="text-center text-purple fw-bold">Coupons Management</h2>
+        <h2 style="color: #777; padding-bottom:40px" class="text-center text-purple fw-bold">Coupons Management</h2>
 
         <div class="filter-box">
             <form method="GET" action="{{ route('admin.search') }}" class="filter-form">
@@ -26,8 +76,15 @@
                             <option value="desc" {{ request('sort_by_discount') == 'desc' ? 'selected' : '' }}>High to Low</option>
                         </select>
                     </div>
-                    <div class="col-md-2 text-end">
-                        <button type="submit" class="btn btn-primary">Filter</button>
+                    {{-- <div class="col-md-2 text-end">
+                        <button type="submit" class="btn btn-primary apply">Filter</button>
+                    </div> --}}
+                    <div class="col-12 text-center mt-3 search">
+                        <a href="{{ route('coupon.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
+                        <button type="submit" class="btn btn-primary apply">Filter</button>
+                        
+                    
+                     
                     </div>
                 </div>
             </form>
@@ -144,6 +201,18 @@
         color: #9282ffdd;
     }
 
+    .apply {
+            background-color: #9282ffdd !important;
+border: 1px solid #9282ffdd !important;
+color: white !important;
+
+}
+
+.apply:hover {
+border: 1px solid #9282ffdd !important;
+color: #9282ffdd !important;
+background-color: white !important
+}
     .delete-btn:hover {
         color: #8c6efc;
     }

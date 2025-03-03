@@ -5,12 +5,12 @@
     <div class="container mt-5">
       
 
-        <h2 style="color: #777" class="text-center text-purple fw-bold">Categories Management</h2>
+        <h2 style="color: #777; padding-bottom:40px" class="text-center text-purple fw-bold">Categories Management</h2>
         <form method="GET" action="{{ route('admin.search') }}">
             <div class="search-container">
                 <input type="text" name="query" class="form-control search-input" placeholder="Search categories..." value="{{ request('query') }}">
                 <input type="hidden" name="page" value="categories">
-                <button type="submit" class="btn btn-primary mt-2 search-btn">Search</button>
+                <button type="submit" class="btn btn-primary mt-2 search-btn apply">Search</button>
             </div>
         </form>
         <div class="text-end mb-3">
@@ -176,6 +176,18 @@
     .search-btn:hover {
         background-color: #8c6efc;
     }
+    .apply {
+            background-color: #9282ffdd !important;
+border: 1px solid #9282ffdd !important;
+color: white !important;
+
+}
+
+.apply:hover {
+border: 1px solid #9282ffdd !important;
+color: #9282ffdd !important;
+background-color: white !important
+}
 
     /* Pagination Styles */
     .pagination-container {

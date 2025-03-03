@@ -30,8 +30,14 @@
                             <option value="desc" {{ request('sort_by_total_price') == 'desc' ? 'selected' : '' }}>Highest to Lowest</option>
                         </select>
                     </div>
-                    <div class="col-md-3 text-end">
-                        <button type="submit" class="btn btn-primary">Sort</button>
+                    {{-- <div class="col-md-3 text-end">
+                        <button type="submit" class="btn btn-primary apply">Sort</button>
+                    </div> --}}
+                    <div class="col-12 text-center mt-3 search">
+                        <a href="{{ route('adbooking.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
+                        <button type="submit" class="btn btn-primary apply">Sort</button>
+                        
+                
                     </div>
                 </div>
             </form>
@@ -122,6 +128,13 @@
         color: #B197FC;
         font-weight: bold;
     }
+    .search{
+
+display: flex;
+gap: 4px;
+flex-direction: row-reverse;
+padding-right: 30px
+}
 
     .action-buttons {
         display: flex;
@@ -136,11 +149,22 @@
         font-size: 20px;
         cursor: pointer;
         transition: color 0.3s ease;
-        color: red;
+        color: #B197FC;
     }
+    .apply {
+            background-color: #9282ffdd !important;
+border: 1px solid #9282ffdd !important;
+color: white !important;
 
+}
+
+.apply:hover {
+border: 1px solid #9282ffdd !important;
+color: #9282ffdd !important;
+background-color: white !important
+}
     .delete-btn:hover {
-        color: darkred;
+        color: #9876ff;
     }
 
     .no-reviews {
