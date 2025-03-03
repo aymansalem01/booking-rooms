@@ -30,7 +30,7 @@ Route::post('/signup', [AuthController::class, 'signup'])->name('signup');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 // Route::view('/', 'user.index')->name('home');
 //-------------------------------------------------------------------------------------------------
-Route::get('/editprofile', [AuthController::class, 'edit'])->name('edit');
+Route::view('/editprofile', 'user.editprofile')->name('edit');
 Route::put('/editprofile/{id}', [AuthController::class, 'update'])->name('update');
 //------------------------------------------------------------------------------------------------------------
 Route::post('/subscribe', [FeedbackController::class, 'subscribe'])->name('subscribe');

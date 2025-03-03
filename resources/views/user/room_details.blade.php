@@ -25,6 +25,100 @@
         .rating label i {
             transition: color 0.3s ease;
         }
+
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            padding: 25px;
+            width: 380px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            display: block;
+        }
+
+
+        .popup-content {
+            text-align: center;
+        }
+
+        .popup-content h3 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        .popup-content label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #555;
+            text-align: left;
+        }
+
+        .popup-content input {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border 0.3s ease-in-out;
+            background: #f8f8f8;
+        }
+
+        .popup-content input:focus {
+            border-color: #6f42c1;
+            background: #fff;
+        }
+
+        #confirm-payment {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            background-color: #6f42c1;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #confirm-payment:hover {
+            background-color: #5a3791;
+        }
+        #close-popup {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            background: #eee;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #close-popup:hover {
+            background: #f30000;
+        }
     </style>
     <!-- Breadcrumb Section Begin -->
     <div class="breadcrumb-section">
@@ -43,7 +137,6 @@
         </div>
     </div>
     <!-- Breadcrumb Section End -->
-
     <!-- Room Details Section Begin -->
     <section class="room-details-section spad">
         <div class="container">
@@ -65,7 +158,6 @@
                                         $fullStars = floor($averageRating);
                                         $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
                                     @endphp
-
                                     @for ($i = 1; $i <= 5; $i++)
                                         @if ($i <= $fullStars)
                                             <span class="fa fa-star checked"></span>
@@ -79,7 +171,6 @@
                                     <a href="#">Booking Now</a>
                                 </div>
                             </div>
-
                             <h2>
                                 @if ($room->discount > 0)
                                     <span style="color: #999; text-decoration: line-through;">{{ $room->price }} JD</span>
@@ -89,7 +180,6 @@
                                     <span>/Pernight</span>
                             </h2>
                             @endif
-
                             <table>
                                 <tbody>
                                     <tr>
@@ -117,9 +207,7 @@
                             <p class="f-para"> {{ $room->description }}. </p>
                         </div>
                     </div>
-
                     {{-- All Reviews for this Room --}}
-
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
                         @foreach ($room->review as $review)
@@ -140,9 +228,6 @@
                             </div>
                         @endforeach
                     </div>
-
-
-
                     <div class="review-add">
                         @if (session('message'))
                             <div class="alert alert-primary">
@@ -228,6 +313,22 @@
             </div>
         </div>
     </section>
+    <div id="payment-popup" class="popup">
+        <div class="popup-content">
+            <h3>Enter Payment Details</h3>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="month" id="expiry-date" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" required>
+
+            <button id="confirm-payment">Confirm Payment</button>
+            <button id="close-popup">Cancel</button>
+        </div>
+    </div>
     <!-- Room Details Section End -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -263,6 +364,29 @@
                                 .settings);
                         $("#date-out").datepicker("option", option, date);
                     }
+                });
+            });
+            $(document).ready(function() {
+                $("#booking-form").submit(function(event) {
+                    event.preventDefault();
+                    $("#payment-popup").addClass("show");
+                });
+
+                $("#confirm-payment").click(function() {
+                    let cardNumber = $("#card-number").val();
+                    let expiryDate = $("#expiry-date").val();
+                    let cvv = $("#cvv").val();
+
+                    if (cardNumber && expiryDate && cvv) {
+                        $("#payment-popup").removeClass("show");
+                        $("#booking-form").off("submit").submit();
+                    } else {
+                        alert("Please enter payment details.");
+                    }
+                });
+
+                $("#close-popup").click(function() {
+                    $("#payment-popup").removeClass("show");
                 });
             });
         });

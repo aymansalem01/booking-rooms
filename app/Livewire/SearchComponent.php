@@ -20,12 +20,12 @@ class SearchComponent extends Component
 
         $roomsQuery = Room::query()
             ->with(['category', 'image'])
-            ->when($searchTerm, function($query) use ($searchTerm) {
-                $query->where(function($q) use ($searchTerm) {
+            ->when($searchTerm, function ($query) use ($searchTerm) {
+                $query->where(function ($q) use ($searchTerm) {
                     $q->whereRaw('LOWER(name) LIKE ?', ["%{$searchTerm}%"])
-                      ->orWhereHas('category', function($subQ) use ($searchTerm) {
-                          $subQ->whereRaw('LOWER(name) LIKE ?', ["%{$searchTerm}%"]);
-                      });
+                        ->orWhereHas('category', function ($subQ) use ($searchTerm) {
+                            $subQ->whereRaw('LOWER(name) LIKE ?', ["%{$searchTerm}%"]);
+                        });
                 });
             });
         return view('livewire.search-component', [

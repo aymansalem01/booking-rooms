@@ -77,25 +77,28 @@ class AuthController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ' min:3',
-            'phone_number' => ' regex:/^((07)))[0-9]{8}/',
+            'name' => 'required|min:3',
+            'phone_number' => 'required|regex:/^07[0-9]{8}$/',
+            'password' => 'required|min:8|confirmed',
+            'image' => 'nullable|mimes:jpg,jpeg,png|max:2048'
         ]);
         $user = User::find($id);
-        if ($user->name != $request->name || $user->phone_number != $request->phone_number || $user->image != $request->image) {
-            if ($user->image != $request->image) {
-                $request->validate([$request->image => 'mimes:jpg,bmp,png']);
-                $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
-                $request->image->move(public_path('images'), $image_path);
-            } else {
-                $image_path = $request->image;
-            }
+        $image_path = $user->image;
+        if ($request->hasFile('image')) {
+            $image_path = uniqid() . '-' . $request->name . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $image_path);
+        }
+        if ($user->name != $request->name || $user->phone_number != $request->phone_number || $request->hasFile('image')) {
             $user->update([
                 'name' => $request->name,
                 'phone_number' => $request->phone_number,
-                'image' => $image_path
+                'image' => $image_path,
+                'password' => Hash::make($request->password)
             ]);
-            return redirect()->back()->with(['message' => 'update success']);
+
+            return redirect()->back()->with(['message' => 'Update successful']);
         }
-        return redirect()->back()->with(['message' => ' no think to update ']);
+
+        return redirect()->back()->with(['message' => 'No changes detected']);
     }
 }
