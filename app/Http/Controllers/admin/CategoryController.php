@@ -34,7 +34,7 @@ class CategoryController extends Controller
             'color' => $request->color,
             'text' => $request->text
         ]);
-        return $this->index()->with('success', 'Category created successfully.');
+        return $this->index()->with('message', 'Category created successfully.');
     }
 
     public function edit(string $id)
@@ -59,12 +59,12 @@ class CategoryController extends Controller
             'text' => $request->text
 
         ]);
-        return $this->index()->with('success', 'Category updated successfully.');
+        return $this->index()->with('message', 'Category updated successfully.');
     }
 
     public function destroy(string $id)
     {
         Category::destroy($id);
-        return redirect()->back()->with('success', 'Category deleted successfully!');
+        return redirect()->back()->with('message', 'Category deleted successfully!');
     }
 }

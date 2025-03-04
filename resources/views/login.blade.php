@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -121,33 +122,42 @@
         .login-container a:hover {
             text-decoration: underline;
         }
-        .error{
+
+        .error {
             color: red;
         }
     </style>
 </head>
+
 <body>
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="login-container">
         <h1>Log In</h1>
-        <form method="post" action="{{route('login')}}" >
+        <form method="post" action="{{ route('login') }}">
             @csrf
             <div class="input-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" value="{{ old('email') }}" required>
+                <input type="email" id="email" name="email" placeholder="Enter your email"
+                    value="{{ old('email') }}" required>
                 @error('email')
-                <p class="error">{{ $message }}</p>
+                    <p class="error">{{ $message }}</p>
                 @enderror
             </div>
             <div class="input-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 @error('password')
-                <p class="error">{{ $message }}</p>
+                    <p class="error">{{ $message }}</p>
                 @enderror
             </div>
             <button type="submit">Log In</button>
         </form>
-        <p>Don't have an account? <a href="{{route('sign')}}">Sign Up</a></p>
+        <p>Don't have an account? <a href="{{ route('sign') }}">Sign Up</a></p>
     </div>
 </body>
+
 </html>

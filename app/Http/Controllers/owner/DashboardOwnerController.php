@@ -15,7 +15,7 @@ class DashboardOwnerController extends Controller
 
     public function index()
     {
-        $ownerId = auth()->id(); 
+        $ownerId = auth()->user()->id;
 
     $ownerRoomsCount = Room::where('user_id', $ownerId)->count();
     $ownerBookings = Booking::whereHas('room', function ($query) use ($ownerId) {
@@ -33,5 +33,5 @@ class DashboardOwnerController extends Controller
     ));
     }
 
-    
+
 }

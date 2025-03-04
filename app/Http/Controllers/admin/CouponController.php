@@ -32,7 +32,7 @@ class CouponController extends Controller
         Coupon::create($request->all());
 
 
-        return $this->index()->with('success', 'Coupon added successfully.');
+        return $this->index()->with('message', 'Coupon added successfully.');
     }
 
 
@@ -50,9 +50,9 @@ class CouponController extends Controller
             'discount' => 'required|numeric|min:0|max:100',
         ]);
 
-        Coupon::find($id)->update($request->all());
+        Coupon::find($id)->update(attributes: $request->all());
 
-        return $this->index()->with('success', 'Coupon updated successfully.');
+        return $this->index()->with('message', 'Coupon updated successfully.');
     }
 
 
@@ -61,6 +61,6 @@ class CouponController extends Controller
         $coupon = Coupon::findOrFail($id);
         $coupon->delete();
 
-        return redirect()->back()->with('success', 'Coupon deleted successfully!');
+        return redirect()->back()->with('message', 'Coupon deleted successfully!');
     }
 }

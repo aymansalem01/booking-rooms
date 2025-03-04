@@ -49,7 +49,7 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
-                        {{auth()->user()->name}}
+                        {{ auth()->user()->name }}
                     </a>
                 </div>
 
@@ -137,10 +137,15 @@
                             </ul>
                             </li>
                             @auth
-                    <li><a href="{{route('logout')}}">Logout</a> </li>
-                    @endauth
+                                <li><a href="{{ route('logout') }}">Logout</a> </li>
+                            @endauth
                             <li class="separator hidden-lg"></li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif

@@ -41,10 +41,16 @@ class AuthController extends Controller
             'email' => 'required | email ',
             'password' => 'required | min:8'
         ]);
+        if(Auth::check()){
+            Auth::logout();
+        }
         $user = User::where('email', '=', $request->email)->first();
         if (Hash::check($request->password, $user->password)) {
             Auth::login(user: $user);
             $user->createToken($user->email)->accessToken;
+            if($user->status == 'block'){
+                return redirect()->route('block');
+            }
             if ($user->role == 'user') {
                 return redirect()->route('home');
             }

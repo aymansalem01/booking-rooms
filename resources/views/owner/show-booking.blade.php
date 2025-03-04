@@ -1,43 +1,46 @@
 @extends('layouts.ownerPage')
 
 @section('content')
+    <style>
+        .container {
 
-<style>
-    .container{
+            margin: auto
+        }
+    </style>
+    <div class="content">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                @if (isset($booking))
+                    <div class="col-md-8 mb-5">
+                        <div class="review-card">
+                            <img src="{{ asset('images/' . $booking->room->image->first()->image) }}" alt="Room Image"
+                                class="room-img">
+                            <h5 class="user-name">{{ $booking->room->name }}<span style="color:#B197FC">
+                                    {{ $booking->room->price }}$</span> </h5>
 
-        margin: auto
-    }
-</style>
-<div class="content">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            @if(isset($booking))
-                <div class="col-md-8 mb-5">
-                    <div class="review-card">
-                        <img src="{{ asset(  'images/'.$booking->room->image->first()->image) }}" alt="Room Image" class="room-img">
-                        <h5 class="user-name">{{ $booking->room->name }}<span style="color:#B197FC"> {{ $booking->room->price }}$</span> </h5>
 
+                            <div class="review-content">
+                                <div class="user-info">
+                                    <img src="{{ asset($booking->user->image) }}" alt="User Image" class="user-img">
+                                    <div>
+                                        <h5 class="user-name">{{ $booking->user->name }} <small>
+                                                ({{ $booking->user->id }})</small></h5>
 
-                        <div class="review-content">
-                            <div class="user-info">
-                                <img src="{{ asset($booking->user->image) }}" alt="User Image" class="user-img">
-                                <div>
-                                    <h5 class="user-name">{{ $booking->user->name }} <small> ({{ $booking->user->id }})</small></h5>
-
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="comment-box">
-                                <p class="user-comment">From ({{ $booking->start_date }}) to ({{ $booking->end_date }})</p><span style="color:#B197FC">Total: {{ $booking->total_price }}$</span>
+                                <div class="comment-box">
+                                    <p class="user-comment">From ({{ $booking->start_date }}) to ({{ $booking->end_date }})
+                                    </p><span style="color:#B197FC">Total: {{ $booking->total_price }}$</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @else
-                <p class="no-reviews">Review not found!</p>
-            @endif
+                @else
+                    <p class="no-reviews">Review not found!</p>
+                @endif
+            </div>
         </div>
     </div>
-</div>
 @endsection
 
 <style>

@@ -17,10 +17,6 @@ class Booking extends Model
         'end_date' => 'datetime'
     ];
 
-    public function coupon()
-    {
-        return $this->belongsTo(Coupon::class, 'coupon_id');
-    }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

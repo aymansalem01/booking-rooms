@@ -2,150 +2,158 @@
 
 @section('content')
 
-<style>
+    <style>
+        .search {
 
-    .search{
+            display: flex;
+            gap: 4px
+        }
 
-        display: flex;
-        gap: 4px
-    }
-    .filter{
+        .filter {
 
-        display: flex;
-        align-items: center
+            display: flex;
+            align-items: center
+        }
 
-    }
-  
-    .searcTxt{
+        .searcTxt {
 
-        width: 52%;
-    }
-    .num{
-        width: 40%
-    }
+            width: 52%;
+        }
 
-    .adduser {
-background-color: #9282ffdd;
-border: 1px solid #9282ffdd;
-color: white;
-width: 20%;
+        .num {
+            width: 40%
+        }
 
-}
+        .adduser {
+            background-color: #9282ffdd;
+            border: 1px solid #9282ffdd;
+            color: white;
+            width: 20%;
 
-.adduser:hover {
-border: 1px solid #9282ffdd;
-color: #9282ffdd;
-}
-    .apply {
-color: #9282ffdd;
-border: 1px solid #9282ffdd;
-background-color: white;
+        }
 
-}
+        .adduser:hover {
+            border: 1px solid #9282ffdd;
+            color: #9282ffdd;
+        }
 
-.apply:hover {
-border: 1px solid #9282ffdd;
-background-color: #9282ffdd;
-color: white
-}
+        .apply {
+            color: #9282ffdd;
+            border: 1px solid #9282ffdd;
+            background-color: white;
 
-</style>
-<div class="content">
-    <div class="container mt-5">
-        <div class="row justify-content-center" style="gap: 20px;">
-        <h2 style="color: #777;  padding-bottom:50px" class="text-center text-purple fw-bold">Reviews Management</h2>
-<div style="display:flex; flex-direction:column;">
-        <form method="GET" action="{{ route('review.index') }}" class="row g-3 ">
-            <div class="col-md-8 search">
-                <input type="text" name="search" class="form-control searcTxt" placeholder="Search" value="{{ request('search') }}">
-           
-                <button type="submit" class="btn btn-primary me-2 adduser"><i class="fas fa-search"></i> Search</button>
-            </div>
-           
-        </form>
-        
-        <div class="filter-container mb-4">
-            <form method="GET" action="{{  route('review.index') }}" class="row g-3 filter">
-                <div class="col-md-4">
-                    <input placeholder="User Name" type="text" name="user_name" id="user_name" class="form-control" value="{{ request('user_name') }}">
-                </div>
-        
-                <div class="col-md-4">
-                    <label for="room_id" class="form-label">Room:</label>
-                    <select name="room_id" id="room_id" class="form-select">
-                        <option value="">All</option>
-                        @foreach($rooms as $room)
-                            <option value="{{ $room->id }}" {{ request('room_id') == $room->id ? 'selected' : '' }}>
-                                {{ $room->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-        
-                <div class="col-md-4">
-                    <label for="rate" class="form-label">Rating:</label>
-                    <select name="rate" id="rate" class="form-select">
-                        <option value="">All</option>
-                        @for ($i = 5; $i >= 1; $i--)
-                            <option value="{{ $i }}" {{ request('rate') == $i ? 'selected' : '' }}>
-                                {{ $i }} Stars
-                            </option>
-                        @endfor
-                    </select>
-                </div>
-        
-                
-                <div class="col-12 text-center mt-3 search">
-                    <button type="submit" class="btn btn-success px-4 apply"><i class="fas fa-filter"></i> Apply Filters</button>
-                    
-                <a href="{{  route('review.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
-                 
-                </div>
-            </form>
-        </div>
-        
-</div>
-            @if(isset($reviews) && count($reviews) > 0)
-                @foreach ($reviews as $review)
-                    <div class="col-md-4 col-sm-6 mb-4">
-                        <div class="review-card">
+        }
 
-                            <img src="{{ asset('images/'. $review->user->image) }}" alt="User Image" class="user-img">
-                            <h5 class="user-name">{{ $review->user->name }}</h5>
-                            <p class="user-rating">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i class="fa-solid fa-star"></i>
-                                            </span>
-                                        @endfor
+        .apply:hover {
+            border: 1px solid #9282ffdd;
+            background-color: #9282ffdd;
+            color: white
+        }
+    </style>
+    <div class="content">
+        <div class="container mt-5">
+            <div class="row justify-content-center" style="gap: 20px;">
+                <h2 style="color: #777;  padding-bottom:50px" class="text-center text-purple fw-bold">Reviews Management</h2>
+                <div style="display:flex; flex-direction:column;">
+                    <form method="GET" action="{{ route('review.index') }}" class="row g-3 ">
+                        <div class="col-md-8 search">
+                            <input type="text" name="search" class="form-control searcTxt" placeholder="Search"
+                                value="{{ request('search') }}">
 
-                                    </p>                            <p class="room-name">Room: {{ $review->room->name }}</p>
-                            <div class="comment-box">
-                                <p class="user-comment">{{ $review->comment }}</p>
+                            <button type="submit" class="btn btn-primary me-2 adduser"><i class="fas fa-search"></i>
+                                Search</button>
+                        </div>
+
+                    </form>
+
+                    <div class="filter-container mb-4">
+                        <form method="GET" action="{{ route('review.index') }}" class="row g-3 filter">
+                            <div class="col-md-4">
+                                <input placeholder="User Name" type="text" name="user_name" id="user_name"
+                                    class="form-control" value="{{ request('user_name') }}">
                             </div>
-                            <div class="action-buttons">
-                            <a href="{{ route('review.show', $review->id) }}"  class="view-btn" >
-                            <i class="fas fa-eye"></i>
-                        </a>
 
-                                <form action="{{ route('review.destroy', $review->id) }}" method="POST" onsubmit="return confirmDelete();">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
-                                </form>
+                            <div class="col-md-4">
+                                <label for="room_id" class="form-label">Room:</label>
+                                <select name="room_id" id="room_id" class="form-select">
+                                    <option value="">All</option>
+                                    @foreach ($rooms as $room)
+                                        <option value="{{ $room->id }}"
+                                            {{ request('room_id') == $room->id ? 'selected' : '' }}>
+                                            {{ $room->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="rate" class="form-label">Rating:</label>
+                                <select name="rate" id="rate" class="form-select">
+                                    <option value="">All</option>
+                                    @for ($i = 5; $i >= 1; $i--)
+                                        <option value="{{ $i }}" {{ request('rate') == $i ? 'selected' : '' }}>
+                                            {{ $i }} Stars
+                                        </option>
+                                    @endfor
+                                </select>
+                            </div>
+
+
+                            <div class="col-12 text-center mt-3 search">
+                                <button type="submit" class="btn btn-success px-4 apply"><i class="fas fa-filter"></i>
+                                    Apply Filters</button>
+
+                                <a href="{{ route('review.index') }}" class="btn btn-secondary"><i
+                                        class="fas fa-sync-alt"></i> Reset</a>
+
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                @if (isset($reviews) && count($reviews) > 0)
+                    @foreach ($reviews as $review)
+                        <div class="col-md-4 col-sm-6 mb-4">
+                            <div class="review-card">
+
+                                <img src="{{ asset('images/' . $review->user->image) }}" alt="User Image" class="user-img">
+                                <h5 class="user-name">{{ $review->user->name }}</h5>
+                                <p class="user-rating">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i
+                                                class="fa-solid fa-star"></i>
+                                        </span>
+                                    @endfor
+
+                                </p>
+                                <p class="room-name">Room: {{ $review->room->name }}</p>
+                                <div class="comment-box">
+                                    <p class="user-comment">{{ $review->comment }}</p>
+                                </div>
+                                <div class="action-buttons">
+                                    <a href="{{ route('review.show', $review->id) }}" class="view-btn">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+
+                                    <form action="{{ route('review.destroy', $review->id) }}" method="POST"
+                                        onsubmit="return confirmDelete();">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
-
-            @else
-                <p class="no-reviews">No reviews available!</p>
-            @endif
+                @else
+                    <p class="no-reviews">No reviews available!</p>
+                @endif
+            </div>
+            <div class="pagination-container">
+                {{ $reviews->links('pagination::bootstrap-4') }}
+            </div>
         </div>
-        <div class="pagination-container">
-        {{ $reviews->links('pagination::bootstrap-4') }}
     </div>
-    </div>
-</div>
 @endsection
 
 <style>
@@ -215,7 +223,8 @@ color: white
         justify-content: center;
     }
 
-    .view-btn, .delete-btn {
+    .view-btn,
+    .delete-btn {
         background: none;
         border: none;
         font-size: 20px;
@@ -245,6 +254,7 @@ color: white
         color: #777;
         margin-top: 20px;
     }
+
     .filled {
         color: #FFD700;
     }
@@ -252,6 +262,7 @@ color: white
     .unfilled {
         color: #ccc;
     }
+
     .pagination-container {
         display: flex;
         justify-content: center;
@@ -290,9 +301,9 @@ color: white
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", function (event) {
+            button.addEventListener("click", function(event) {
                 event.preventDefault();
                 let form = this.closest("form");
 
@@ -318,4 +329,3 @@ color: white
         });
     });
 </script>
-

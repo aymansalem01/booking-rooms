@@ -1,41 +1,43 @@
 @extends('layouts.ownerPage')
 
 @section('content')
-<div class="content">
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            @if(isset($review))
-                <div class="col-md-8 mb-5">
-                    <div class="review-card">
-                        <img src="{{ asset($review->room->image) }}" alt="Room Image" class="room-img">
-                        
-                        <div class="review-content">
-                            <div class="user-info">
-                                <img src="{{ asset($review->user->image) }}" alt="User Image" class="user-img">
-                                <div>
-                                    <h5 class="user-name">{{ $review->user->name }} <small> ({{ $review->user->id }})</small></h5>
-                                    <p class="user-rating">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i class="fa-solid fa-star"></i>
-                                            </span>
-                                        @endfor
-                                        
-                                    </p>
+    <div class="content">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                @if (isset($review))
+                    <div class="col-md-8 mb-5">
+                        <div class="review-card">
+                            <img src="{{ asset($review->room->image) }}" alt="Room Image" class="room-img">
+
+                            <div class="review-content">
+                                <div class="user-info">
+                                    <img src="{{ asset($review->user->image) }}" alt="User Image" class="user-img">
+                                    <div>
+                                        <h5 class="user-name">{{ $review->user->name }} <small>
+                                                ({{ $review->user->id }})</small></h5>
+                                        <p class="user-rating">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                <span class="star {{ $i <= $review->rate ? 'filled' : 'unfilled' }}"><i
+                                                        class="fa-solid fa-star"></i>
+                                                </span>
+                                            @endfor
+
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Comment -->
-                            <div class="comment-box">
-                                <p class="user-comment">{{ $review->comment }}</p>
+                                <!-- Comment -->
+                                <div class="comment-box">
+                                    <p class="user-comment">{{ $review->comment }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @else
-                <p class="no-reviews">Review not found!</p>
-            @endif
+                @else
+                    <p class="no-reviews">Review not found!</p>
+                @endif
+            </div>
         </div>
     </div>
-</div>
 @endsection
 
 <style>

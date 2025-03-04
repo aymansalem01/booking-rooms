@@ -9,13 +9,5 @@ class Coupon extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function booking()
-    {
-        return $this->hasMany(Booking::class);
-    }
-    public function room()
-    {
-    return $this->hasMany(Room::class);
-    }
 
 }

@@ -47,8 +47,8 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        {{auth()->user()->name}}
+                    <a href="#" class="simple-text">
+                        {{ auth()->user()->name }}
                     </a>
                 </div>
 
@@ -123,23 +123,7 @@
                                     <p class="hidden-lg hidden-md">Dashboard</p>
                                 </a>
                             </li>
-                            <!-- <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret hidden-lg hidden-md"></b>
-         <p class="hidden-lg hidden-md">
-          5 Notifications
-          <b class="caret"></b>
-         </p>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li> -->
+
                             <li>
                                 <a href="">
                                     <i class="fa fa-search"></i>
@@ -150,33 +134,21 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="">
+                                <a href="{{ route('edit') }}">
                                     <p>Account</p>
                                 </a>
                             </li>
-                            <!-- <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <p>
-          Dropdown
-          <b class="caret"></b>
-         </p>
-
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                              </ul>
-                        </li> -->
-                        @auth
-                    <li><a href="{{route('logout')}}">Logout</a> </li>
-                    @endauth
+                            @auth
+                                <li><a href="{{ route('logout') }}">Logout</a> </li>
+                            @endauth
                             <li class="separator hidden-lg"></li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+

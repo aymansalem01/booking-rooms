@@ -15,7 +15,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $categories = Category::all(); 
+        $categories = Category::all();
 
 
         $rooms = Room::with(['user', 'category', 'image'])
@@ -42,28 +42,17 @@ class RoomController extends Controller
         $room = Room::findOrFail($id);
 
         $request->validate([
-            // 'name' => 'required|string|max:255',
-            // 'address' => 'required|string|max:255',
             'price' => 'required|integer',
             'status' => 'required',
-            // 'description' => 'required|string|max:255',
             'discount' => 'required|integer|min:0|max:100',
-            // 'total_price' => 'required|integer',
             'count'=> 'integer',
-            // 'size'=>'required|integer',
             'category_id'  => 'required|exists:categories,id',
 
         ]);
         $totalPrice = $request->price - $request->discount;
         $room->update([
-            // 'name' => $request->name,
-            // 'address' => $request->address,
             'price' => $request->price,
             'status' => $request->status,
-            // 'description' => $request->description,
-            // 'size' => $request->size,
-            // 'capacity' => $request->capacity,
-            // 'user_id' => $request->category_id,
             'discount'=>$request->discount,
             'count'=>$request->count,
             'total_price' => $totalPrice,
@@ -72,14 +61,13 @@ class RoomController extends Controller
         ]);
 
 
-        // $room->update($request->all());
-        return $this->index()->with('success', 'Room updated successfully');
+        return $this->index()->with('message', 'Room updated successfully');
     }
 
     public function destroy(string $id)
     {
         $rooms = Room::findOrFail($id);
         $rooms->delete();
-        return redirect()->back()->with('success', 'Room deleted successfully!');
+        return redirect()->back()->with('message', 'Room deleted successfully!');
     }
 }

@@ -13,18 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class RoomOwnerController extends Controller
 {
-    // public function index()
-    // {
-
-    //     $rooms = Room::with(['user', 'category', 'image'])->where('user_id', '=', 9)
-    //         ->paginate(7);
-
-    //     return view('owner.room-mangment', compact('rooms'));
-    // }
     public function index(Request $request)
     {
-        $query = Room::where('user_id', 1);
-
+        $query = Room::where('user_id', auth()->user()->id);
 
         if ($request->has('search') && $request->search != '') {
             $search = $request->search;
@@ -94,7 +85,6 @@ class RoomOwnerController extends Controller
             'status' => 'required',
             'description' => 'required|string|max:255',
             'discount' => 'required|integer',
-            // 'total_price' => 'required|integer',
             'count' => 'required|integer',
             'size' => 'required|integer',
             'category_id'  => 'required|exists:categories,id',
@@ -114,11 +104,8 @@ class RoomOwnerController extends Controller
             'count' => $request->count,
             'total_price' => $totalPrice,
             'category_id' => $request->category_id,
-
         ]);
 
-
-        // $room->update($request->all());
         return $this->index($request)->with('success', 'Room updated successfully');
     }
 
@@ -144,7 +131,6 @@ class RoomOwnerController extends Controller
             'status' => 'required',
             'description' => 'required|string|max:255',
             'discount' => 'required|integer',
-            // 'total_price' => 'required|integer',
             'count' => 'required|integer',
             'size' => 'required|integer',
             'category_id'  => 'required|exists:categories,id',

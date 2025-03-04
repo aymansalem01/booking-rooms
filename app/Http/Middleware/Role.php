@@ -14,7 +14,7 @@ class Role
     {
         if (Auth::check()) {
             $role = auth()->user()->role;
-            if (in_array($role, $roles)) {
+            if (in_array($role, $roles) && auth()->user()->status != 'block') {
                 return $next($request);
             } else {
                 return redirect()->back()->with(['message' => ' your role not match']);

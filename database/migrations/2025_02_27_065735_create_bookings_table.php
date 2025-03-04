@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('price');
-            $table->foreignId('coupon_id')->constrained()->onDelete('cascade')->nullable();
+            $table->foreignId('discount')->nullable();
             $table->integer('total_price')->nullable();
             $table->date('read_at')->nullable();
             $table->timestamps();

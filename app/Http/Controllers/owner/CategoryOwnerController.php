@@ -14,22 +14,4 @@ class CategoryOwnerController extends Controller
         return view('owner\category-mangment', compact('categories'));
     }
 
-    // public function create()
-    // {
-    //     return view('admin.createcategory');
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'page' => 'nullable|string',
-    //         'color' => 'nullable|string',
-    //         'text' => 'nullable|string',
-    //     ]);
-
-    //     Category::create($request->all());
-    //     return redirect()->route('category.index')->with('success', 'Category created successfully.');
-    // }
-
 }

@@ -15,7 +15,7 @@
                     <div class="hero-text">
                         <h1>Escape Reality</h1>
                         <p>Here are the best room booking sites, including discounts and fun rooms.</p>
-                        <a href="#" class="primary-btn">Discover Now</a>
+                        <a href="{{route('store.index')}}" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@
                     @foreach ($rooms as $room)
                         <div class="col-lg-3 col-md-6">
                             <div class="hp-room-item set-bg"
-                                data-setbg="{{ asset('images/'.$room->image->first()->image)  }}">
+                                data-setbg="{{ asset('images/' . $room->image->first()->image) }}">
                                 <div class="hr-text">
                                     <h3>{{ $room->name }}</h3>
                                     <h2>
@@ -216,24 +216,29 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="testimonial-slider owl-carousel">
+
                         @foreach ($rooms as $room)
-                            @php
-                                $review = $room->review->sortByDesc('rate')->first();
-                            @endphp
-                            <div class="ts-item">
-                                <p>{{ $review->comment }}.</p>
-                                <div class="ti-author" style="display: flex; align-items: center;">
-                                    <div class="rating">
-                                        @for ($i = 1; $i <= $review->rate; $i++)
-                                            <i class="icon_star"></i>
-                                        @endfor
+
+                                @php
+                                    $review = $room->review->sortByDesc('rate')->first();
+                                @endphp
+                                <div class="ts-item">
+                                    @if ($review && $review->count() > 0)
+                                    <p>{{ $review->comment }}.</p>
+                                    <div class="ti-author" style="display: flex; align-items: center;">
+                                        <div class="rating">
+                                            @for ($i = 1; $i <= $review->rate; $i++)
+                                                <i class="icon_star"></i>
+                                            @endfor
+                                        </div>
+                                        <h5 style="margin-left: 10px;">- {{ $review->user->name }}</h5>
+                                        <img src="{{ asset('images/' . $review->user->image) }}" alt="User Image"
+                                            style="width: 50px; height: 50px; border-radius: 50%; margin-left: 10px;">
                                     </div>
-                                    <h5 style="margin-left: 10px;">- {{ $review->user->name }}</h5>
-                                    <img src="{{ asset('images/' . $review->user->image) }}" alt="User Image"
-                                        style="width: 50px; height: 50px; border-radius: 50%; margin-left: 10px;">
                                 </div>
-                            </div>
+                                @endif
                         @endforeach
+
                     </div>
                 </div>
             </div>

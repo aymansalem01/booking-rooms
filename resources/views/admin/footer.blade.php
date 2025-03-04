@@ -2,7 +2,7 @@
             <div class="container-fluid">
 
                 <p class="copyright text-center">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Escape Reality</a>, made with love for a better web
+                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Escape Reality</a>, <strong>انت ادمن قد الدنيا</strong>
                 </p>
             </div>
         </footer>

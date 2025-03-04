@@ -7,7 +7,7 @@
                     <div class="ft-about">
                         <div class="logo">
                             <a href="{{route('home')}}">
-                                <img src="img/logo.png" alt="" style="margin-top:-30px;width:500px ">
+                                <img src="{{asset('img/logo.png')}}" alt="" style="margin-top:-30px;width:500px ">
                             </a>
                         </div>
                         <p>we offer a unique rental experience where you can <br />find comfortable and stylish
@@ -63,8 +63,7 @@
                             Copyright &copy;
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved | This template is made with <i
-                                class="fa fa-heart" aria-hidden="true"></i></a>
+                            </script> All rights reserved to ayman  & osama </a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

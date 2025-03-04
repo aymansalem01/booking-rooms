@@ -34,7 +34,7 @@ class FeedbackController extends Controller
             ->exists();
 
         if (!$hasBooking) {
-            return redirect()->back()->withErrors(['error' => 'You must book this room before leaving a review.']);
+            return redirect()->back()->withErrors(['message' => 'You must book this room before leaving a review.']);
         }
         $review = Review::create([
             'user_id' => auth()->user()->id,
