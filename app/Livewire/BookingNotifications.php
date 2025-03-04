@@ -16,12 +16,13 @@ class BookingNotifications extends Component
     public function mount()
     {
         $this->loadBookings();
-
     }
 
     public function loadBookings()
     {
-        $this->bookings = Booking::where('user_id', Auth::id())
+        $this->bookings = Booking::whereHas('room', function ($query) {
+            $query->where('user_id', auth()->id());
+        })
             ->whereNull('read_at')
             ->latest()
             ->get();
@@ -31,7 +32,10 @@ class BookingNotifications extends Component
 
     public function markAsRead()
     {
-        Booking::where('user_id', Auth::id())->whereNull('read_at')
+        Booking::whereHas('room', function ($query) {
+            $query->where('user_id', auth()->id());
+        })
+            ->whereNull('read_at')
             ->update(['read_at' => now()]);
 
         $this->loadBookings();

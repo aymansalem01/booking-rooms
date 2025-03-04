@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingConfirmationMail;
+use App\Models\Review;
 
 class StoreController extends Controller
 {
@@ -45,7 +46,8 @@ class StoreController extends Controller
         $room = Room::with(['image', 'review', 'user', 'category'])
             ->where('id', $id)
             ->first();
-        return view('user.room_details', compact('room'));
+            $reviews = Review::where('room_id','=' , $id)->orderByDesc('created_at')->get();
+        return view('user.room_details', compact(['room','reviews']));
     }
 
     public function roomCategory(string $id)
@@ -121,14 +123,14 @@ class StoreController extends Controller
             'total_price' => $total_price,
         ]);
 
-        $email = 'osmamadi521@gmail.com';
+        // $email = 'osmamadi521@gmail.com';
 
-        $name =  auth()->user()->name  ?? 'Ayman';
-        $startDate = $request->start_date ?? now()->format('Y-m-d');
-        $endDate = $request->end_date ?? now()->addDays(1)->format('Y-m-d');
-        $pricee =   $price  ?? 150;
+        // $name =  auth()->user()->name  ?? 'Ayman';
+        // $startDate = $request->start_date ?? now()->format('Y-m-d');
+        // $endDate = $request->end_date ?? now()->addDays(1)->format('Y-m-d');
+        // $pricee =   $price  ?? 150;
 
-        Mail::to($email)->send(new BookingConfirmationMail($name,  $startDate, $endDate, $pricee));
+        // Mail::to($email)->send(new BookingConfirmationMail($name,  $startDate, $endDate, $pricee));
 
         return redirect()->back()->with(['message' => 'booking successfully']);
     }

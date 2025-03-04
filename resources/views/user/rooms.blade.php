@@ -2,21 +2,7 @@
 
 @section('content')
     <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <h2>Our Rooms</h2>
-                        <div class="bt-option">
-                            <a href="{{route('home')}}">Home</a>
-                            <span>Rooms</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     @livewire('search-component')
 
@@ -26,7 +12,8 @@
     $discountedRooms = $rooms->filter(fn($room) => $room->discount > 0);
 @endphp
         <div class="my-unique-container" style="margin: 20px">
-            <header class="my-unique-header">
+            <div class="container">
+            <header class="my-unique-header" style="text-align: center">
             <h2 style="padding:15px; margin:20px;">Rooms with Special Discount</h2>
             </header>
 
@@ -38,7 +25,7 @@
                     <div class="my-unique-board" id="board">
                         @foreach ($discountedRooms as $room)
                             <div class="col-lg-4 col-md-6" >
-                                <div class="room-item" style="width: 23vw">
+                                <div class="room-item" style="width: 15vw">
                                     <img src="{{ asset('images/'. $room->image->first()->image)}}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
                                     <div class="ri-text">
                                         <h4 style="font-size: 20px; margin-bottom: 8px;">{{ $room->name }}</h4>
@@ -91,10 +78,26 @@
                 </div>
             </section>
         </div>
+        </div>
 @endif
     <!-- Rooms Section Begin -->
     <section class="rooms-section spad">
         <div class="container">
+            <div class="breadcrumb-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="breadcrumb-text">
+                                <h2>All Rooms</h2>
+                                <div class="bt-option">
+                                    <a href="{{route('home')}}">Home</a>
+                                    <span>Rooms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
 
                 @foreach ($rooms as $room)

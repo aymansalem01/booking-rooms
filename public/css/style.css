@@ -110,10 +110,38 @@ ul, ol {
 	line-height: 58px;
 	margin-top: 10px;
 }
+.divwith{
+background-color: white;
+margin: 40px;
+height: 100px;
+}
 .set-bg {
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+}
+
+.set-bgg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    position: relative;
+}
+
+.dark-overlay {
+    position: relative;
+}
+
+.dark-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 .spad {
 	padding-top: 100px;
@@ -634,6 +662,7 @@ ul, ol {
 	-webkit-transition: all 0.3s;
 	-o-transition: all 0.3s;
 	transition: all 0.3s;
+
 }
 .hero-slider.owl-carousel .owl-dots button.active {
 	width: 30px;
@@ -645,6 +674,7 @@ ul, ol {
 }
 .hero-slider .owl-stage-outer, .hero-slider .owl-stage, .hero-slider .owl-item, .hero-slider .hs-item {
 	height: 100%;
+
 }
 /*---------------------
   About US
@@ -696,15 +726,15 @@ ul, ol {
     transition: all 0.3s;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100%; /* Ensure all items stretch to fill available height */
+    height: 350px; /* Ensure all items stretch to fill available height */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 250px; /* You can adjust this value to ensure a minimum height for the items */
+    min-height: 200px; /* You can adjust this value to ensure a minimum height for the items */
 }
 
 .custom-service-item:hover {
-    background: #7c5cc5;
+    background: #91078a;
     cursor: pointer; /* This line will make the pointer appear */
 }
 
@@ -826,6 +856,7 @@ ul, ol {
 .testimonial-slider.owl-carousel .owl-item img {
 	width: auto;
 	margin: 0 auto;
+
 }
 .testimonial-slider.owl-carousel .owl-nav button {
 	height: 44px;
