@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Room;
 use App\Models\Booking;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,9 @@ class BookingNotifications extends Component
 
     public function loadBookings()
     {
-        $this->bookings = Booking::where('user_id', Auth::id())
+        $ownerRooms = Room::where('user_id', Auth::id())->pluck('id');
+
+        $this->bookings = Booking::whereIn('room_id', $ownerRooms)
             ->whereNull('read_at')
             ->latest()
             ->get();
@@ -31,10 +34,13 @@ class BookingNotifications extends Component
 
     public function markAsRead()
     {
-        Booking::where('user_id', Auth::id())->whereNull('read_at')
-            ->update(['read_at' => now()]);
+        $ownerRooms = Room::where('user_id', Auth::id())->pluck('id');
 
-        $this->loadBookings();
+        Booking::whereIn('room_id', $ownerRooms)
+        ->whereNull('read_at')
+        ->update(['read_at' => now()]);
+
+    $this->loadBookings();
     }
     public function render()
     {

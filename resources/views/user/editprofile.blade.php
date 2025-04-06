@@ -4,56 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Edit Profile</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         body {
+            background: url('https://wallpaperboat.com/wp-content/uploads/2021/04/08/74172/purple-space-24.jpg') no-repeat center center/cover;
             height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background: url('https://wallpaperboat.com/wp-content/uploads/2021/04/08/74172/purple-space-24.jpg') no-repeat center center/cover;
+            justify-content: center;
             position: relative;
         }
 
         body::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 0;
         }
 
-        .signup-container {
-            background: rgba(255, 255, 255, 0.97);
-            padding: 60px;
+        .edit-container {
+            display: flex;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            max-width: 900px;
             width: 100%;
-            max-width: 500px;
-            text-align: center;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
             z-index: 1;
-            transition: transform 0.3s ease-in-out;
         }
 
-        .signup-container:hover {
-            transform: scale(1.05);
+        .left-panel {
+            background: #9117bd;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .signup-container h1 {
-            font-size: 2.4rem;
-            margin-bottom: 25px;
+        .left-panel img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            margin-bottom: 20px;
+        }
+
+        .left-panel h2 {
+            font-size: 1.6rem;
+            margin-top: 10px;
+        }
+
+        .right-panel {
+            flex: 2;
+            padding: 40px;
+        }
+
+        .right-panel h1 {
+            font-size: 2rem;
             color: #9117bd;
+            margin-bottom: 25px;
         }
 
         form {
@@ -65,127 +87,145 @@
         .input-group {
             display: flex;
             flex-direction: column;
-            text-align: left;
         }
 
-        .input-group label {
-            font-size: 1.1rem;
-            margin-bottom: 7px;
+        label {
             font-weight: bold;
             color: #9117bd;
+            margin-bottom: 5px;
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 14px;
+        input[type="text"],
+        input[type="tel"],
+        input[type="password"],
+        input[type="file"] {
+            padding: 12px;
             border: 2px solid #ccc;
             border-radius: 10px;
-            font-size: 1.1rem;
-            transition: 0.3s;
+            font-size: 1rem;
+            transition: border 0.3s;
         }
 
-        .input-group input:focus {
+        input:focus {
             border-color: #9117bd;
             outline: none;
-            box-shadow: 0 0 10px rgba(145, 23, 189, 0.5);
+            box-shadow: 0 0 8px rgba(145, 23, 189, 0.3);
         }
 
         .error {
             color: red;
-            font-size: 0.9rem;
-            margin-top: 5px;
+            font-size: 0.85rem;
+            margin-top: 3px;
         }
 
         button {
-            width: 100%;
-            padding: 14px;
-            background: #9117bd;
+            padding: 12px;
+            background-color: #9117bd;
             color: white;
             border: none;
             border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: 0.3s;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
         }
 
         button:hover {
-            background: #7e0ca5;
-            transform: scale(1.05);
+            background-color: #7e0ca5;
+            transform: scale(1.03);
         }
 
-        .signup-container p {
-            margin-top: 20px;
-            font-size: 1rem;
+        .alert {
+            padding: 10px;
+            background: green;
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+            border-radius: 8px;
         }
 
-        .signup-container a {
-            color: #9117bd;
-            text-decoration: none;
-            font-weight: bold;
-        }
+        @media (max-width: 768px) {
+            .edit-container {
+                flex-direction: column;
+            }
 
-        .signup-container a:hover {
-            text-decoration: underline;
+            .left-panel, .right-panel {
+                width: 100%;
+                padding: 30px;
+            }
+
+            .left-panel img {
+                width: 140px;
+                height: 140px;
+            }
         }
     </style>
 </head>
 
 <body>
     @if (session('message'))
-        <div class="alert alert-success" style="background-color: green">
-            {{ session('message') }}
-        </div>
+        <div class="alert">{{ session('message') }}</div>
     @endif
-    <div class="signup-container">
-        <h1>edit Profile</h1>
-        <form method="post" action="{{ route('update', auth()->user()->id) }}" enctype="multipart/form-data">
-            @method('put')
-            @csrf
-            <div class="input-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name"
-                    value="{{ auth()->user()->name }}" required>
-                @error('name')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
 
-            <div class="input-group">
-                <label for="phone_number">Phone Number</label>
-                <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number"
-                    value="{{ auth()->user()->phone_number }}" required>
-                @error('phone_number')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="input-group">
-                <label for="password"> New Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                @error('password')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
+    <div class="edit-container">
+        <!-- الصورة -->
+        <div class="left-panel">
+            <img src="{{ auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('img/default-avatar.png') }}"
+                alt="Profile Picture">
+            <h2>{{ auth()->user()->name }}</h2>
+        </div>
 
-            <div class="input-group">
-                <label for="password_confirmation">Confirm Password</label>
-                <input type="password" id="password_confirmation" name="password_confirmation"
-                    placeholder="Confirm your password" required>
-                @error('password_confirmation')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
+        <!-- النموذج -->
+        <div class="right-panel">
+            <h1>Edit Profile</h1>
+            <form method="POST" action="{{ route('update', auth()->user()->id) }}" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
 
-            <div class="input-group">
-                <label for="image">Profile Picture</label>
-                <input type="file" id="image" name="image" accept="image/*">
-                @error('image')
-                    <p class="error">{{ $message }}</p>
-                @enderror
-            </div>
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" required>
+                    @error('name')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
 
-            <button type="submit">Sign Up</button>
-        </form>
+                <div class="input-group">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" id="phone_number" name="phone_number" value="{{ auth()->user()->phone_number }}"
+                        required>
+                    @error('phone_number')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="input-group">
+                    <label for="password">New Password</label>
+                    <input type="password" id="password" name="password" required>
+                    @error('password')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="input-group">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" id="password_confirmation" name="password_confirmation" required>
+                    @error('password_confirmation')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="input-group">
+                    <label for="image">Profile Picture</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    @error('image')
+                        <span class="error">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <button type="submit">Update Profile</button>
+            </form>
+        </div>
     </div>
 </body>
 
