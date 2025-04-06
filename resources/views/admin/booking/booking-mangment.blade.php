@@ -36,8 +36,8 @@
                     <div class="col-12 text-center mt-3 search">
                         <a href="{{ route('adbooking.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
                         <button type="submit" class="btn btn-primary apply">Sort</button>
-                        
-                
+
+
                     </div>
                 </div>
             </form>
@@ -114,6 +114,7 @@
         height: auto;
         border-radius: 8px;
         margin-bottom: 15px;
+        height: 350px;
     }
 
     .user-name {

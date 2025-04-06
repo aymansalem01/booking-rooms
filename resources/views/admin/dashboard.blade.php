@@ -1,11 +1,11 @@
 @extends('layouts.adminPage')
 @section('content')
-   
+
 <div class="content">
     <div class="container-fluid">
-      
-    
-        
+
+
+
         <div class="row">
             <div class="col-md-4">
                 <div class="card custom-card text-white shadow-lg border-0 hover-effect">
@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="col-md-4">
                 <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                     <div class="card-body text-center">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="col-md-4">
                 <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                     <div class="card-body text-center">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row mt-4">
             <div class="col-md-4">
                 <div class="card custom-card text-white shadow-lg border-0 hover-effect">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="col-md-4">
                 <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                     <div class="card-body text-center">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-        
+
             <div class="col-md-4">
                 <div class="card custom-card text-white shadow-lg border-0 hover-effect">
                     <div class="card-body text-center">
@@ -69,7 +69,7 @@
                 </div>
             </div>
         </div>
-        
+
         <style>
             .hover-effect {
                 transition: transform 0.3s ease-in-out;
@@ -78,15 +78,15 @@
                 transform: scale(1.05);
             }
             .custom-card {
-        background: linear-gradient(135deg, #007bff, #6610f2); 
-        border-radius: 15px; 
+        background: linear-gradient(135deg, #007bff, #6610f2);
+        border-radius: 15px;
         padding: 20px;
         transition: all 0.3s ease-in-out;
         position: relative;
         overflow: hidden;
     }
 
-    
+
     .hover-effect {
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     }
@@ -95,7 +95,7 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
-    
+
     .card-title {
         font-size: 1.2rem;
         font-weight: bold;
@@ -117,7 +117,7 @@
         transform: rotate(10deg) scale(1.1);
     }
 
-    
+
     .custom-card::before {
         content: "";
         position: absolute;
@@ -147,10 +147,10 @@
         align-items: center;
         justify-content: center;
         background-image: url("{{asset('assets/img/card5.jpg') }}");
-        background-size:cover; 
+        background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
-   
+
     }
 
     .hover-effect {
@@ -161,7 +161,7 @@
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
-    
+
     .card-title {
         font-size: 2rem;
         font-weight: bold;
@@ -184,23 +184,23 @@
     .hover-effect:hover .icon-style {
         transform: rotate(5deg) scale(1.1);
     }
-    
+
         </style>
-        
-        
+
+
         <div class="card-header text-white fw-bold">
             Recent Bookings Summary
          </div>
          <div class="card mt-4 shadow-lg border-0 rounded-lg cardItem">
-           
+
             <div class="card-body">
                 <ul style="border: none" class="list-group list-group-flush">
-                    @foreach($bookings as $booking) 
+                    @foreach($bookings as $booking)
                     <li class="booking-item d-flex align-items-center justify-content-between hover-effect-list ">
-            
+
                         <div class="user-info">
                         <i class="fas fa-user-circle fa-3x text-purple me-3" style="font-size: 6rem"></i>
-        
+
                         <div class="d-flex flex-column">
                             <h6 style="font-size: 2rem" class="fw-bold mb-1">{{ $booking->user->name }} <small class="text-muted">{{ $booking->user->id }}</small></h6>
                             <small class="text-muted"><i class="fas fa-clock me-1"></i> {{$booking->start_date}}</small>
@@ -212,18 +212,18 @@
                             <!-- <span style="font-size: 2rem" class="badge bg-light text-dark p-2"><i style="font-size: 2rem" class="fas fa-credit-card me-1"></i> $booking-></span> -->
                             <span style="font-size: 2rem" class="text-success fw-bold"><i style="font-size: 2rem" class="fas fa-check-circle me-1"></i>{{  $booking->user->status}}</span>
                         </div>
-        
+
                         <span  style="font-size: 2rem" class="badge bg-purple p-2 fw-bold fs-6">{{$booking->price}} $</span>
                     </li>
-                    <li class="booking-item d-flex align-items-center justify-content-between hover-effect-list ">
-            
-                        
-                     @endforeach 
+                   
+
+
+                     @endforeach
                 </ul>
             </div>
         </div>
         <style>
-           
+
     .bg-purple {
         background-color: #6a0dad !important;
     }
@@ -262,7 +262,7 @@
     .user-info{
 
         display: flex;
-         align-items: center;  
+         align-items: center;
          gap: 10px
           }
 
@@ -276,16 +276,16 @@
           .hover-effect-list {
         transition: transform 0.3s ease-in-out;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    
-        
+
+
     }
     .hover-effect-list:hover {
         transform: scale(1.05);
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
         </style>
-        
-        
+
+
     </div>
     </div>
 
