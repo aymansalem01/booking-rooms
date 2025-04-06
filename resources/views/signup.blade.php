@@ -34,17 +34,26 @@
         }
 
         .signup-container {
-            background: rgba(255, 255, 255, 0.97);
-            padding: 60px;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease-in-out;
-        }
+    background: rgba(255, 255, 255, 0.97);
+    padding: 40px;
+    height: 90vh;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+.signup-container * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+
 
         .signup-container:hover {
             transform: scale(1.05);
@@ -142,7 +151,7 @@
         <form method="post" action="{{ route('signup') }}" enctype="multipart/form-data">
             @csrf
             <div class="input-group">
-                <label for="name">Full Name</label>
+               
                 <input type="text" id="name" name="name" placeholder="Enter your full name"
                     value="{{ old('name') }}" required>
                 @error('name')
@@ -151,7 +160,7 @@
             </div>
 
             <div class="input-group">
-                <label for="email">Email</label>
+               
                 <input type="email" id="email" name="email" placeholder="Enter your email"
                     value="{{ old('email') }}" required>
                 @error('email')
@@ -160,7 +169,7 @@
             </div>
 
             <div class="input-group">
-                <label for="password">Password</label>
+               
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 @error('password')
                     <p class="error">{{ $message }}</p>
@@ -168,7 +177,7 @@
             </div>
 
             <div class="input-group">
-                <label for="password_confirmation">Confirm Password</label>
+                
                 <input type="password" id="password_confirmation" name="password_confirmation"
                     placeholder="Confirm your password" required>
                 @error('password_confirmation')
@@ -177,7 +186,7 @@
             </div>
 
             <div class="input-group">
-                <label for="phone_number">Phone Number</label>
+               
                 <input type="tel" id="phone_number" name="phone_number" placeholder="Enter your phone number"
                     value="{{ old('phone_number') }}" required>
                 @error('phone_number')
@@ -186,7 +195,7 @@
             </div>
 
             <div class="input-group">
-                <label for="image">Profile Picture</label>
+       
                 <input type="file" id="image" name="image" accept="image/*" required>
                 @error('image')
                     <p class="error">{{ $message }}</p>
