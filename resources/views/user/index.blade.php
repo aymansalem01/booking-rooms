@@ -225,15 +225,19 @@
                                 <div class="ts-item">
                                     @if ($review && $review->count() > 0)
                                     <p>{{ $review->comment }}.</p>
-                                    <div class="ti-author" style="display: flex; align-items: center;">
+                                    <div class="ti-author align" style="display: flex;   justify-content: center;">
                                         <div class="rating">
                                             @for ($i = 1; $i <= $review->rate; $i++)
                                                 <i class="icon_star"></i>
                                             @endfor
                                         </div>
+                                        <div>
                                         <h5 style="margin-left: 10px;">- {{ $review->user->name }}</h5>
+                                        </div>
+                                        <div>
                                         <img src="{{ asset('images/' . $review->user->image) }}" alt="User Image"
                                             style="width: 50px; height: 50px; border-radius: 50%; margin-left: 10px;">
+                                    </div>
                                     </div>
                                 </div>
                                 @endif
