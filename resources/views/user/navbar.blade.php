@@ -99,7 +99,7 @@
                                     <li><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ url('/store') }}">Rooms</a></li>
                                     <li><a href="{{ route('about') }}">About Us</a></li>
-                                    <li><a href="#">Pages</a>
+                                    <li><a href="#">Categories</a>
                                         <ul class="dropdown">
                                             @foreach ($categories as $category)
                                                 <li style="color: {{ $category->text }}"><a

@@ -172,7 +172,7 @@
                                             <span class="fa fa-star"></span>
                                         @endif
                                     @endfor
-                                    <a href="#">Booking Now</a>
+
                                 </div>
                             </div>
                             <h2>
@@ -214,7 +214,7 @@
                     {{-- All Reviews for this Room --}}
                     <div class="rd-reviews">
                         <h4>Reviews</h4>
-                        @foreach ($room->review as $review)
+                        @foreach ($reviews as $review)
                             <div class="review-item">
                                 <div class="ri-pic">
                                     <img src="{{ asset('/images/' . $review->user->image) }}" alt="User Image">
@@ -396,9 +396,9 @@
                 });
             });
         });
+
         $(document).ready(function() {
             let roomId = "{{ $room->id }}";
-
             $.getJSON(`/get-booked-dates/${roomId}`, function(bookedDates) {
                 function disableBookedDates(date) {
                     let dateString = $.datepicker.formatDate("yy-mm-dd", date);
