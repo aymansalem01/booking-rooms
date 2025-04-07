@@ -233,11 +233,7 @@
                         @endforeach
                     </div>
                     <div class="review-add">
-                        @if (session('message'))
-                            <div class="alert alert-primary">
-                                {{ session('message') }}
-                            </div>
-                        @endif
+                        
                         <h4>Add Review</h4>
                         <form action="{{ route('review', $room->id) }}" method="post" class="ra-form">
                             @csrf

@@ -46,7 +46,10 @@ Route::middleware(['auth' , 'role:user'])->group(function () {
     Route::get('/category/{id}', [StoreController::class, 'roomCategory'])->name('room.category');
     Route::post('/store/{id}', [FeedbackController::class, 'comment'])->name('review');
     Route::get('/get-booked-dates/{id}', [StoreController::class, 'getBookingdates']);
+    Route::get('/bookingUser', [StoreController::class, 'ShowUserBoking'])->name('bookingUser');
     Route::post('/store-booking/{id}', [StoreController::class, 'storeBooking'])->name('book');
+    Route::delete('/booking/cancel/{bookingId}', [BookingController::class, 'cancelBooking'])->name('booking.cancel');
+
 });
 
 Route::middleware(['auth' , 'role:admin'])->group(function () {

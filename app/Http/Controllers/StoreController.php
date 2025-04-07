@@ -123,15 +123,29 @@ class StoreController extends Controller
             'total_price' => $total_price,
         ]);
 
-        // $email = 'osmamadi521@gmail.com';
+        $email = auth()->user()->email;
 
-        // $name =  auth()->user()->name  ?? 'Ayman';
-        // $startDate = $request->start_date ?? now()->format('Y-m-d');
-        // $endDate = $request->end_date ?? now()->addDays(1)->format('Y-m-d');
-        // $pricee =   $price  ?? 150;
+        $name =  auth()->user()->name  ?? 'Ayman';
+        $startDate = $request->start_date ?? now()->format('Y-m-d');
+        $endDate = $request->end_date ?? now()->addDays(1)->format('Y-m-d');
+        $pricee =   $price  ?? 150;
 
-        // Mail::to($email)->send(new BookingConfirmationMail($name,  $startDate, $endDate, $pricee));
+        Mail::to($email)->send(new BookingConfirmationMail($name,  $startDate, $endDate, $pricee));
 
         return redirect()->back()->with(['message' => 'booking successfully']);
     }
+    public function ShowUserBoking(){
+        $rooms = Room::with(['image', 'review', 'user', 'category', 'booking'])
+        ->whereHas('booking', function ($query) {
+            $query->where('user_id', auth()->id());
+        })
+        ->whereHas('user', function ($query) {
+            $query->where('status', 'active');
+        })
+        ->paginate(9);
+
+    return view('user.bookingroomsForUser', compact('rooms'));
+
+    }
+
 }

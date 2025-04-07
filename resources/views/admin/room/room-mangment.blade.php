@@ -18,7 +18,7 @@
             align-items: center
 
         }
-      
+
         .searcTxt{
 
             width: 52%;
@@ -59,7 +59,7 @@ background-color: white
         <div class="filter-box">
             <form method="GET" action="{{ route('admin.search') }}" class="filter-form">
                 <input type="hidden" name="page" value="rooms">
-                
+
                 <div class="row">
                     <div class="col-md-4">
                         <input type="text" name="query" class="form-control" placeholder="Search rooms..." value="{{ request('query') }}">
@@ -84,9 +84,9 @@ background-color: white
                     <div class="col-12 text-center mt-3 search">
                         <a href="{{ route('adroom.index') }}" class="btn btn-secondary"><i class="fas fa-sync-alt"></i> Reset</a>
                         <button type="submit" class="btn btn-success px-4 apply"><i class="fas fa-filter"></i> Apply Filters</button>
-                        
-                    
-                     
+
+
+
                     </div>
                 </div>
             </form>
@@ -116,7 +116,7 @@ background-color: white
                                         <strong>Count:</strong> {{ $room->count }}
                                     </p>
                                     <div style="display: flex; gap:5px" class="d-flex">
-                                       
+
                                         <form action="{{ route('adroom.destroy', $room->id) }}" method="POST" class="delete-form ">
                                             <a href="{{ route('adroom.show', $room->id) }}" class="btn btn-sm btn-info me-2 iconsh">
                                                 <i class="fas fa-eye"></i>

@@ -89,4 +89,26 @@ class BookingController extends Controller
 
         return view('owner.bookings', compact('bookings'));
     }
+    public function cancelBooking($bookingId)
+    {
+
+        $booking = Booking::findOrFail($bookingId);
+
+
+        if ($booking->user_id != auth()->id()) {
+            return redirect()->back()->with('error', 'You cannot cancel this booking.');
+        }
+
+
+        $startDate = $booking->start_date instanceof \Carbon\Carbon ? $booking->start_date : \Carbon\Carbon::parse($booking->start_date);
+
+        if ($startDate->diffInDays(now()) <= 2) {
+            return redirect()->back()->with('error', 'Booking cannot be cancelled as it is within 2 days.');
+        }
+
+
+        $booking->delete();
+
+        return redirect()->route('bookingUser')->with('success', 'Booking successfully cancelled.');
+    }
 }

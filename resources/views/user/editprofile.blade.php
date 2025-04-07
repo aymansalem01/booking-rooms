@@ -16,8 +16,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
-            background: url('https://wallpaperboat.com/wp-content/uploads/2021/04/08/74172/purple-space-24.jpg') no-repeat center center/cover;
-            height: 100vh;
+            background: url('https://wallpaperboat.com/wp-content/uploads/2021/04/08/74172/purple-space-24.jpg') no-repeat   ;
         }
 
         .edit-container {
@@ -135,6 +134,25 @@
             border-radius: 8px;
         }
 
+        .reserved-button {
+            padding: 12px;
+            background-color: #f76c5e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .reserved-button:hover {
+            background-color: #e04c3c;
+            transform: scale(1.03);
+        }
+
         @media (max-width: 768px) {
             .edit-container {
                 flex-direction: column;
@@ -164,7 +182,7 @@
 
         <div class="edit-container">
             <div class="left-panel">
-                <img src="{{ auth()->user()->image ? asset('storage/' . auth()->user()->image) : asset('img/default-avatar.png') }}"
+                <img src="{{ auth()->user()->image ? asset('images/' . auth()->user()->image) : asset('img/default-avatar.png') }}"
                      alt="Profile Picture">
                 <h2>{{ auth()->user()->name }}</h2>
             </div>
@@ -218,6 +236,9 @@
 
                     <button type="submit">Update Profile</button>
                 </form>
+
+                <!-- Button to view reserved rooms -->
+                <button class="reserved-button" onclick="window.location.href='{{ route('bookingUser') }}'">View Reserved Rooms</button>
             </div>
         </div>
     </div>

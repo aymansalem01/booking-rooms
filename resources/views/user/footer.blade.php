@@ -31,11 +31,6 @@
                     <div class="ft-newslatter">
                         <h6>New latest</h6>
                         <p>Get the latest updates and offers.</p>
-                        @if (session('message'))
-                        <div class="alert alert-primary">
-                            {{ session('message') }}
-                        </div>
-                        @endif
                         <form action="{{ route('subscribe') }}" method="post" class="fn-form">
                             @csrf
                             <input type="text" name="email" placeholder="Email">
