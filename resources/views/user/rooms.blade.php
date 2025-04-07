@@ -2,22 +2,27 @@
 
 @section('content')
     <!-- Breadcrumb Section Begin -->
+    <div class="breadcrumb-text">
+        <h2>All Rooms</h2>
+    <div class="bt-option">
+        <a href="{{route('home')}}">Home</a>
+        <span>Rooms</span>
+    </div>
+</div>
 
-
-    @livewire('search-component')
 
     <!-- Breadcrumb Section End -->
     @if ($rooms->contains(fn($room) => $room->discount > 0))
     @php
     $discountedRooms = $rooms->filter(fn($room) => $room->discount > 0);
 @endphp
-        <div class="my-unique-container" style="margin: 20px">
+        <div class="my-unique-container" style="margin: 20px" >
             <div class="container">
             <header class="my-unique-header" style="text-align: center">
-            <h2 style="padding:15px; margin:20px;">Rooms with Special Discount</h2>
+            <h2 style="padding-top:70px; margin:20px;padding-bottom: 15px; " >Rooms with Special Discount</h2>
             </header>
 
-            <section class="my-unique-content">
+            <section class="my-unique-content" style="margin-bottom: 0px">
                 <div class="my-unique-board-container">
                     @if ($discountedRooms->count() > 3)
                 <button class="my-unique-scroll-btn left-btn" id="scrollLeft">←</button>
@@ -87,18 +92,13 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="breadcrumb-text">
-                                <h2>All Rooms</h2>
-                                <div class="bt-option">
-                                    <a href="{{route('home')}}">Home</a>
-                                    <span>Rooms</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+             @livewire('search-component')
             <div class="row">
+
 
                 @foreach ($rooms as $room)
                 <div class="col-lg-4 col-md-6">

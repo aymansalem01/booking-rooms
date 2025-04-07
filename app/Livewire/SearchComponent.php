@@ -21,7 +21,7 @@ class SearchComponent extends Component
         $roomsQuery = Room::query()
             ->with(['category', 'image'])
             ->whereHas('user', function ($query) {
-                $query->where('status', 'active'); 
+                $query->where('status', 'active');
             })
             ->when($searchTerm, function ($query) use ($searchTerm) {
                 $query->where(function ($q) use ($searchTerm) {

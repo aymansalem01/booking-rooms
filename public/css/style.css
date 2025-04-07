@@ -1040,24 +1040,28 @@ height: 100px;
 	text-align: right;
 }
 /* --------------------------------- Other Pages Styles ----------------------------------- */
-
+.input-group-text i {
+    color: #6c757d;  
+    font-size: 18px;
+}
 /*---------------------
   Breadcrumb Section
 -----------------------*/
 
-.breadcrumb-section {
-	padding-top: 70px;
-	padding-bottom: 80px;
-}
 .breadcrumb-text {
 	text-align: center;
+    padding-top: 30px;
 }
 .breadcrumb-text h2 {
 	font-size: 44px;
 	color: #19191a;
 	margin-bottom: 12px;
 }
-.breadcrumb-text .bt-option a {
+.bt-option {
+    display: flex;
+    justify-content: center;
+}
+.bt-option a {
 	display: inline-block;
 	font-size: 18px;
 	color: #19191a;
@@ -1065,7 +1069,7 @@ height: 100px;
 	position: relative;
 	font-weight: 500;
 }
-.breadcrumb-text .bt-option a:after {
+ .bt-option a:after {
 	position: absolute;
 	right: -13px;
 	top: 1px;
@@ -1073,8 +1077,10 @@ height: 100px;
 	font-size: 18px;
 	font-family: "FontAwesome";
 	color: #aaaab3;
+
+
 }
-.breadcrumb-text .bt-option span {
+.bt-option span {
 	display: inline-block;
 	font-size: 18px;
 	color: #aaaab3;
@@ -1218,7 +1224,9 @@ height: 100px;
 /*---------------------
   Room Section
 -----------------------*/
-
+.SearchComponent{
+    margin-top: 0px;
+}
 .rooms-section {
 	padding-top: 0;
 	padding-bottom: 80px;

@@ -1,4 +1,8 @@
-<div>
+<div class="SearchComponent">
+    {{-- The best way to predict the future is to create it. --}}
+    {{-- The only limit to our realization of tomorrow will be our doubts of today. --}}
+    {{-- The future belongs to those who believe in the beauty of their dreams. --}}
+    {{-- Do not wait to strike till the iron is hot, but make it hot by striking. --}}
     {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
 
     <section class="rooms-section spad">
@@ -6,12 +10,20 @@
 
             <div class="row mb-5">
                 <div class="col-12">
-                    <input
-                        wire:model.live.debounce.500ms="search"
-                        placeholder="Search rooms or categories..."
-                        type="text"
-                        class="form-control form-control-lg"
-                    >
+                    <div class="input-group mb-4">
+                        <!-- Input Group with Search Icon -->
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <input
+                            wire:model.live.debounce.500ms="search"
+                            placeholder="Search rooms or categories..."
+                            type="text"
+                            class="form-control form-control-lg"
+                        >
+                    </div>
                 </div>
             </div>
 
